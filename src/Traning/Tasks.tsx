@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import './../App.css'
 import {Todo} from "./Todo";
 
+
 export type FilterType = 'All' | 'Checked' | 'Active'
 
 const Tasks = () => {
@@ -14,34 +15,33 @@ const Tasks = () => {
 			{id: 5, tech: 'C#/C++', isDone: false},
 	 ]
 
-
 	 const [task, setTask] = useState(task1)
 	 const [filter, setFilter] = useState('All')
+	 const removeButton = (id: number) => {
+			let resultRemove = task.filter(elem => elem.id !== id)
+			setTask(resultRemove)
+	 }
+
 	 let filterTasks = task
-	 if (filter === 'Checked') {
-			filterTasks = task.filter(elem => elem.isDone)
+	 if(filter === 'Checked'){
+			filterTasks = task.filter(elem=>elem.isDone)
 	 }
-	 if (filter === 'Active') {
-			filterTasks = task.filter(elem => !elem.isDone)
+	 if(filter === 'Active'){
+			filterTasks = task.filter(elem=>!elem.isDone)
 	 }
-	 const onClickHundler = (name: string) => {
+
+	 const onClickHundler = (name:string)=>{
 			setFilter(name)
 	 }
 
 
-	 const removeButton = (id: number) => {
-			let removeElem = task.filter(elem => elem.id !== id)
-			setTask(removeElem)
-	 }
-
-
 	 return <div className='App'>
-			<Todo title='What I Learn'
-						tasks={filterTasks}
-						removeButton={removeButton}
-						onClickHundler={onClickHundler}
+			<Todo
+				title='What I Learn'
+				tasks={filterTasks}
+				removeButton={removeButton}
+				onClickHundler={onClickHundler}
 			/>
-
 
 	 </div>
 }
