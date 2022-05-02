@@ -1,38 +1,55 @@
 import React from 'react';
+import './App.css'
 
 
-type Tasktype = {
+import {FilterType} from "./App";
+
+type TodolistPropsType = {
+	 title: string
+	 tasks: Tasktype[]
+	 removeTask: (id: number) => void
+	 onClickHundler: (name: FilterType) => void
+}
+export type Tasktype = {
 	 id: number
 	 title: string
 	 isDone: boolean
 }
 
-type TodolistPropsType = {
-	title: string
-	tasks: Tasktype[]
-}
-
-
 const Todolist = (props: TodolistPropsType) => {
-	return (
-		<div>
-			<h3>{props.title}</h3>
-			<div>
-				<input/>
-				<button>+</button>
-			</div>
-			<ul>
-				<li><input type="checkbox" checked={props.tasks[0].isDone}/> <span>{props.tasks[0].title}</span></li>
-				<li><input type="checkbox" checked={props.tasks[1].isDone}/> <span>{props.tasks[1].title}</span></li>
-				<li><input type="checkbox" checked={props.tasks[2].isDone}/> <span>{props.tasks[2].title}</span></li>
-			</ul>
-			<div>
-				<button>All</button>
-				<button>Active</button>
-				<button>Completed</button>
-			</div>
-		</div>
-	);
+
+	 let taskJSX = props.tasks.map((elem, index) => {
+			let buttonRemoveTask = () => props.removeTask(elem.id)
+			return <li key={index}>
+				 <input type='checkbox' checked={elem.isDone}/>
+				 <span className='titleTasks'>{elem.title}</span>
+				 <button className='buttonRemove' onClick={buttonRemoveTask} title='Remove task'></button>
+			</li>
+	 })
+
+
+	 return (
+		 <div>
+				<h3 className='title'>{props.title}</h3>
+				<div>
+					 <input/>
+					 <button className='addTask' title='Add Task'>add</button>
+				</div>
+				<ul>
+					 {taskJSX}
+				</ul>
+				<div>
+					 <button className='buttonSortAll' onClick={() => props.onClickHundler('All')} title='Show All Tasks'>All
+					 </button>
+					 <button className='buttonSortActive' onClick={() => props.onClickHundler('Active')}
+									 title='Show Active Tasks'>Active
+					 </button>
+					 <button className='buttonSortCompleted' onClick={() => props.onClickHundler('Completed')}
+									 title='Show Completed Tasks'>Completed
+					 </button>
+				</div>
+		 </div>
+	 );
 };
 
 export default Todolist;

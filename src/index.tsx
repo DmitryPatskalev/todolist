@@ -6,8 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import Traning from "./Traning/Traning";
 
 ReactDOM.render
-// (<App />,
-	(<Traning/>,
+(<App />,
+// 	(<Traning/>,
 	document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
