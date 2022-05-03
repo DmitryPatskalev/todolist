@@ -1,8 +1,7 @@
 import React from 'react';
-import './App.css'
+import css from './Style.module.css'
 
-
-import {FilterType} from "./App";
+import {FilterType} from './Tasks'
 
 type TodolistPropsType = {
 	 title: string
@@ -22,29 +21,28 @@ const Todolist = (props: TodolistPropsType) => {
 			let buttonRemoveTask = () => props.removeTask(elem.id)
 			return <li key={index}>
 				 <input type='checkbox' checked={elem.isDone}/>
-				 <span className='titleTasks'>{elem.title}</span>
-				 <button className='buttonRemove' onClick={buttonRemoveTask} title='Remove task'></button>
+				 <span className={css.titleTasks}>{elem.title}</span>
+				 <button className={css.buttonRemove} onClick={buttonRemoveTask} title='Remove task'></button>
 			</li>
 	 })
-
-
+	 
 	 return (
 		 <div>
-				<h3 className='title'>{props.title}</h3>
+				<h3 className={css.title}>{props.title}</h3>
 				<div>
 					 <input/>
-					 <button className='addTask' title='Add Task'>add</button>
+					 <button className={css.addTask} title='Add Task'>add</button>
 				</div>
 				<ul>
 					 {taskJSX}
 				</ul>
 				<div>
-					 <button className='buttonSortAll' onClick={() => props.onClickHundler('All')} title='Show All Tasks'>All
+					 <button className={css.buttonSortAll} onClick={() => props.onClickHundler('All')} title='Show All Tasks'>All
 					 </button>
-					 <button className='buttonSortActive' onClick={() => props.onClickHundler('Active')}
+					 <button className={css.buttonSortActive} onClick={() => props.onClickHundler('Active')}
 									 title='Show Active Tasks'>Active
 					 </button>
-					 <button className='buttonSortCompleted' onClick={() => props.onClickHundler('Completed')}
+					 <button className={css.buttonSortCompleted} onClick={() => props.onClickHundler('Completed')}
 									 title='Show Completed Tasks'>Completed
 					 </button>
 				</div>

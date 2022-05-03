@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Traning from "./Traning/Traning";
+
 
 ReactDOM.render
-(<App />,
-// 	(<Traning/>,
+(<App/>,
 	document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
