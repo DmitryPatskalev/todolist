@@ -1,11 +1,12 @@
 import React from "react";
 import {FilterType} from './Tasks'
+import {AddTasks} from "./AddTasks";
 
 type TodoType = {
 	 title: string
 	 tasks: TaskType[]
 	 removeButton: (id: number) => void
-	 onClickHundler:(name:FilterType)=>void
+	 onClickHundler: (name: FilterType) => void
 
 }
 type TaskType = {
@@ -17,10 +18,7 @@ type TaskType = {
 export const Todo = (props: TodoType) => {
 	 return <div>
 			<h3>{props.title}</h3>
-			<div>
-				 <input/>
-				 <button>+</button>
-			</div>
+			<AddTasks/>
 			<ul>
 				 {props.tasks.map((elem, index) => {
 						return <li key={index}>
@@ -30,9 +28,9 @@ export const Todo = (props: TodoType) => {
 						</li>
 				 })}
 			</ul>
-			<button onClick={()=>(props.onClickHundler('All'))}>Show All</button>
-			<button onClick={()=>(props.onClickHundler('Active'))}>Show Active</button>
-			<button onClick={()=>(props.onClickHundler('Checked'))}>Show Checked</button>
+			<button onClick={() => (props.onClickHundler('All'))}>Show All</button>
+			<button onClick={() => (props.onClickHundler('Active'))}>Show Active</button>
+			<button onClick={() => (props.onClickHundler('Checked'))}>Show Checked</button>
 	 </div>
 
 }

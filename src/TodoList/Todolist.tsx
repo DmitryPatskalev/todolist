@@ -25,7 +25,7 @@ const Todolist = (props: TodolistPropsType) => {
 				 <button className={css.buttonRemove} onClick={buttonRemoveTask} title='Remove task'></button>
 			</li>
 	 })
-	 
+
 	 return (
 		 <div>
 				<h3 className={css.title}>{props.title}</h3>
