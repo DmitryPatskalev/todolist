@@ -1,16 +1,17 @@
 import React, {ChangeEvent} from "react";
 
 type InputType = {
-	 newTask: string
-	 setNewTask: (newTask: string) => void
+	 message: string
+	 setMessage: (value: string) => void
 }
 
 export const Input = (props: InputType) => {
-	 let onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-			props.setNewTask(event.currentTarget.value)
+	 let onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
+			props.setMessage(event.currentTarget.value)
 	 }
+
 	 return <span>
-			<input value={props.newTask} onChange={onChangeHandler}/>
+			<input value={props.message} onChange={onChangeHundler}/>
 
 	 </span>
 }

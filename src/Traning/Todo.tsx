@@ -1,36 +1,44 @@
 import React from "react";
-import {FilterType} from './Tasks'
+import {FilterType} from "./Tasks";
 import {AddTasks} from "./AddTasks";
 
-type TodoType = {
-	 title: string
-	 tasks: TaskType[]
-	 removeButton: (id: number) => void
-	 onClickHundler: (name: FilterType) => void
-
-}
-type TaskType = {
-	 id: number
+export type TasksListType = {
+	 id: string
 	 tech: string
 	 isDone: boolean
 }
+type TaskType = {
+	 task: TasksListType[]
+	 title: string
+	 buttonRemoveTask: (id: string) => void
+	 onClickHundler: (name: FilterType) => void
+}
 
-export const Todo = (props: TodoType) => {
+export const Todo = (props: TaskType) => {
+	 let result = props.task.map((elem, index) => {
+			let removeElem = () => props.buttonRemoveTask(elem.id)
+			return <ul>
+				 <li key={index}>
+						<input type='checkbox' checked={elem.isDone}/>
+						{elem.tech}
+						<span>
+							 <button onClick={removeElem}>x</button></span>
+				 </li>
+			</ul>
+	 })
+
 	 return <div>
 			<h3>{props.title}</h3>
 			<AddTasks/>
-			<ul>
-				 {props.tasks.map((elem, index) => {
-						return <li key={index}>
-							 <input type='checkbox' checked={elem.isDone}/>
-							 <span>{elem.tech}</span>
-							 <button onClick={() => (props.removeButton(elem.id))}>x</button>
-						</li>
-				 })}
-			</ul>
-			<button onClick={() => (props.onClickHundler('All'))}>Show All</button>
-			<button onClick={() => (props.onClickHundler('Active'))}>Show Active</button>
-			<button onClick={() => (props.onClickHundler('Checked'))}>Show Checked</button>
+			{/*<input/>*/}
+			{/*<button>+</button>*/}
+			{result}
+			<div>
+				 <button onClick={() => (props.onClickHundler('All'))}>All</button>
+				 <button onClick={() => (props.onClickHundler('Active'))}>Active</button>
+				 <button onClick={() => (props.onClickHundler('Completed'))}>Completed</button>
+			</div>
+
 	 </div>
 
 }
