@@ -34,12 +34,25 @@ const Tasks = () => {
 	 let onClickHundler = (name: string) => {
 			setFilter(name)
 	 }
-	 
+
+	 let addTask = (name: string) => {
+			let newTask = {
+				 id: v1(),
+				 tech: name,
+				 isDone: true
+			};
+			let newTasks = ([newTask, ...task])
+			setTask(newTasks)
+	 }
+
 	 return <div className='App'>
 			<Todo task={filterTasks}
 						title='What I Learn'
 						buttonRemoveTask={buttonRemoveTask}
 						onClickHundler={onClickHundler}
+						addTask={addTask}
+
+
 			/>
 	 </div>
 }

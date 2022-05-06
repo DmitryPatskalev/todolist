@@ -1,6 +1,5 @@
-import React from "react";
+import React, {ChangeEvent, useState, KeyboardEvent} from "react";
 import {FilterType} from "./Tasks";
-import {AddTasks} from "./AddTasks";
 
 export type TasksListType = {
 	 id: string
@@ -12,9 +11,12 @@ type TaskType = {
 	 title: string
 	 buttonRemoveTask: (id: string) => void
 	 onClickHundler: (name: FilterType) => void
+	 addTask: (name: string) => void
+
 }
 
 export const Todo = (props: TaskType) => {
+	 const [message, setMessage] = useState('')
 	 let result = props.task.map((elem, index) => {
 			let removeElem = () => props.buttonRemoveTask(elem.id)
 			return <ul>
@@ -27,11 +29,27 @@ export const Todo = (props: TaskType) => {
 			</ul>
 	 })
 
+	 const onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
+			setMessage(event.currentTarget.value)
+	 }
+	 const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+			if (event.charCode === 13) {
+				 props.addTask(message)
+				 setMessage('')
+			}
+	 }
+
+	 let callBackButton = () => {
+			props.addTask(message)
+			setMessage('')
+	 }
 	 return <div>
 			<h3>{props.title}</h3>
-			<AddTasks/>
-			{/*<input/>*/}
-			{/*<button>+</button>*/}
+			<input value={message}
+						 onChange={onChangeHundler}
+						 onKeyPress={onKeyPressHandler}
+			/>
+			<button onClick={callBackButton}>+</button>
 			{result}
 			<div>
 				 <button onClick={() => (props.onClickHundler('All'))}>All</button>

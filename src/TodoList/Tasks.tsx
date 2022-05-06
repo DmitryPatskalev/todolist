@@ -1,15 +1,16 @@
 import React, {useState} from "react";
 import Todolist, {Tasktype} from "./Todolist";
+import {v1} from "uuid";
 
 export type FilterType = 'All' | 'Active' | 'Completed'
 
 const Tasks = () => {
 	 const tasks: Array<Tasktype> = [
-			{id: 1, title: 'HTML&CSS', isDone: true},
-			{id: 2, title: 'JS/TS', isDone: true},
-			{id: 3, title: 'React', isDone: false},
-			{id: 4, title: 'C#/C++', isDone: false},
-			{id: 5, title: 'Python', isDone: true},
+			{id: v1(), title: 'HTML&CSS', isDone: true},
+			{id: v1(), title: 'JS/TS', isDone: true},
+			{id: v1(), title: 'React', isDone: false},
+			{id: v1(), title: 'C#/C++', isDone: false},
+			{id: v1(), title: 'Python', isDone: true},
 	 ]
 
 	 const [task, setTask] = useState(tasks)
@@ -25,19 +26,32 @@ const Tasks = () => {
 			setFilter(name)
 	 }
 
-	 let removeTask = (id: number) => {
+	 let removeTask = (id: string) => {
 			let removeElem = task.filter(elem => elem.id !== id)
 			setTask(removeElem)
 	 }
+
+	 let addTask = (title: string) => {
+			let newTasks = {
+				 id: v1(),
+				 title: title,
+				 isDone: true
+			}
+			setTask([newTasks, ...task])
+	 }
+	 
+
 	 return (
 		 <div className="App">
 				<Todolist title='What I Learn'
 									tasks={filterTask}
 									removeTask={removeTask}
 									onClickHundler={onClickHundler}
+									nameButton='+'
+									addTask={addTask}
 				/>
 		 </div>
 	 );
 }
 
-export default Tasks
+export default Tasks;

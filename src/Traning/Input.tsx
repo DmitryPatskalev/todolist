@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useState} from "react";
 
 type InputType = {
 	 message: string
@@ -6,6 +6,7 @@ type InputType = {
 }
 
 export const Input = (props: InputType) => {
+
 	 let onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
 			props.setMessage(event.currentTarget.value)
 	 }
