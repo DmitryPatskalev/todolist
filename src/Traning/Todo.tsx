@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from "react";
 import {FilterType} from "./Tasks";
 
+
 export type TasksListType = {
 	 id: string
 	 tech: string
@@ -12,7 +13,6 @@ type TaskType = {
 	 buttonRemoveTask: (id: string) => void
 	 onClickHundler: (name: FilterType) => void
 	 addTask: (name: string) => void
-
 }
 
 export const Todo = (props: TaskType) => {
@@ -45,11 +45,13 @@ export const Todo = (props: TaskType) => {
 	 }
 	 return <div>
 			<h3>{props.title}</h3>
+
 			<input value={message}
 						 onChange={onChangeHundler}
 						 onKeyPress={onKeyPressHandler}
 			/>
 			<button onClick={callBackButton}>+</button>
+
 			{result}
 			<div>
 				 <button onClick={() => (props.onClickHundler('All'))}>All</button>

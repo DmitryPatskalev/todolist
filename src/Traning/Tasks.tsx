@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './../App.css'
-import {Todo, TasksListType} from "./Todo";
+import {TasksListType, Todo} from "./Todo";
 import {v1} from 'uuid'
 
 export type FilterType = 'All' | 'Completed' | 'Active'
@@ -50,10 +50,7 @@ const Tasks = () => {
 						title='What I Learn'
 						buttonRemoveTask={buttonRemoveTask}
 						onClickHundler={onClickHundler}
-						addTask={addTask}
-
-
-			/>
+						addTask={addTask}/>
 	 </div>
 }
 export default Tasks
