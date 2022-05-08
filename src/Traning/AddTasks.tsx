@@ -1,29 +1,36 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
-type AddTaskType = {
-	 addTask: (name: string) => void
+type AddTasksType = {
+	 addTask: (title: string) => void
 }
 
-export const AddTasks = (props: AddTaskType) => {
-	 const [message, setMessage] = useState('')
+export const AddTasks = (props: AddTasksType) => {
+	 const [newTask, setNewTask] = useState('')
 
-	 let callBackButton = () => {
-			props.addTask(message)
-			setMessage('')
-	 }
-	 let onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-			if (event.charCode === 13) {
-				 setMessage(event.currentTarget.value)
-				 setMessage('')
-			}
-	 }
 	 let onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
-			setMessage(event.currentTarget.value)
+			setNewTask(event.currentTarget.value)
+	 }
+
+	 let onClickHundler = () => {
+			props.addTask(newTask)
+			setNewTask('')
+	 }
+	 let onKeyPressHundler = (event: KeyboardEvent<HTMLInputElement>) => {
+			if (event.charCode === 13) {
+				 props.addTask(newTask)
+				 setNewTask('')
+			}
 	 }
 
 	 return <div>
-			<input onChange={onChangeHundler}
-						 onKeyPress={onKeyPressHandler}/>
-			<button onClick={callBackButton}>+</button>
+			<input value={newTask}
+						 onChange={onChangeHundler}
+						 onKeyPress={onKeyPressHundler}
+			/>
+			<button
+				onClick={onClickHundler}>+
+			</button>
+
 	 </div>
 }
+export default AddTasks

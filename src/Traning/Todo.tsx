@@ -1,65 +1,43 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from "react";
-import {FilterType} from "./Tasks";
+import React from "react";
+import {FilterType, TasksListType} from "./Tasks";
+import AddTasks from "./AddTasks";
 
 
-export type TasksListType = {
-	 id: string
-	 tech: string
-	 isDone: boolean
-}
 type TaskType = {
-	 task: TasksListType[]
-	 title: string
+	 task: Array<TasksListType>
 	 buttonRemoveTask: (id: string) => void
 	 onClickHundler: (name: FilterType) => void
-	 addTask: (name: string) => void
+	 addTask: (title: string) => void
+	 title: string
 }
 
 export const Todo = (props: TaskType) => {
-	 const [message, setMessage] = useState('')
-	 let result = props.task.map((elem, index) => {
-			let removeElem = () => props.buttonRemoveTask(elem.id)
+
+	 let listOfTasks = props.task.map((elem, index) => {
+			let removeTask = () => props.buttonRemoveTask(elem.id)
 			return <ul>
 				 <li key={index}>
 						<input type='checkbox' checked={elem.isDone}/>
-						{elem.tech}
-						<span>
-							 <button onClick={removeElem}>x</button></span>
+						<span>{elem.tech}</span>
+						<span>{elem.isDone}</span>
+						<button onClick={removeTask}>x</button>
 				 </li>
 			</ul>
 	 })
 
-	 const onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
-			setMessage(event.currentTarget.value)
-	 }
-	 const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-			if (event.charCode === 13) {
-				 props.addTask(message)
-				 setMessage('')
-			}
-	 }
-
-	 let callBackButton = () => {
-			props.addTask(message)
-			setMessage('')
-	 }
 	 return <div>
 			<h3>{props.title}</h3>
-
-			<input value={message}
-						 onChange={onChangeHundler}
-						 onKeyPress={onKeyPressHandler}
-			/>
-			<button onClick={callBackButton}>+</button>
-
-			{result}
+			<AddTasks addTask={props.addTask}/>
+			{listOfTasks}
 			<div>
-				 <button onClick={() => (props.onClickHundler('All'))}>All</button>
-				 <button onClick={() => (props.onClickHundler('Active'))}>Active</button>
-				 <button onClick={() => (props.onClickHundler('Completed'))}>Completed</button>
+				 <button onClick={() => props.onClickHundler('All')}>All</button>
+				 <button onClick={() => props.onClickHundler('Active')}>Active</button>
+				 <button onClick={() => props.onClickHundler('Checked')}>Checked</button>
 			</div>
+
 
 	 </div>
 
 }
+export default Todo
 
