@@ -22,8 +22,7 @@ const AddTasks = (props: AddTasksType) => {
 				 setNewTask('')
 			}
 	 }
-
-
+	 
 	 return <div>
 			<input
 				value={newTask}
