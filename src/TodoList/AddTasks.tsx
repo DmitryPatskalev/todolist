@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import css from './Style.module.css'
 
+
 type AddTasksType = {
 	 addTask: (title: string) => void
 }
@@ -22,7 +23,7 @@ const AddTasks = (props: AddTasksType) => {
 				 setNewTask('')
 			}
 	 }
-	 
+
 	 return <div>
 			<input
 				value={newTask}

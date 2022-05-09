@@ -18,6 +18,7 @@ let tasksList: Array<TasksListType> = [
 	 {id: v1(), tech: 'Python', isDone: true},
 	 {id: v1(), tech: 'C#/C++', isDone: false}
 ]
+
 const Tasks = () => {
 	 const [task, setTask] = useState(tasksList)
 	 const [filter, setFilter] = useState('All')

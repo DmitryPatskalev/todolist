@@ -1,7 +1,7 @@
 import React from "react";
 import {FilterType, TasksListType} from "./Tasks";
 import AddTasks from "./AddTasks";
-
+import ButtonsFilterTasks from "./ButtonsFilterTasks";
 
 type TaskType = {
 	 task: Array<TasksListType>
@@ -30,12 +30,8 @@ export const Todo = (props: TaskType) => {
 			<AddTasks addTask={props.addTask}/>
 			{listOfTasks}
 			<div>
-				 <button onClick={() => props.onClickHundler('All')}>All</button>
-				 <button onClick={() => props.onClickHundler('Active')}>Active</button>
-				 <button onClick={() => props.onClickHundler('Checked')}>Checked</button>
+				 <ButtonsFilterTasks onClickHundler={props.onClickHundler}/>
 			</div>
-
-
 	 </div>
 
 }

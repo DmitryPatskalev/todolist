@@ -6,6 +6,7 @@ type ButtonFilterTasksType = {
 	 onClickHundler: (name: FilterType) => void
 }
 const ButtonFilterTasks = (props: ButtonFilterTasksType) => {
+	 
 	 let showAll = () => {
 			props.onClickHundler('All')
 	 }

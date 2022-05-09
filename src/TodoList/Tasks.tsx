@@ -35,8 +35,8 @@ const Tasks = () => {
 	 let addTask = (title: string) => {
 			let newTasks = {
 				 id: v1(),
-				 title: title,
-				 isDone: true
+				 title,
+				 isDone: false
 			}
 			setTask([newTasks, ...task])
 	 }

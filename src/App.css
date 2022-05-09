@@ -1,11 +1,5 @@
 .App {
-    padding: 30px;
+    padding: 20px;
     display: grid;
-
-
-}
-
-.App > div {
-    margin-right: 10px;
 }
 
