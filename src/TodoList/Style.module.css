@@ -31,10 +31,12 @@
 .title {
     font-family: 'Neucha', cursive;
     color: red;
+
 }
 
 .addTask {
     margin: 5px;
-    font-size: 13px;
+    font-size: 15px;
     background-color: lightgreen;
+
 }

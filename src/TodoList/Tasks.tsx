@@ -15,6 +15,7 @@ const Tasks = () => {
 
 	 const [task, setTask] = useState(tasks)
 	 const [filter, setFilter] = useState('All')
+
 	 let filterTask = task
 	 if (filter === 'Active') {
 			filterTask = task.filter(elem => elem.isDone)
@@ -39,7 +40,7 @@ const Tasks = () => {
 			}
 			setTask([newTasks, ...task])
 	 }
-	 
+
 
 	 return (
 		 <div className="App">

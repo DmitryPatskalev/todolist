@@ -1,7 +1,7 @@
-import React, {KeyboardEvent, ChangeEvent, useState} from 'react';
+import React from 'react';
 import css from './Style.module.css'
-
 import {FilterType} from './Tasks'
+import AddTasks from "./AddTasks";
 
 type TodolistPropsType = {
 	 title: string
@@ -18,7 +18,6 @@ export type Tasktype = {
 }
 
 const Todolist = (props: TodolistPropsType) => {
-	 const [newTask, setNewTask] = useState('')
 	 let taskJSX = props.tasks.map((elem, index) => {
 			let buttonRemoveTask = () => props.removeTask(elem.id)
 			return <li key={index}>
@@ -38,35 +37,11 @@ const Todolist = (props: TodolistPropsType) => {
 			props.onClickHundler('Completed')
 	 }
 
-	 let onAddButtonClick = () => {
-			props.addTask(newTask)
-			setNewTask('')
-	 }
-	 let onPressClick = (event: KeyboardEvent<HTMLInputElement>) => {
-			if (event.charCode === 13) {
-				 props.addTask(event.currentTarget.value)
-				 setNewTask('')
-			}
-	 }
-
-	 let onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
-			setNewTask(event.currentTarget.value)
-	 }
-	 
 	 return (
 		 <div>
 				<h3 className={css.title}>{props.title}</h3>
 				<div>
-					 <input
-						 value={newTask}
-						 onChange={onChangeHundler}
-						 onKeyPress={onPressClick}
-					 />
-					 <button className={css.addTask}
-									 title='Add Task'
-									 onClick={onAddButtonClick}
-					 >{props.nameButton}
-					 </button>
+					 <AddTasks addTask={props.addTask}/>
 				</div>
 				<ul>
 					 {taskJSX}
