@@ -7,17 +7,21 @@ type AddTasksType = {
 export const AddTasks = (props: AddTasksType) => {
 	 const [newTask, setNewTask] = useState('')
 
+
 	 let onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
 			setNewTask(event.currentTarget.value)
 	 }
 
-	 let onClickHundler = () => {
-			props.addTask(newTask)
+	 let onClickAddTask = () => {
+			if (newTask.trim() === '') {
+				 return;
+			}
+			props.addTask(newTask.trim())
 			setNewTask('')
 	 }
 	 let onKeyPressHundler = (event: KeyboardEvent<HTMLInputElement>) => {
 			if (event.charCode === 13) {
-				 props.addTask(newTask)
+				 onClickAddTask()
 				 setNewTask('')
 			}
 	 }
@@ -28,7 +32,7 @@ export const AddTasks = (props: AddTasksType) => {
 						 onKeyPress={onKeyPressHundler}
 			/>
 			<button
-				onClick={onClickHundler}>+
+				onClick={onClickAddTask}>+
 			</button>
 
 	 </div>

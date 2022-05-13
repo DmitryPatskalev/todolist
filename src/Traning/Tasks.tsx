@@ -46,6 +46,14 @@ const Tasks = () => {
 			}
 			setTask([addElem, ...task])
 	 }
+	 let changeStatus = (taskId: string, isDone: boolean) => {
+			let changeTaskStatus = task.find(t => t.id === taskId)
+			if (changeTaskStatus) {
+				 changeTaskStatus.isDone = isDone
+			}
+			setTask([...task])
+	 }
+
 
 	 return <div className='App'>
 			<Todo
@@ -54,6 +62,8 @@ const Tasks = () => {
 				buttonRemoveTask={buttonRemoveTask}
 				onClickHundler={onClickHundler}
 				addTask={addTasks}
+				changeStatus={changeStatus}
+
 			/>
 
 	 </div>
