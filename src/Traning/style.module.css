@@ -32,7 +32,7 @@
 }
 
 .error {
-    border: 1px red solid;
+    border: 2px red solid;
 }
 
 .errorMessage {
@@ -40,6 +40,9 @@
 }
 
 .isDone {
-    opacity: 0.3;
+    opacity: 0.5;
 }
 
+.tasks {
+    font-family: 'Neucha', cursive;
+}

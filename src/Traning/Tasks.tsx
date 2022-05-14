@@ -47,7 +47,7 @@ const Tasks = () => {
 			setTask([addElem, ...task])
 	 }
 
-	 let changeStatusTask = (taskId: string, isDone: boolean) => {
+	 let changeStatus = (taskId: string, isDone: boolean) => {
 			let changeChecked = task.find(t => t.id === taskId)
 			if (changeChecked) {
 				 changeChecked.isDone = isDone
@@ -63,7 +63,8 @@ const Tasks = () => {
 				buttonRemoveTask={buttonRemoveTask}
 				onClickFilterHundler={onClickFilterHundler}
 				addTask={addTasks}
-				changeStatusTask={changeStatusTask}
+				changeStatus={changeStatus}
+
 			/>
 	 </div>
 }

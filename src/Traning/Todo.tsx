@@ -10,19 +10,20 @@ type TaskType = {
 	 onClickFilterHundler: (name: FilterType) => void
 	 addTask: (title: string) => void
 	 title: string
-	 changeStatusTask: (taskId: string, isDone: boolean) => void
+	 changeStatus: (taskId: string, isDone: boolean) => void
+
 }
 
 export const Todo = (props: TaskType) => {
 	 let listOfTasks = props.task.map((elem, index) => {
 			let removeTask = () => props.buttonRemoveTask(elem.id)
-			let onChangeStatusTask = (event: ChangeEvent<HTMLInputElement>) => {
-				 props.changeStatusTask(elem.id, event.currentTarget.checked)
+			let onChangeTaskStatus = (event: ChangeEvent<HTMLInputElement>) => {
+				 props.changeStatus(elem.id, event.currentTarget.checked)
 			}
 			return <ul key={index}>
 				 <li className={elem.isDone ? css.isDone : ''}>
-						<input type='checkbox' onChange={onChangeStatusTask} checked={elem.isDone}/>
-						<span>{elem.tech}</span>
+						<input type='checkbox' onChange={onChangeTaskStatus} checked={elem.isDone}/>
+						<span className={css.tasks}>{elem.tech}</span>
 						<span>{elem.isDone}</span>
 						<button onClick={removeTask}>x</button>
 				 </li>

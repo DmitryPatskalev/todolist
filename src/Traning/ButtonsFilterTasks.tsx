@@ -9,13 +9,13 @@ type ButtonsFilterTasksType = {
 
 const ButtonsFilterTasks = (props: ButtonsFilterTasksType) => {
 
-	 let showAll = () => {
+	 const showAll = () => {
 			props.onClickFilterHundler('All')
 	 }
-	 let showActive = () => {
+	 const showActive = () => {
 			props.onClickFilterHundler('Active')
 	 }
-	 let showChecked = () => {
+	 const showChecked = () => {
 			props.onClickFilterHundler('Checked')
 	 }
 

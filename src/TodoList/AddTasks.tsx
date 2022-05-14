@@ -43,7 +43,7 @@ const AddTasks = (props: AddTasksType) => {
 				onClick={onClickHundler}
 			>+
 			</button>
-			{error && <div className={css.errorMessage}>{error}</div>}
+			<div className={error ? css.errorMessage : ''}>{error}</div>
 
 	 </div>
 }
