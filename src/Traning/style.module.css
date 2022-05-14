@@ -1,0 +1,45 @@
+.buttonShowAll, .buttonShowActive, .buttonShowChecked {
+    margin: 5px;
+}
+
+.buttonShowAll:hover {
+    background: lightgreen;
+}
+
+.buttonShowAll:focus {
+    background: lightgreen;
+}
+
+.buttonShowActive:hover {
+    background: lightgreen;
+}
+
+.buttonShowActive:focus {
+    background: lightgreen;
+}
+
+.buttonShowChecked:hover {
+    background: lightgreen;
+}
+
+.buttonShowChecked:focus {
+    background: lightgreen;
+}
+
+.title {
+    font-family: 'Neucha', cursive;
+    color: darkblue;
+}
+
+.error {
+    border: 1px red solid;
+}
+
+.errorMessage {
+    color: red;
+}
+
+.isDone {
+    opacity: 0.3;
+}
+

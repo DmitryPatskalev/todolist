@@ -17,10 +17,10 @@ const Tasks = () => {
 	 const [filter, setFilter] = useState('All')
 
 	 let filterTask = task
-	 if (filter === 'Active') {
+	 if (filter === 'Completed') {
 			filterTask = task.filter(elem => elem.isDone)
 	 }
-	 if (filter === 'Completed') {
+	 if (filter === 'Active') {
 			filterTask = task.filter(elem => !elem.isDone)
 	 }
 	 let onClickHundler = (name: string) => {

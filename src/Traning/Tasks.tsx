@@ -29,13 +29,13 @@ const Tasks = () => {
 	 }
 
 	 let filterTask = task
-	 if (filter === 'Active') {
+	 if (filter === 'Checked') {
 			filterTask = task.filter(elem => elem.isDone)
 	 }
-	 if (filter === 'Checked') {
+	 if (filter === 'Active') {
 			filterTask = task.filter(elem => !elem.isDone)
 	 }
-	 let onClickHundler = (name: string) => {
+	 let onClickFilterHundler = (name: string) => {
 			setFilter(name)
 	 }
 	 let addTasks = (title: string) => {
@@ -46,10 +46,11 @@ const Tasks = () => {
 			}
 			setTask([addElem, ...task])
 	 }
-	 let changeStatus = (taskId: string, isDone: boolean) => {
-			let changeTaskStatus = task.find(t => t.id === taskId)
-			if (changeTaskStatus) {
-				 changeTaskStatus.isDone = isDone
+
+	 let changeStatusTask = (taskId: string, isDone: boolean) => {
+			let changeChecked = task.find(t => t.id === taskId)
+			if (changeChecked) {
+				 changeChecked.isDone = isDone
 			}
 			setTask([...task])
 	 }
@@ -60,12 +61,10 @@ const Tasks = () => {
 				title='What I Learn'
 				task={filterTask}
 				buttonRemoveTask={buttonRemoveTask}
-				onClickHundler={onClickHundler}
+				onClickFilterHundler={onClickFilterHundler}
 				addTask={addTasks}
-				changeStatus={changeStatus}
-
+				changeStatusTask={changeStatusTask}
 			/>
-
 	 </div>
 }
 
