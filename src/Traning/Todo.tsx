@@ -11,20 +11,16 @@ type TaskType = {
 	 addTask: (title: string) => void
 	 title: string
 	 changeStatusTask: (taskId: string, isDone: boolean) => void
-
-
 }
 
 export const Todo = (props: TaskType) => {
-
 	 let listOfTasks = props.task.map((elem, index) => {
 			let removeTask = () => props.buttonRemoveTask(elem.id)
-
 			let onChangeStatusTask = (event: ChangeEvent<HTMLInputElement>) => {
 				 props.changeStatusTask(elem.id, event.currentTarget.checked)
 			}
-			return <ul>
-				 <li key={index} className={elem.isDone ? css.isDone : ''}>
+			return <ul key={index}>
+				 <li className={elem.isDone ? css.isDone : ''}>
 						<input type='checkbox' onChange={onChangeStatusTask} checked={elem.isDone}/>
 						<span>{elem.tech}</span>
 						<span>{elem.isDone}</span>

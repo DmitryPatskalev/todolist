@@ -7,6 +7,7 @@ import Traning from "./Traning/Traning";
 function App() {
 	 return <div className='App'>
 			<Tasks/>
+			-----------------------
 			<Traning/>
 
 	 </div>

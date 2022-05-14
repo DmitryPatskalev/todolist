@@ -3,18 +3,18 @@ import css from "./Style.module.css";
 import {FilterType} from "./Tasks";
 
 type ButtonFilterTasksType = {
-	 onClickHundler: (name: FilterType) => void
+	 onClickFilter: (name: FilterType) => void
 }
 const ButtonFilterTasks = (props: ButtonFilterTasksType) => {
-	 
+
 	 let showAll = () => {
-			props.onClickHundler('All')
+			props.onClickFilter('All')
 	 }
 	 let showActive = () => {
-			props.onClickHundler('Active')
+			props.onClickFilter('Active')
 	 }
 	 let showCompleted = () => {
-			props.onClickHundler('Completed')
+			props.onClickFilter('Completed')
 	 }
 
 	 return <div>

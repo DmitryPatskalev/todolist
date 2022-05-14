@@ -1,9 +1,14 @@
 import React, {useState} from "react";
-import Todolist, {Tasktype} from "./Todolist";
+import Todolist from "./Todolist";
 import {v1} from "uuid";
 
 export type FilterType = 'All' | 'Active' | 'Completed'
 
+export type Tasktype = {
+	 id: string
+	 title: string
+	 isDone: boolean
+}
 const Tasks = () => {
 	 const tasks: Array<Tasktype> = [
 			{id: v1(), title: 'HTML&CSS', isDone: true},
@@ -23,7 +28,7 @@ const Tasks = () => {
 	 if (filter === 'Active') {
 			filterTask = task.filter(elem => !elem.isDone)
 	 }
-	 let onClickHundler = (name: string) => {
+	 let onClickFilter = (name: string) => {
 			setFilter(name)
 	 }
 
@@ -41,15 +46,23 @@ const Tasks = () => {
 			setTask([newTasks, ...task])
 	 }
 
+	 let changeStatus = (taskId: string, isDone: boolean) => {
+			let changeChecked = task.find(t => t.id === taskId)
+			if (changeChecked) {
+				 changeChecked.isDone = isDone
+			}
+			setTask([...task])
+	 }
+
 
 	 return (
 		 <div className="App">
 				<Todolist title='What I Learn'
 									tasks={filterTask}
 									removeTask={removeTask}
-									onClickHundler={onClickHundler}
-									nameButton='+'
+									onClickFilter={onClickFilter}
 									addTask={addTask}
+									changeStatus={changeStatus}
 				/>
 		 </div>
 	 );

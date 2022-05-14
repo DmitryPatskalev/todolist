@@ -5,24 +5,37 @@
     border-radius: 50%;
     padding-left: 5px;
     font-size: 15px;
-    background-color: lightblue;
+    background-color: firebrick;
 }
 
 .buttonSortAll, .buttonSortActive, .buttonSortCompleted {
     margin: 5px;
 }
 
-.buttonSortAll {
+.buttonSortAll:hover {
     background-color: lightgreen;
 }
 
-.buttonSortActive {
-    background-color: deepskyblue;
+.buttonSortAll:focus {
+    background-color: lightgreen;
 }
 
-.buttonSortCompleted {
-    background-color: yellow;
+.buttonSortActive:hover {
+    background-color: lightgreen;
 }
+
+.buttonSortActive:focus {
+    background-color: lightgreen;
+}
+
+.buttonSortCompleted:hover {
+    background-color: lightgreen;
+}
+
+.buttonSortCompleted:focus {
+    background-color: lightgreen;
+}
+
 
 .titleTasks {
     font-family: 'Neucha', cursive;
@@ -31,12 +44,22 @@
 .title {
     font-family: 'Neucha', cursive;
     color: red;
-
 }
 
 .addTask {
     margin: 5px;
     font-size: 15px;
-    background-color: lightgreen;
+    background-color: skyblue;
+}
 
+.error {
+    border: 2px solid red;
+}
+
+.errorMessage {
+    color: red
+}
+
+.isDone {
+    opacity: 0.3;
 }
