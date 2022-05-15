@@ -1,28 +1,29 @@
 import React from "react";
-import css from './style.module.css'
 import {FilterType} from "./Tasks";
+import css from './style.module.css'
 
 type ButtonsFilterTasksType = {
-	 onClickFilterHundler: (name: FilterType) => void
-
+	 buttonFilterTask: (name: FilterType) => void
 }
 
 const ButtonsFilterTasks = (props: ButtonsFilterTasksType) => {
 
 	 const showAll = () => {
-			props.onClickFilterHundler('All')
+			props.buttonFilterTask('All')
 	 }
 	 const showActive = () => {
-			props.onClickFilterHundler('Active')
+			props.buttonFilterTask('Active')
 	 }
-	 const showChecked = () => {
-			props.onClickFilterHundler('Checked')
+	 const showCompleted = () => {
+			props.buttonFilterTask('Completed')
 	 }
 
+
 	 return <div>
-			<button className={css.buttonShowAll} onClick={showAll}>All</button>
-			<button className={css.buttonShowActive} onClick={showActive}>Active</button>
-			<button className={css.buttonShowChecked} onClick={showChecked}>Checked</button>
+			<button className={css.showAll} onClick={showAll}>All</button>
+			<button className={css.showActive} onClick={showActive}>Active</button>
+			<button className={css.showCompleted} onClick={showCompleted}>Completed</button>
+
 	 </div>
 }
 export default ButtonsFilterTasks

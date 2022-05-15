@@ -1,48 +1,57 @@
-.buttonShowAll, .buttonShowActive, .buttonShowChecked {
+.title {
+    font-family: 'Neucha', cursive;
+    color: blue;
+}
+
+.addTask {
     margin: 5px;
 }
 
-.buttonShowAll:hover {
-    background: lightgreen;
-}
-
-.buttonShowAll:focus {
-    background: lightgreen;
-}
-
-.buttonShowActive:hover {
-    background: lightgreen;
-}
-
-.buttonShowActive:focus {
-    background: lightgreen;
-}
-
-.buttonShowChecked:hover {
-    background: lightgreen;
-}
-
-.buttonShowChecked:focus {
-    background: lightgreen;
-}
-
-.title {
-    font-family: 'Neucha', cursive;
-    color: darkblue;
+.addTask:hover {
+    background-color: lightgreen;
 }
 
 .error {
-    border: 2px red solid;
+    border: 2px solid red;
 }
 
 .errorMessage {
     color: red;
+    font-weight: bold;
 }
 
-.isDone {
-    opacity: 0.5;
+.showAll, .showActive, .showCompleted {
+    margin: 5px;
+}
+
+.showAll:focus {
+    background-color: lightgreen;
+}
+
+.showActive:focus {
+    background-color: lightgreen;
+}
+
+.showCompleted:focus {
+    background-color: lightgreen;
 }
 
 .tasks {
     font-family: 'Neucha', cursive;
+    padding: 5px;
+    margin-right: 15px
+}
+
+.removeTask {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.removeTask:hover {
+    background-color: red;
+}
+
+.isDone {
+    opacity: 0.4;
 }

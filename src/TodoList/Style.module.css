@@ -1,26 +1,19 @@
 .buttonRemove {
     width: 15px;
     height: 15px;
-    margin: 10px;
     border-radius: 50%;
-    padding-left: 5px;
-    font-size: 15px;
-    background-color: firebrick;
+    margin-left: 15px;
+}
+
+.buttonRemove:hover {
+    background-color: red;
 }
 
 .buttonSortAll, .buttonSortActive, .buttonSortCompleted {
     margin: 5px;
 }
 
-.buttonSortAll:hover {
-    background-color: lightgreen;
-}
-
 .buttonSortAll:focus {
-    background-color: lightgreen;
-}
-
-.buttonSortActive:hover {
     background-color: lightgreen;
 }
 
@@ -28,14 +21,9 @@
     background-color: lightgreen;
 }
 
-.buttonSortCompleted:hover {
-    background-color: lightgreen;
-}
-
 .buttonSortCompleted:focus {
     background-color: lightgreen;
 }
-
 
 .titleTasks {
     font-family: 'Neucha', cursive;
@@ -48,8 +36,10 @@
 
 .addTask {
     margin: 5px;
-    font-size: 15px;
-    background-color: skyblue;
+}
+
+.addTask:hover {
+    background-color: lightgreen;
 }
 
 .error {
@@ -57,7 +47,8 @@
 }
 
 .errorMessage {
-    color: red
+    color: red;
+    font-weight: bold;
 }
 
 .isDone {

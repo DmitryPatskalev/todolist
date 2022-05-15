@@ -1,17 +1,17 @@
 import React, {useState} from "react";
-import './../App.css'
-import Todo from "./Todo";
 import {v1} from "uuid";
+import Todo from "./Todo";
 
-export type TasksListType = {
+
+export type TasksType = {
 	 id: string
 	 tech: string
 	 isDone: boolean
 }
 
-export type FilterType = 'All' | 'Active' | 'Checked'
+export type FilterType = 'All' | 'Active' | 'Completed'
 
-let tasksList: Array<TasksListType> = [
+let tasksList: Array<TasksType> = [
 	 {id: v1(), tech: 'HTML/CSS', isDone: true},
 	 {id: v1(), tech: 'JS', isDone: true},
 	 {id: v1(), tech: 'REACT', isDone: false},
@@ -23,32 +23,34 @@ const Tasks = () => {
 	 const [task, setTask] = useState(tasksList)
 	 const [filter, setFilter] = useState('All')
 
-	 let buttonRemoveTask = (id: string) => {
-			let removeTask = task.filter(elem => elem.id !== id)
-			setTask(removeTask)
+	 let filterTasks = task
+	 if (filter === 'Active') {
+			filterTasks = task.filter(elem => !elem.isDone)
+	 }
+	 if (filter === 'Completed') {
+			filterTasks = task.filter(elem => elem.isDone)
 	 }
 
-	 let filterTask = task
-	 if (filter === 'Checked') {
-			filterTask = task.filter(elem => elem.isDone)
-	 }
-	 if (filter === 'Active') {
-			filterTask = task.filter(elem => !elem.isDone)
-	 }
-	 let onClickFilterHundler = (name: string) => {
+	 let buttonFilterTask = (name: string) => {
 			setFilter(name)
 	 }
+
+	 let buttonRemoveTask = (id: string) => {
+			let removeElem = task.filter(elem => elem.id !== id)
+			setTask(removeElem)
+	 }
+
 	 let addTasks = (title: string) => {
-			let addElem = {
+			let addTask = {
 				 id: v1(),
 				 tech: title,
 				 isDone: true
 			}
-			setTask([addElem, ...task])
+			setTask([addTask, ...task])
 	 }
 
 	 let changeStatus = (taskId: string, isDone: boolean) => {
-			let changeChecked = task.find(t => t.id === taskId)
+			let changeChecked = task.find(elem => elem.id === taskId)
 			if (changeChecked) {
 				 changeChecked.isDone = isDone
 			}
@@ -59,13 +61,13 @@ const Tasks = () => {
 	 return <div className='App'>
 			<Todo
 				title='What I Learn'
-				task={filterTask}
+				tasks={filterTasks}
 				buttonRemoveTask={buttonRemoveTask}
-				onClickFilterHundler={onClickFilterHundler}
-				addTask={addTasks}
+				buttonFilterTask={buttonFilterTask}
+				addTasks={addTasks}
 				changeStatus={changeStatus}
-
 			/>
+
 	 </div>
 }
 
