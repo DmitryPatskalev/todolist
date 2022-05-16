@@ -4,6 +4,7 @@ import css from './style.module.css'
 
 type ButtonsFilterTasksType = {
 	 buttonFilterTask: (name: FilterType) => void
+	 filter: FilterType
 }
 
 const ButtonsFilterTasks = (props: ButtonsFilterTasksType) => {
@@ -17,12 +18,15 @@ const ButtonsFilterTasks = (props: ButtonsFilterTasksType) => {
 	 const showCompleted = () => {
 			props.buttonFilterTask('Completed')
 	 }
+	 let activeAll = props.filter === 'All' ? css.activeButton : ''
+	 let activeActive = props.filter === 'Active' ? css.activeButton : ''
+	 let activeCompleted = props.filter === 'Completed' ? css.activeButton : ''
 
 
 	 return <div>
-			<button className={css.showAll} onClick={showAll}>All</button>
-			<button className={css.showActive} onClick={showActive}>Active</button>
-			<button className={css.showCompleted} onClick={showCompleted}>Completed</button>
+			<button className={activeAll} onClick={showAll}>All</button>
+			<button className={activeActive} onClick={showActive}>Active</button>
+			<button className={activeCompleted} onClick={showCompleted}>Completed</button>
 
 	 </div>
 }

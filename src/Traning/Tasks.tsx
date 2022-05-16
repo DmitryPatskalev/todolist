@@ -21,7 +21,7 @@ let tasksList: Array<TasksType> = [
 
 const Tasks = () => {
 	 const [task, setTask] = useState(tasksList)
-	 const [filter, setFilter] = useState('All')
+	 const [filter, setFilter] = useState<FilterType>('All')
 
 	 let filterTasks = task
 	 if (filter === 'Active') {
@@ -31,7 +31,7 @@ const Tasks = () => {
 			filterTasks = task.filter(elem => elem.isDone)
 	 }
 
-	 let buttonFilterTask = (name: string) => {
+	 let buttonFilterTask = (name: FilterType) => {
 			setFilter(name)
 	 }
 
@@ -66,6 +66,7 @@ const Tasks = () => {
 				buttonFilterTask={buttonFilterTask}
 				addTasks={addTasks}
 				changeStatus={changeStatus}
+				filter={filter}
 			/>
 
 	 </div>

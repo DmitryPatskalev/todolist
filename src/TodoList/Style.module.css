@@ -1,37 +1,33 @@
 .buttonRemove {
-    width: 15px;
-    height: 15px;
+    margin: 5px;
     border-radius: 50%;
-    margin-left: 15px;
+
 }
 
 .buttonRemove:hover {
     background-color: red;
 }
 
-.buttonSortAll, .buttonSortActive, .buttonSortCompleted {
+.showAll, .showActive, .showCompleted {
     margin: 5px;
 }
 
-.buttonSortAll:focus {
+.active {
     background-color: lightgreen;
+    margin: 5px;
 }
 
-.buttonSortActive:focus {
-    background-color: lightgreen;
-}
-
-.buttonSortCompleted:focus {
-    background-color: lightgreen;
-}
 
 .titleTasks {
     font-family: 'Neucha', cursive;
+    font-size: 17px;
+    margin: 10px;
 }
 
 .title {
     font-family: 'Neucha', cursive;
     color: red;
+
 }
 
 .addTask {

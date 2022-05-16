@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Todolist from "./Todolist";
 import {v1} from "uuid";
 
+
 export type FilterType = 'All' | 'Active' | 'Completed'
 
 export type Tasktype = {
@@ -19,7 +20,7 @@ const Tasks = () => {
 	 ]
 
 	 const [task, setTask] = useState(tasks)
-	 const [filter, setFilter] = useState('All')
+	 const [filter, setFilter] = useState<FilterType>('All')
 
 	 let filterTask = task
 	 if (filter === 'Completed') {
@@ -28,7 +29,7 @@ const Tasks = () => {
 	 if (filter === 'Active') {
 			filterTask = task.filter(elem => !elem.isDone)
 	 }
-	 let onClickFilter = (name: string) => {
+	 let changeFilter = (name: FilterType) => {
 			setFilter(name)
 	 }
 
@@ -47,6 +48,7 @@ const Tasks = () => {
 	 }
 
 	 let changeStatus = (taskId: string, isDone: boolean) => {
+			// setTask(task.map(t => t.id === taskId ? {...t, isDone} : t))
 			let changeChecked = task.find(t => t.id === taskId)
 			if (changeChecked) {
 				 changeChecked.isDone = isDone
@@ -60,9 +62,11 @@ const Tasks = () => {
 				<Todolist title='What I Learn'
 									tasks={filterTask}
 									removeTask={removeTask}
-									onClickFilter={onClickFilter}
+									changeFilter={changeFilter}
+									filter={filter}
 									addTask={addTask}
 									changeStatus={changeStatus}
+
 				/>
 		 </div>
 	 );

@@ -24,17 +24,11 @@
     margin: 5px;
 }
 
-.showAll:focus {
+.activeButton {
+    margin: 5px;
     background-color: lightgreen;
 }
 
-.showActive:focus {
-    background-color: lightgreen;
-}
-
-.showCompleted:focus {
-    background-color: lightgreen;
-}
 
 .tasks {
     font-family: 'Neucha', cursive;

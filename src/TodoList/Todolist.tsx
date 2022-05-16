@@ -8,11 +8,12 @@ type TodolistPropsType = {
 	 title: string
 	 tasks: Tasktype[]
 	 removeTask: (id: string) => void
-	 onClickFilter: (name: FilterType) => void
+	 changeFilter: (name: FilterType) => void
 	 addTask: (title: string) => void
 	 changeStatus: (taskId: string, isDone: boolean) => void
-}
+	 filter: FilterType
 
+}
 
 const Todolist = (props: TodolistPropsType) => {
 	 let listOfTasks = props.tasks.map((elem, index) => {
@@ -20,11 +21,13 @@ const Todolist = (props: TodolistPropsType) => {
 			let onChangeStatusTask = (event: ChangeEvent<HTMLInputElement>) => {
 				 props.changeStatus(elem.id, event.currentTarget.checked)
 			}
-			return <li key={index} className={elem.isDone ? css.isDone : ''}>
+			let isDoneOpacity = elem.isDone ? css.isDone : '';
+
+			return <li key={index} className={isDoneOpacity}>
 				 <input type='checkbox' onChange={onChangeStatusTask}
 								checked={elem.isDone}/>
 				 <span className={css.titleTasks}>{elem.title}</span>
-				 <button className={css.buttonRemove} onClick={buttonRemoveTask} title='Remove task'></button>
+				 <button className={css.buttonRemove} onClick={buttonRemoveTask} title='Remove task'>x</button>
 			</li>
 
 	 })
@@ -39,7 +42,7 @@ const Todolist = (props: TodolistPropsType) => {
 					 {listOfTasks}
 				</ul>
 				<div>
-					 <ButtonFilterTasks onClickFilter={props.onClickFilter}/>
+					 <ButtonFilterTasks changeFilter={props.changeFilter} filter={props.filter}/>
 				</div>
 		 </div>
 	 );

@@ -12,6 +12,7 @@ type TodoType = {
 	 buttonFilterTask: (name: FilterType) => void
 	 addTasks: (title: string) => void
 	 changeStatus: (taskId: string, isDone: boolean) => void
+	 filter: FilterType
 }
 
 export const Todo = (props: TodoType) => {
@@ -34,7 +35,7 @@ export const Todo = (props: TodoType) => {
 			<div>
 				 {result}
 			</div>
-			<ButtonsFilterTasks buttonFilterTask={props.buttonFilterTask}/>
+			<ButtonsFilterTasks buttonFilterTask={props.buttonFilterTask} filter={props.filter}/>
 
 	 </div>
 
