@@ -13,7 +13,7 @@ const AddTasks = (props: AddTasksType) => {
 	 let onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
 			setNewTask(event.currentTarget.value)
 	 }
-	 let onClickHundler = () => {
+	 let onClickAddTask = () => {
 			if (newTask.trim() !== '') {
 				 props.addTask(newTask.trim())
 				 setNewTask('')
@@ -25,7 +25,7 @@ const AddTasks = (props: AddTasksType) => {
 	 let onPressKeyHundler = (event: KeyboardEvent<HTMLInputElement>) => {
 			setError(null)
 			if (event.charCode === 13) {
-				 onClickHundler()
+				 onClickAddTask()
 				 setNewTask('')
 			}
 	 }
@@ -40,7 +40,7 @@ const AddTasks = (props: AddTasksType) => {
 			<button
 				title='Add Task'
 				className={css.addTask}
-				onClick={onClickHundler}
+				onClick={onClickAddTask}
 			>+
 			</button>
 			<div className={error ? css.errorMessage : ''}>{error}</div>

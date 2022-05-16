@@ -5,7 +5,7 @@ import {FilterType} from "./Tasks";
 type ButtonFilterTasksType = {
 	 changeFilter: (name: FilterType) => void
 	 filter: FilterType
-	 
+
 }
 const ButtonFilterTasks = (props: ButtonFilterTasksType) => {
 
@@ -23,7 +23,7 @@ const ButtonFilterTasks = (props: ButtonFilterTasksType) => {
 	 let activeCompleted = props.filter === 'Completed' ? css.active : ''
 
 
-	 return <div>
+	 return <div className={css.buttonsFilter}>
 			<button className={activeFilter}
 							onClick={showAll} title='Show All Tasks'>All
 			</button>

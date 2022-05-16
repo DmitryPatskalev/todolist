@@ -20,12 +20,12 @@
     font-weight: bold;
 }
 
-.showAll, .showActive, .showCompleted {
+.buttonsFilter button {
     margin: 5px;
 }
 
 .activeButton {
-    margin: 5px;
+
     background-color: lightgreen;
 }
 

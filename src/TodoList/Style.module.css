@@ -8,13 +8,13 @@
     background-color: red;
 }
 
-.showAll, .showActive, .showCompleted {
+.buttonsFilter button {
     margin: 5px;
 }
 
 .active {
     background-color: lightgreen;
-    margin: 5px;
+
 }
 
 
