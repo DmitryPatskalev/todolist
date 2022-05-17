@@ -18,13 +18,13 @@ const ButtonFilterTasks = (props: ButtonFilterTasksType) => {
 	 let showCompleted = () => {
 			props.changeFilter('Completed')
 	 }
-	 let activeFilter = props.filter === 'All' ? css.active : ''
+	 let activeAll = props.filter === 'All' ? css.active : ''
 	 let activeActive = props.filter === 'Active' ? css.active : ''
 	 let activeCompleted = props.filter === 'Completed' ? css.active : ''
 
 
 	 return <div className={css.buttonsFilter}>
-			<button className={activeFilter}
+			<button className={activeAll}
 							onClick={showAll} title='Show All Tasks'>All
 			</button>
 			<button className={activeActive}
