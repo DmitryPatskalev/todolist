@@ -3,8 +3,9 @@ import css from "./Style.module.css";
 import {FilterType} from "./Tasks";
 
 type ButtonFilterTasksType = {
-	 changeFilter: (name: FilterType) => void
+	 changeFilter: (value: FilterType) => void
 	 filter: FilterType
+
 
 }
 const ButtonFilterTasks = (props: ButtonFilterTasksType) => {

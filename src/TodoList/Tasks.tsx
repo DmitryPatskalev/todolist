@@ -10,6 +10,7 @@ export type Tasktype = {
 	 title: string
 	 isDone: boolean
 }
+
 const Tasks = () => {
 	 const tasks: Array<Tasktype> = [
 			{id: v1(), title: 'HTML&CSS', isDone: true},
@@ -22,16 +23,6 @@ const Tasks = () => {
 	 const [task, setTask] = useState(tasks)
 	 const [filter, setFilter] = useState<FilterType>('All')
 
-	 let filterTask = task
-	 if (filter === 'Completed') {
-			filterTask = task.filter(elem => elem.isDone)
-	 }
-	 if (filter === 'Active') {
-			filterTask = task.filter(elem => !elem.isDone)
-	 }
-	 let changeFilter = (name: FilterType) => {
-			setFilter(name)
-	 }
 
 	 let removeTask = (id: string) => {
 			let removeElem = task.filter(elem => elem.id !== id)
@@ -46,6 +37,17 @@ const Tasks = () => {
 			}
 			setTask([newTasks, ...task])
 	 }
+	 let filterTask = task
+	 if (filter === 'Completed') {
+			filterTask = task.filter(elem => elem.isDone)
+	 }
+	 if (filter === 'Active') {
+			filterTask = task.filter(elem => !elem.isDone)
+	 }
+
+	 const changeFilter = (value: FilterType) => {
+			setFilter(value)
+	 }
 
 	 let changeStatus = (taskId: string, isDone: boolean) => {
 			// setTask(task.map(t => t.id === taskId ? {...t, isDone} : t))
@@ -59,15 +61,17 @@ const Tasks = () => {
 
 	 return (
 		 <div className="App">
-				<Todolist title='What I Learn'
-									tasks={filterTask}
-									removeTask={removeTask}
-									changeFilter={changeFilter}
-									filter={filter}
-									addTask={addTask}
-									changeStatus={changeStatus}
-
+				<Todolist
+					title='What I Learn'
+					tasks={filterTask}
+					removeTask={removeTask}
+					changeFilter={changeFilter}
+					filter={filter}
+					addTask={addTask}
+					changeStatus={changeStatus}
 				/>
+
+
 		 </div>
 	 );
 }

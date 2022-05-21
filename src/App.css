@@ -1,5 +1,6 @@
 .App {
-    display: grid;
-    margin-left: 15px;
+    display: flex;
+    margin-left: 25px;
+    padding: 25px;
 }
 
