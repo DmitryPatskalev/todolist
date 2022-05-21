@@ -3,7 +3,9 @@ import css from './style.module.css'
 
 
 type AddTasksType = {
-	 addTasks: (title: string) => void
+	 addTasks: (title: string, todoListId: string) => void
+	 id: string
+	 
 }
 export const AddTasks = (props: AddTasksType) => {
 	 const [newTask, setNewTask] = useState('')
@@ -15,7 +17,7 @@ export const AddTasks = (props: AddTasksType) => {
 	 }
 	 const onClickHundler = () => {
 			if (newTask.trim() !== '') {
-				 props.addTasks(newTask.trim())
+				 props.addTasks(newTask.trim(), props.id)
 				 setNewTask('')
 			} else {
 				 setError('Please, enter the data')
