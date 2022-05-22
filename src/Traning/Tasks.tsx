@@ -19,42 +19,6 @@ export type FilterType = 'All' | 'Active' | 'Completed'
 
 const Tasks = () => {
 
-
-	 let buttonRemoveTask = (id: string, todoListId: string) => {
-			let todoListTasks = task[todoListId]
-			task[todoListId] = todoListTasks.filter(tl => tl.id !== id)
-			setTask({...task})
-
-	 }
-
-	 let addTasks = (title: string, todoListId: string) => {
-			let addTask = {
-				 id: v1(),
-				 title,
-				 isDone: false
-			}
-			let todoListTasks = task[todoListId]
-			task[todoListId] = [addTask, ...todoListTasks]
-			setTask({...task})
-	 }
-
-	 let changeStatus = (taskId: string, isDone: boolean, todoListId: string) => {
-			let todoListTasks = task[todoListId]
-			let changeChecked = todoListTasks.find(tl => tl.id === taskId)
-			if (changeChecked) {
-				 changeChecked.isDone = isDone
-				 setTask({...task})
-			}
-	 }
-	 let buttonFilterTask = (value: FilterType, todoListId: string) => {
-			let filterTodolist = todoLists.find(tl => tl.id === todoListId)
-			if (filterTodolist) {
-				 filterTodolist.filter = value
-				 setTodoLists([...todoLists])
-			}
-	 }
-
-
 	 const todoListId1 = v1()
 	 const todoListId2 = v1()
 
@@ -76,6 +40,42 @@ const Tasks = () => {
 				 {id: v1(), title: 'Ticket to travel', isDone: false},
 			]
 	 })
+
+
+	 const buttonRemoveTask = (id: string, todoListId: string) => {
+			let todoListTasks = task[todoListId]
+			task[todoListId] = todoListTasks.filter(tl => tl.id !== id)
+			setTask({...task})
+
+	 }
+
+	 const addTasks = (title: string, todoListId: string) => {
+			let addTask = {
+				 id: v1(),
+				 title,
+				 isDone: false
+			}
+			let todoListTasks = task[todoListId]
+			task[todoListId] = [addTask, ...todoListTasks]
+			setTask({...task})
+	 }
+
+	 const changeStatus = (taskId: string, isDone: boolean, todoListId: string) => {
+			let todoListTasks = task[todoListId]
+			let changeChecked = todoListTasks.find(tl => tl.id === taskId)
+			if (changeChecked) {
+				 changeChecked.isDone = isDone
+				 setTask({...task})
+			}
+	 }
+	 const buttonFilterTask = (value: FilterType, todoListId: string) => {
+			let filterTodolist = todoLists.find(tl => tl.id === todoListId)
+			if (filterTodolist) {
+				 filterTodolist.filter = value
+				 setTodoLists([...todoLists])
+			}
+	 }
+	 
 	 const removeTodoList = (todoListId: string) => {
 			let filterTodolist = todoLists.filter(tl => tl.id !== todoListId)
 			setTodoLists(filterTodolist)
