@@ -5,6 +5,7 @@
 
 .addTask {
     margin: 5px;
+    border-radius: 20%;
 }
 
 .addTask:hover {
@@ -46,4 +47,13 @@
 
 .isDone {
     opacity: 0.4;
+}
+
+.butRemTL {
+    margin: 10px;
+    border-radius: 20%;
+}
+
+.butRemTL:hover {
+    background-color: red;
 }

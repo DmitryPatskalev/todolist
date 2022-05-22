@@ -36,7 +36,7 @@ export const TodoList = (props: TodoListType) => {
 
 	 return <div>
 			<h3 className={css.title}>{props.title}
-				 <button onClick={removeTodoList}>x</button>
+				 <button className={css.butRemTL} onClick={removeTodoList}>x</button>
 			</h3>
 
 			<AddTasks addTasks={props.addTasks} id={props.id}/>

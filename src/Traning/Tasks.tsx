@@ -22,8 +22,9 @@ const Tasks = () => {
 
 	 let buttonRemoveTask = (id: string, todoListId: string) => {
 			let todoListTasks = task[todoListId]
-			task[todoListId] = todoListTasks.filter(elem => elem.id !== id)
+			task[todoListId] = todoListTasks.filter(tl => tl.id !== id)
 			setTask({...task})
+
 	 }
 
 	 let addTasks = (title: string, todoListId: string) => {
@@ -39,7 +40,7 @@ const Tasks = () => {
 
 	 let changeStatus = (taskId: string, isDone: boolean, todoListId: string) => {
 			let todoListTasks = task[todoListId]
-			let changeChecked = todoListTasks.find(elem => elem.id === taskId)
+			let changeChecked = todoListTasks.find(tl => tl.id === taskId)
 			if (changeChecked) {
 				 changeChecked.isDone = isDone
 				 setTask({...task})
@@ -59,7 +60,7 @@ const Tasks = () => {
 
 	 const [todoLists, setTodoLists] = useState<Array<TodoListsType>>([
 			{id: todoListId1, title: 'What I Learn', filter: 'All'},
-			{id: todoListId2, title: 'What I need to buy', filter: 'Active'}
+			{id: todoListId2, title: 'What I need to buy', filter: 'Completed'}
 	 ])
 	 const [task, setTask] = useState({
 			[todoListId1]: [
