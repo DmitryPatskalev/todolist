@@ -50,3 +50,12 @@
 .isDone {
     opacity: 0.3;
 }
+
+.butRemTL {
+    margin: 10px;
+    border-radius: 20%;
+}
+
+.butRemTL:hover {
+    background-color: red;
+}

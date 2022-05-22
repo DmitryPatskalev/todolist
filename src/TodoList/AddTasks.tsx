@@ -3,7 +3,9 @@ import css from './Style.module.css'
 
 
 type AddTasksType = {
-	 addTask: (title: string) => void
+	 addTask: (title: string, todoListId: string) => void
+	 id: string
+
 }
 
 const AddTasks = (props: AddTasksType) => {
@@ -15,7 +17,7 @@ const AddTasks = (props: AddTasksType) => {
 	 }
 	 let onClickAddTask = () => {
 			if (newTask.trim() !== '') {
-				 props.addTask(newTask.trim())
+				 props.addTask(newTask.trim(), props.id)
 				 setNewTask('')
 			} else {
 				 setError('Please, enter the data')

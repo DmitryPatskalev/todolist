@@ -31,7 +31,7 @@ const Tasks = () => {
 			let addTask = {
 				 id: v1(),
 				 title,
-				 isDone: true
+				 isDone: false
 			}
 			let todoListTasks = task[todoListId]
 			task[todoListId] = [addTask, ...todoListTasks]
