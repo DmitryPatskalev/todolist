@@ -42,25 +42,25 @@ const Tasks = () => {
 	 })
 
 
-	 const buttonRemoveTask = (id: string, todoListId: string) => {
+	 const buttonRemoveTask = (todoListId: string, id: string) => {
 			let todoListTasks = task[todoListId]
 			task[todoListId] = todoListTasks.filter(tl => tl.id !== id)
 			setTask({...task})
 
 	 }
 
-	 const addTasks = (title: string, todoListId: string) => {
-			let addTask = {
+	 const addTasks = (todoListId: string, title: string) => {
+			let newTask = {
 				 id: v1(),
 				 title,
 				 isDone: false
 			}
 			let todoListTasks = task[todoListId]
-			task[todoListId] = [addTask, ...todoListTasks]
+			task[todoListId] = [newTask, ...todoListTasks]
 			setTask({...task})
 	 }
 
-	 const changeStatus = (taskId: string, isDone: boolean, todoListId: string) => {
+	 const changeStatus = (todoListId: string, taskId: string, isDone: boolean) => {
 			let todoListTasks = task[todoListId]
 			let changeChecked = todoListTasks.find(tl => tl.id === taskId)
 			if (changeChecked) {
@@ -68,14 +68,14 @@ const Tasks = () => {
 				 setTask({...task})
 			}
 	 }
-	 const buttonFilterTask = (value: FilterType, todoListId: string) => {
+	 const buttonFilterTask = (todoListId: string, value: FilterType) => {
 			let filterTodolist = todoLists.find(tl => tl.id === todoListId)
 			if (filterTodolist) {
 				 filterTodolist.filter = value
 				 setTodoLists([...todoLists])
 			}
 	 }
-	 
+
 	 const removeTodoList = (todoListId: string) => {
 			let filterTodolist = todoLists.filter(tl => tl.id !== todoListId)
 			setTodoLists(filterTodolist)
@@ -95,7 +95,7 @@ const Tasks = () => {
 				 }
 				 return <TodoList
 					 key={tl.id}
-					 id={tl.id}
+					 todolistID={tl.id}
 					 title={tl.title}
 					 tasks={filterTasks}
 					 buttonRemoveTask={buttonRemoveTask}

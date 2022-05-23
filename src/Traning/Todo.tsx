@@ -6,13 +6,13 @@ import css from './style.module.css'
 
 
 type TodoListType = {
-	 id: string
+	 todolistID: string
 	 title: string
 	 tasks: TasksType[]
-	 buttonRemoveTask: (id: string, todoListId: string) => void
-	 buttonFilterTask: (value: FilterType, todoListId: string) => void
-	 addTasks: (title: string, todoListId: string) => void
-	 changeStatus: (taskId: string, isDone: boolean, todoListId: string) => void
+	 buttonRemoveTask: (todoListId: string, id: string) => void
+	 buttonFilterTask: (todoListId: string, value: FilterType) => void
+	 addTasks: (todoListId: string, title: string) => void
+	 changeStatus: (todoListId: string, taskId: string, isDone: boolean) => void
 	 filter: FilterType
 	 removeTodoList: (todoListId: string) => void
 }
@@ -20,9 +20,9 @@ type TodoListType = {
 export const TodoList = (props: TodoListType) => {
 	 let result = props.tasks.map((elem, index) => {
 			let changeChecked = (event: ChangeEvent<HTMLInputElement>) => {
-				 props.changeStatus(elem.id, event.currentTarget.checked, props.id)
+				 props.changeStatus(props.todolistID, elem.id, event.currentTarget.checked)
 			}
-			let removeElem = () => props.buttonRemoveTask(elem.id, props.id)
+			let removeElem = () => props.buttonRemoveTask(props.todolistID, elem.id)
 			return <p className={elem.isDone ? css.isDone : ''} key={index}>
 				 <input type='checkbox' onChange={changeChecked}
 								checked={elem.isDone}/>
@@ -31,7 +31,7 @@ export const TodoList = (props: TodoListType) => {
 			</p>
 	 })
 	 const removeTodoList = () => {
-			props.removeTodoList(props.id)
+			props.removeTodoList(props.todolistID)
 	 }
 
 	 return <div>
@@ -39,11 +39,14 @@ export const TodoList = (props: TodoListType) => {
 				 <button className={css.butRemTL} onClick={removeTodoList}>x</button>
 			</h3>
 
-			<AddTasks addTasks={props.addTasks} id={props.id}/>
+			<AddTasks addTasks={props.addTasks}
+								todolistID={props.todolistID}/>
 			<div>
 				 {result}
 			</div>
-			<ButtonsFilterTasks buttonFilterTask={props.buttonFilterTask} filter={props.filter} id={props.id}/>
+			<ButtonsFilterTasks buttonFilterTask={props.buttonFilterTask}
+													filter={props.filter}
+													todolistID={props.todolistID}/>
 
 	 </div>
 
