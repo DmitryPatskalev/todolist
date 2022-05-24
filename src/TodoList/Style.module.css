@@ -59,3 +59,9 @@
 .butRemTL:hover {
     background-color: red;
 }
+
+.empty {
+    font-family: 'Neucha', cursive;
+    font-size: 40px;
+    color: green;
+}

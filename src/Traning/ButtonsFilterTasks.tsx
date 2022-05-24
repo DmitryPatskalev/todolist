@@ -1,10 +1,10 @@
 import React from "react";
-import {FilterType} from "./Tasks";
+import {FilterValueType} from "./Tasks";
 import css from './style.module.css'
 
 type ButtonsFilterTasksType = {
-	 buttonFilterTask: (todoListId: string, value: FilterType) => void
-	 filter: FilterType
+	 buttonFilterTask: (todoListId: string, value: FilterValueType) => void
+	 filter: FilterValueType
 	 todolistID: string
 }
 

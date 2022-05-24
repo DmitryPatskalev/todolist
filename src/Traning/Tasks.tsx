@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {v1} from "uuid";
 import TodoList from "./Todo";
-
+import css from './style.module.css'
 
 export type TasksType = {
 	 id: string
@@ -11,11 +11,14 @@ export type TasksType = {
 type TodoListsType = {
 	 id: string
 	 title: string
-	 filter: FilterType
+	 filter: FilterValueType
 }
 
-export type FilterType = 'All' | 'Active' | 'Completed'
+export type FilterValueType = 'All' | 'Active' | 'Completed'
 
+type TaskStateType = {
+	 [todoListId: string]: Array<TasksType>
+}
 
 const Tasks = () => {
 
@@ -24,9 +27,9 @@ const Tasks = () => {
 
 	 const [todoLists, setTodoLists] = useState<Array<TodoListsType>>([
 			{id: todoListId1, title: 'What I Learn', filter: 'All'},
-			{id: todoListId2, title: 'What I need to buy', filter: 'Completed'}
+			{id: todoListId2, title: 'What to buy', filter: 'All'}
 	 ])
-	 const [task, setTask] = useState({
+	 const [task, setTask] = useState<TaskStateType>({
 			[todoListId1]: [
 				 {id: v1(), title: 'HTML/CSS', isDone: true},
 				 {id: v1(), title: 'JS', isDone: true},
@@ -41,10 +44,9 @@ const Tasks = () => {
 			]
 	 })
 
-
-	 const buttonRemoveTask = (todoListId: string, id: string) => {
+	 const buttonRemoveTask = (todoListId: string, taskId: string) => {
 			let todoListTasks = task[todoListId]
-			task[todoListId] = todoListTasks.filter(tl => tl.id !== id)
+			task[todoListId] = todoListTasks.filter(tl => tl.id !== taskId)
 			setTask({...task})
 
 	 }
@@ -61,19 +63,21 @@ const Tasks = () => {
 	 }
 
 	 const changeStatus = (todoListId: string, taskId: string, isDone: boolean) => {
-			let todoListTasks = task[todoListId]
-			let changeChecked = todoListTasks.find(tl => tl.id === taskId)
-			if (changeChecked) {
-				 changeChecked.isDone = isDone
-				 setTask({...task})
-			}
+			setTask({...task, [todoListId]: task[todoListId].map(tl => tl.id === taskId ? {...tl, isDone} : tl)})
+			// let todoListTasks = task[todoListId]
+			// let changeChecked = todoListTasks.find(tl => tl.id === taskId)
+			// if (changeChecked) {
+			// 	 changeChecked.isDone = isDone
+			// 	 setTask({...task})
+			// }
 	 }
-	 const buttonFilterTask = (todoListId: string, value: FilterType) => {
-			let filterTodolist = todoLists.find(tl => tl.id === todoListId)
-			if (filterTodolist) {
-				 filterTodolist.filter = value
-				 setTodoLists([...todoLists])
-			}
+	 const buttonFilterTask = (todoListId: string, value: FilterValueType) => {
+			setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, filter: value} : tl))
+			// let filterTodolist = todoLists.find(tl => tl.id === todoListId)
+			// if (filterTodolist) {
+			// 	 filterTodolist.filter = value
+			// 	 setTodoLists([...todoLists])
+			// }
 	 }
 
 	 const removeTodoList = (todoListId: string) => {
@@ -83,9 +87,9 @@ const Tasks = () => {
 			setTask({...task})
 	 }
 
-
 	 return <div className='App'>
-			{todoLists.map(tl => {
+
+			{todoLists.length ? todoLists.map(tl => {
 				 let filterTasks = task[tl.id]
 				 if (tl.filter === 'Active') {
 						filterTasks = filterTasks.filter(elem => !elem.isDone)
@@ -105,8 +109,7 @@ const Tasks = () => {
 					 filter={tl.filter}
 					 removeTodoList={removeTodoList}
 				 />
-			})}
-
+			}) : <span className={css.empty}>Create your first todoList</span>}
 	 </div>
 }
 

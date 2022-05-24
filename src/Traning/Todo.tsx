@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import {FilterType, TasksType} from "./Tasks";
+import {FilterValueType, TasksType} from "./Tasks";
 import ButtonsFilterTasks from "./ButtonsFilterTasks";
 import AddTasks from "./AddTasks";
 import css from './style.module.css'
@@ -9,11 +9,11 @@ type TodoListType = {
 	 todolistID: string
 	 title: string
 	 tasks: TasksType[]
-	 buttonRemoveTask: (todoListId: string, id: string) => void
-	 buttonFilterTask: (todoListId: string, value: FilterType) => void
+	 buttonRemoveTask: (todoListId: string, taskId: string) => void
+	 buttonFilterTask: (todoListId: string, value: FilterValueType) => void
 	 addTasks: (todoListId: string, title: string) => void
 	 changeStatus: (todoListId: string, taskId: string, isDone: boolean) => void
-	 filter: FilterType
+	 filter: FilterValueType
 	 removeTodoList: (todoListId: string) => void
 }
 

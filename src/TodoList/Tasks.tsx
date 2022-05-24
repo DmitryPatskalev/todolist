@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Todolist from "./Todolist";
 import {v1} from "uuid";
+import css from './Style.module.css'
 
 export type FilterType = 'All' | 'Active' | 'Completed'
 
@@ -58,21 +59,22 @@ const Tasks = () => {
 	 }
 
 	 const changeFilter = (todoListId: string, value: FilterType) => {
-			let filterButton = todoLists.find(tl => tl.id === todoListId)
-			if (filterButton) {
-				 filterButton.filter = value
-				 setTodoLists([...todoLists])
-			}
+			setTodoLists(todoLists.map(tl => tl.id !== todoListId ? {...tl, filter: value} : tl))
+			// let filterButton = todoLists.find(tl => tl.id === todoListId)
+			// if (filterButton) {
+			// 	 filterButton.filter = value
+			// 	 setTodoLists([...todoLists])
+			// }
 	 }
 
 	 const changeStatus = (todoListId: string, taskId: string, isDone: boolean) => {
-			// setTask(task.map(t => t.id === taskId ? {...t, isDone} : t))
-			let todoListTasks = task[todoListId]
-			let changeChecked = todoListTasks.find(t => t.id === taskId)
-			if (changeChecked) {
-				 changeChecked.isDone = isDone
-			}
-			setTask({...task})
+			setTask({...task, [todoListId]: task[todoListId].map(tl => tl.id === taskId ? {...tl, isDone} : tl)})
+			// let todoListTasks = task[todoListId]
+			// let changeChecked = todoListTasks.find(t => t.id === taskId)
+			// if (changeChecked) {
+			// 	 changeChecked.isDone = isDone
+			// }
+			// setTask({...task})
 	 }
 
 	 const removeTodolist = (todoListId: string) => {
@@ -84,7 +86,7 @@ const Tasks = () => {
 
 	 return (
 		 <div className="App">
-				{todoLists.map(tl => {
+				{todoLists.length ? todoLists.map(tl => {
 					 let filterTask = task[tl.id]
 					 if (tl.filter === 'Completed') {
 							filterTask = filterTask.filter(elem => elem.isDone)
@@ -104,7 +106,7 @@ const Tasks = () => {
 						 changeStatus={changeStatus}
 						 removeTodolist={removeTodolist}
 					 />
-				})}
+				}) : <span className={css.empty}>Create your firs todoList</span>}
 		 </div>
 	 );
 }
