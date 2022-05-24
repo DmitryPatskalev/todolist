@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Todolist from "./Todolist";
 import {v1} from "uuid";
 
-
 export type FilterType = 'All' | 'Active' | 'Completed'
 
 export type Tasktype = {
@@ -23,7 +22,7 @@ const Tasks = () => {
 
 	 const [todoLists, setTodoLists] = useState<Array<TodoListsType>>([
 			{id: todoListId1, title: 'What I learn', filter: 'All'},
-			{id: todoListId2, title: 'What I buy', filter: 'All'},
+			{id: todoListId2, title: 'What to buy', filter: 'All'},
 	 ])
 
 	 const [task, setTask] = useState({
@@ -41,13 +40,13 @@ const Tasks = () => {
 			]
 	 })
 
-	 const removeTask = (id: string, todoListId: string) => {
+	 const removeTask = (todoListId: string, id: string) => {
 			let todoListTasks = task[todoListId]
 			task[todoListId] = todoListTasks.filter(elem => elem.id !== id)
 			setTask({...task})
 	 }
 
-	 const addTask = (title: string, todoListId: string) => {
+	 const addTask = (todoListId: string, title: string) => {
 			let newTasks = {
 				 id: v1(),
 				 title,
@@ -58,8 +57,7 @@ const Tasks = () => {
 			setTask({...task})
 	 }
 
-
-	 const changeFilter = (value: FilterType, todoListId: string) => {
+	 const changeFilter = (todoListId: string, value: FilterType) => {
 			let filterButton = todoLists.find(tl => tl.id === todoListId)
 			if (filterButton) {
 				 filterButton.filter = value
@@ -67,7 +65,7 @@ const Tasks = () => {
 			}
 	 }
 
-	 const changeStatus = (taskId: string, isDone: boolean, todoListId: string) => {
+	 const changeStatus = (todoListId: string, taskId: string, isDone: boolean) => {
 			// setTask(task.map(t => t.id === taskId ? {...t, isDone} : t))
 			let todoListTasks = task[todoListId]
 			let changeChecked = todoListTasks.find(t => t.id === taskId)
@@ -96,7 +94,7 @@ const Tasks = () => {
 					 }
 					 return <Todolist
 						 key={tl.id}
-						 id={tl.id}
+						 todolistID={tl.id}
 						 title={tl.title}
 						 tasks={filterTask}
 						 removeTask={removeTask}
@@ -107,8 +105,6 @@ const Tasks = () => {
 						 removeTodolist={removeTodolist}
 					 />
 				})}
-
-
 		 </div>
 	 );
 }
