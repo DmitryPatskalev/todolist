@@ -59,7 +59,7 @@ const Tasks = () => {
 	 }
 
 	 const changeFilter = (todoListId: string, value: FilterType) => {
-			setTodoLists(todoLists.map(tl => tl.id !== todoListId ? {...tl, filter: value} : tl))
+			setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, filter: value} : tl))
 			// let filterButton = todoLists.find(tl => tl.id === todoListId)
 			// if (filterButton) {
 			// 	 filterButton.filter = value

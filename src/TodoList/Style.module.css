@@ -21,12 +21,13 @@
 .titleTasks {
     font-family: 'Neucha', cursive;
     font-size: 17px;
-    margin: 10px;
+
 }
 
 .title {
     font-family: 'Neucha', cursive;
     color: red;
+    margin-left: 50px;
 
 }
 
