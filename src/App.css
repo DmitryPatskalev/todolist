@@ -1,6 +1,7 @@
 .App {
     display: flex;
-    margin-left: 25px;
-    padding: 25px;
 }
 
+.App div {
+    margin: 20px;
+}
