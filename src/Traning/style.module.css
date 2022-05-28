@@ -1,14 +1,15 @@
 .title {
     font-family: 'Neucha', cursive;
     color: blue;
+    margin-left: 15px;
 }
 
-.addTask {
+.buttonAddTask {
     margin: 5px;
     border-radius: 20%;
 }
 
-.addTask:hover {
+.buttonAddTask:hover {
     background-color: lightgreen;
 }
 
@@ -39,10 +40,12 @@
 
 .removeTask {
     border-radius: 20%;
+    margin-left: 5px;
 }
 
 .removeTask:hover {
     background-color: red;
+
 }
 
 .isDone {
