@@ -3,17 +3,16 @@ import css from './style.module.css'
 
 
 type AddTasksPropsType = {
-	 addTasks: (todoListID: string, title: string) => void
-	 todoListID: string
+	 addItem: (title: string) => void
 }
 
-export const AddTasks = (props: AddTasksPropsType) => {
+export const AddItemForm = (props: AddTasksPropsType) => {
 	 const [newTask, setNewTask] = useState('')
 	 const [error, setError] = useState<string | null>(null)
 
 	 const onClickHundler = () => {
 			if (newTask.trim() !== '') {
-				 props.addTasks(props.todoListID, newTask.trim())
+				 props.addItem(newTask.trim())
 				 setNewTask('')
 			} else {
 				 setError('Input the data')

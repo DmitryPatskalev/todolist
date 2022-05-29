@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import {FilterTasksType, TasksType} from "./Tasks";
-import {AddTasks} from "./AddTasks";
+import {AddItemForm} from "./AddItemForm";
 import {ButtonsFilterTasks} from "./ButtonsFilterTasks";
 import css from './style.module.css'
 
@@ -15,7 +15,6 @@ type TodoListPropsType = {
 	 filter: FilterTasksType
 	 changeTaskStatus: (todoListID: string, taskID: string, isDone: boolean) => void
 	 removeTodolist: (todoListID: string) => void
-
 }
 
 export const TodoList = (props: TodoListPropsType) => {
@@ -34,12 +33,15 @@ export const TodoList = (props: TodoListPropsType) => {
 	 })
 	 const removeTodoList = () => props.removeTodolist(props.todoListID)
 
+	 const addTask = (title: string) => {
+			props.addTask(props.todoListID, title)
+	 }
+
 	 return <div>
 			<h3 className={css.title}>{props.title}
 				 <button onClick={removeTodoList} className={css.butRemTL}>x</button>
 			</h3>
-
-			<AddTasks addTasks={props.addTask} todoListID={props.todoListID}/>
+			<AddItemForm addItem={addTask}/>
 			{listOfTasks}
 			<ButtonsFilterTasks onChangeFilter={props.onChangeFilter} filter={props.filter} todoListID={props.todoListID}/>
 	 </div>
