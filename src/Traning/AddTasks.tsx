@@ -3,7 +3,8 @@ import css from './style.module.css'
 
 
 type AddTasksPropsType = {
-	 addTasks: (title: string) => void
+	 addTasks: (todoListID: string, title: string) => void
+	 todoListID: string
 }
 
 export const AddTasks = (props: AddTasksPropsType) => {
@@ -12,7 +13,7 @@ export const AddTasks = (props: AddTasksPropsType) => {
 
 	 const onClickHundler = () => {
 			if (newTask.trim() !== '') {
-				 props.addTasks(newTask.trim())
+				 props.addTasks(props.todoListID, newTask.trim())
 				 setNewTask('')
 			} else {
 				 setError('Input the data')

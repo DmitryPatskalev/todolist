@@ -4,19 +4,20 @@ import css from './style.module.css'
 
 
 type ButtonsFilterTasksType = {
-	 onChangeFilter: (title: FilterTasksType) => void
+	 onChangeFilter: (todoListID: string, title: FilterTasksType) => void
 	 filter: FilterTasksType
+	 todoListID: string
 }
 
 export const ButtonsFilterTasks = (props: ButtonsFilterTasksType) => {
 	 const showAll = () => {
-			props.onChangeFilter('All')
+			props.onChangeFilter(props.todoListID, 'All')
 	 }
 	 const showActive = () => {
-			props.onChangeFilter('Active')
+			props.onChangeFilter(props.todoListID, 'Active')
 	 }
 	 const showCompleted = () => {
-			props.onChangeFilter('Completed')
+			props.onChangeFilter(props.todoListID, 'Completed')
 	 }
 
 	 let activeAll = props.filter === 'All' ? css.activeButton : ''

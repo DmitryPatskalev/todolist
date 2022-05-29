@@ -6,21 +6,23 @@ import css from './style.module.css'
 
 
 type TodoListPropsType = {
+	 todoListID: string
 	 tasks: TasksType[]
 	 title: string
-	 buttonRemoveTasks: (id: string) => void
-	 onChangeFilter: (title: FilterTasksType) => void
-	 addTask: (title: string) => void
+	 buttonRemoveTasks: (todoListID: string, id: string) => void
+	 onChangeFilter: (todoListID: string, title: FilterTasksType) => void
+	 addTask: (todoListID: string, title: string) => void
 	 filter: FilterTasksType
-	 changeTaskStatus: (taskID: string, isDone: boolean) => void
+	 changeTaskStatus: (todoListID: string, taskID: string, isDone: boolean) => void
+	 removeTodolist: (todoListID: string) => void
 
 }
 
 export const TodoList = (props: TodoListPropsType) => {
 	 let listOfTasks = props.tasks.map((elem, index) => {
-			let removeTask = () => props.buttonRemoveTasks(elem.id)
+			let removeTask = () => props.buttonRemoveTasks(props.todoListID, elem.id)
 			let changeChecked = (event: ChangeEvent<HTMLInputElement>) => {
-				 props.changeTaskStatus(elem.id, event.currentTarget.checked)
+				 props.changeTaskStatus(props.todoListID, elem.id, event.currentTarget.checked)
 			}
 			return <ul key={index}>
 				 <li className={elem.isDone ? css.isDone : ''}>
@@ -30,12 +32,16 @@ export const TodoList = (props: TodoListPropsType) => {
 				 </li>
 			</ul>
 	 })
+	 const removeTodoList = () => props.removeTodolist(props.todoListID)
 
 	 return <div>
-			<h3 className={css.title}>{props.title}</h3>
-			<AddTasks addTasks={props.addTask}/>
+			<h3 className={css.title}>{props.title}
+				 <button onClick={removeTodoList} className={css.butRemTL}>x</button>
+			</h3>
+
+			<AddTasks addTasks={props.addTask} todoListID={props.todoListID}/>
 			{listOfTasks}
-			<ButtonsFilterTasks onChangeFilter={props.onChangeFilter} filter={props.filter}/>
+			<ButtonsFilterTasks onChangeFilter={props.onChangeFilter} filter={props.filter} todoListID={props.todoListID}/>
 	 </div>
 
 }
