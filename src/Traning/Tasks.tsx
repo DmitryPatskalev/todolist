@@ -98,30 +98,53 @@ const TodoListTraning = () => {
 				 ...tasks, [todoList.id]: []
 			})
 	 }
+	 const changeTaskTitle = (todoListID: string, id: string, newTitle: string) => {
+			let todoListObj = tasks[todoListID]
+			let task = todoListObj.find(elem => elem.id === id)
+			if (task) {
+				 task.title = newTitle
+				 setTasks({...tasks})
+			}
+	 }
+	 const changeTodoListTitle = (todoListID: string, newTitle: string) => {
+			let task = todoLists.find(elem => elem.id === todoListID)
+			if (task) {
+				 task.title = newTitle
+				 setTodoLists([...todoLists])
+			}
+	 }
 
-	 return <div className='App'>
-			<AddItemForm addItem={addTodoList}/>
-			{todoLists.length ? todoLists.map(tl => {
-				 let filterTask = tasks[tl.id]
-				 if (tl.filter === 'Active') {
-						filterTask = tasks[tl.id].filter(elem => !elem.isDone)
-				 }
-				 if (tl.filter === 'Completed') {
-						filterTask = tasks[tl.id].filter(elem => elem.isDone)
-				 }
-				 return <TodoList
-					 key={tl.id}
-					 todoListID={tl.id}
-					 tasks={filterTask}
-					 title={tl.title}
-					 buttonRemoveTasks={buttonRemoveTasks}
-					 onChangeFilter={onChangeFilter}
-					 addTask={addTask}
-					 filter={tl.filter}
-					 changeTaskStatus={changeTaskStatus}
-					 removeTodolist={removeTodolist}
-				 />
-			}) : <span className={css.empty}>Create your first todoList</span>}
+	 return <div>
+			<div className={css.addTodoList}>
+				 <h2 className={css.h2}>Add todoList</h2>
+				 <AddItemForm addItem={addTodoList}/>
+			</div>
+			<div className={css.todoLists}>
+				 {todoLists.length ? todoLists.map(tl => {
+						let filterTask = tasks[tl.id]
+						if (tl.filter === 'Active') {
+							 filterTask = tasks[tl.id].filter(elem => !elem.isDone)
+						}
+						if (tl.filter === 'Completed') {
+							 filterTask = tasks[tl.id].filter(elem => elem.isDone)
+						}
+						return <TodoList
+							key={tl.id}
+							todoListID={tl.id}
+							tasks={filterTask}
+							title={tl.title}
+							buttonRemoveTasks={buttonRemoveTasks}
+							onChangeFilter={onChangeFilter}
+							addTask={addTask}
+							filter={tl.filter}
+							changeTaskStatus={changeTaskStatus}
+							removeTodolist={removeTodolist}
+							changeTaskTitle={changeTaskTitle}
+							changeTodoListTitle={changeTodoListTitle}
+						/>
+				 }) : <span className={css.empty}>Create your first todoList</span>}
+			</div>
+
 	 </div>
 }
 

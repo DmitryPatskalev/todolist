@@ -1,7 +1,8 @@
 .App {
-    display: flex;
+    background-image: url("space.jpg");
+    height: 710px;
 }
 
 .App div {
-    margin: 20px;
+    margin: 10px;
 }

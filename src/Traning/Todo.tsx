@@ -3,6 +3,7 @@ import {FilterTasksType, TasksType} from "./Tasks";
 import {AddItemForm} from "./AddItemForm";
 import {ButtonsFilterTasks} from "./ButtonsFilterTasks";
 import css from './style.module.css'
+import {EditableSpan} from "./EditableSpan";
 
 
 type TodoListPropsType = {
@@ -15,6 +16,8 @@ type TodoListPropsType = {
 	 filter: FilterTasksType
 	 changeTaskStatus: (todoListID: string, taskID: string, isDone: boolean) => void
 	 removeTodolist: (todoListID: string) => void
+	 changeTaskTitle: (todoListID: string, id: string, newTitle: string) => void
+	 changeTodoListTitle: (todoListID: string, newTitle: string) => void
 }
 
 export const TodoList = (props: TodoListPropsType) => {
@@ -23,10 +26,16 @@ export const TodoList = (props: TodoListPropsType) => {
 			let changeChecked = (event: ChangeEvent<HTMLInputElement>) => {
 				 props.changeTaskStatus(props.todoListID, elem.id, event.currentTarget.checked)
 			}
+			const onChangeTitleHundler = (newValue: string) => {
+				 props.changeTaskTitle(props.todoListID, elem.id, newValue)
+
+			}
 			return <ul key={index}>
 				 <li className={elem.isDone ? css.isDone : ''}>
 						<input type='checkbox' onChange={changeChecked} checked={elem.isDone}/>
-						{elem.title}
+						<span className={css.titleTasks}>
+							 <EditableSpan title={elem.title} onChange={onChangeTitleHundler}/>
+						</span>
 						<button onClick={removeTask} className={css.removeTask}>x</button>
 				 </li>
 			</ul>
@@ -36,13 +45,17 @@ export const TodoList = (props: TodoListPropsType) => {
 	 const addTask = (title: string) => {
 			props.addTask(props.todoListID, title)
 	 }
+	 const changeTodoListTitle = (newTitle: string) => {
+			props.changeTodoListTitle(props.todoListID, newTitle)
+	 }
 
 	 return <div>
-			<h3 className={css.title}>{props.title}
+			<h3 className={css.title}>
+				 <EditableSpan title={props.title} onChange={changeTodoListTitle}/>
 				 <button onClick={removeTodoList} className={css.butRemTL}>x</button>
 			</h3>
 			<AddItemForm addItem={addTask}/>
-			{listOfTasks}
+			<span>{listOfTasks}</span>
 			<ButtonsFilterTasks onChangeFilter={props.onChangeFilter} filter={props.filter} todoListID={props.todoListID}/>
 	 </div>
 
