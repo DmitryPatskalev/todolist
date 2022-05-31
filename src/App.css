@@ -1,8 +1,8 @@
 .App {
-    background-image: url("space.jpg");
-    height: 710px;
+    /*background-image: url("space.jpg");*/
+    /*height: 700px;*/
 }
 
 .App div {
-    margin: 10px;
+    margin: 5px;
 }

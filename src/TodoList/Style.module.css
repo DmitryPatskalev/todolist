@@ -1,7 +1,20 @@
+.addTodoList {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 1400px;
+}
+
+.addTodoList div {
+    text-align: center;
+}
+
+.todoLists {
+    display: flex;
+}
+
 .buttonRemove {
     margin: 5px;
     border-radius: 50%;
-
 }
 
 .buttonRemove:hover {
@@ -14,25 +27,22 @@
 
 .active {
     background-color: lightgreen;
-
 }
-
 
 .titleTasks {
     font-family: 'Neucha', cursive;
     font-size: 17px;
-
 }
 
 .title {
     font-family: 'Neucha', cursive;
     color: red;
     margin-left: 50px;
-
 }
 
 .addTask {
     margin: 5px;
+    border-radius: 20%;
 }
 
 .addTask:hover {
@@ -66,3 +76,18 @@
     font-size: 40px;
     color: green;
 }
+
+.mainTitle {
+    font-family: 'Neucha', cursive;
+    font-size: 30px;
+    text-align: center;
+    color: green;
+}
+
+.editInput {
+    width: 120px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+

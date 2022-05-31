@@ -3,12 +3,10 @@ import css from './Style.module.css'
 
 
 type AddTasksType = {
-	 addTask: (todoListId: string, title: string) => void
-	 todolistID: string
-
+	 addItem: (title: string) => void
 }
 
-const AddTasks = (props: AddTasksType) => {
+const AddItemForm = (props: AddTasksType) => {
 	 const [newTask, setNewTask] = useState('')
 	 const [error, setError] = useState<string | null>(null)
 
@@ -17,7 +15,7 @@ const AddTasks = (props: AddTasksType) => {
 	 }
 	 let onClickAddTask = () => {
 			if (newTask.trim() !== '') {
-				 props.addTask(props.todolistID, newTask.trim())
+				 props.addItem(newTask.trim())
 				 setNewTask('')
 			} else {
 				 setError('Please, enter the data')
@@ -31,9 +29,17 @@ const AddTasks = (props: AddTasksType) => {
 				 setNewTask('')
 			}
 	 }
+	 const styleInput = {
+			width: '150px',
+			height: '20px',
+			borderRadius: '10px',
+			paddingLeft: '10px',
+
+	 }
 
 	 return <div>
 			<input
+				style={styleInput}
 				className={error ? css.error : ''}
 				value={newTask}
 				onChange={onChangeHundler}
@@ -49,4 +55,4 @@ const AddTasks = (props: AddTasksType) => {
 
 	 </div>
 }
-export default AddTasks
+export default AddItemForm
