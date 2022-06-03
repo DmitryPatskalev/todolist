@@ -4,6 +4,8 @@ import {AddItemForm} from "./AddItemForm";
 import {ButtonsFilterTasks} from "./ButtonsFilterTasks";
 import css from './style.module.css'
 import {EditableSpan} from "./EditableSpan";
+import {Checkbox, IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 
 type TodoListPropsType = {
@@ -28,17 +30,16 @@ export const TodoList = (props: TodoListPropsType) => {
 			}
 			const onChangeTitleHundler = (newValue: string) => {
 				 props.changeTaskTitle(props.todoListID, elem.id, newValue)
-
 			}
-			return <ul key={index}>
-				 <li className={elem.isDone ? css.isDone : ''}>
-						<input type='checkbox' onChange={changeChecked} checked={elem.isDone}/>
-						<span className={css.titleTasks}>
-							 <EditableSpan title={elem.title} onChange={onChangeTitleHundler}/>
-						</span>
-						<button onClick={removeTask} className={css.removeTask}>x</button>
-				 </li>
-			</ul>
+			return <div key={index}>
+				 <div className={elem.isDone ? css.isDone : ''}>
+						<Checkbox onChange={changeChecked} checked={elem.isDone}/>
+						<EditableSpan title={elem.title} onChange={onChangeTitleHundler}/>
+						<IconButton onClick={removeTask}>
+							 <Delete/>
+						</IconButton>
+				 </div>
+			</div>
 	 })
 	 const removeTodoList = () => props.removeTodolist(props.todoListID)
 
@@ -52,7 +53,7 @@ export const TodoList = (props: TodoListPropsType) => {
 	 return <div>
 			<h3 className={css.title}>
 				 <EditableSpan title={props.title} onChange={changeTodoListTitle}/>
-				 <button onClick={removeTodoList} className={css.butRemTL}>x</button>
+				 <IconButton onClick={removeTodoList}><Delete/></IconButton>
 			</h3>
 			<AddItemForm addItem={addTask}/>
 			<span>{listOfTasks}</span>

@@ -1,82 +1,82 @@
-.addTodoList {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 1400px;
-}
+/*.addTodoList {*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr;*/
+/*    width: 1400px;*/
+/*}*/
 
-.addTodoList div {
-    text-align: center;
-}
+/*.addTodoList div {*/
+/*    text-align: center;*/
+/*}*/
 
-.todoLists {
-    display: flex;
-}
+/*.todoLists {*/
+/*    display: flex;*/
+/*}*/
 
-.title {
-    font-family: 'Neucha', cursive;
-    color: blue;
-    margin-left: 15px;
-    font-weight: bold;
-}
+/*.title {*/
+/*    font-family: 'Neucha', cursive;*/
+/*    color: blue;*/
+/*    margin-left: 15px;*/
+/*    font-weight: bold;*/
+/*}*/
 
-.buttonAddTask {
-    margin: 5px;
-    border-radius: 20%;
-}
+/*.buttonAddTask {*/
+/*    margin: 5px;*/
+/*    border-radius: 20%;*/
+/*}*/
 
-.buttonAddTask:hover {
-    background-color: lightgreen;
-}
+/*.buttonAddTask:hover {*/
+/*    background-color: lightgreen;*/
+/*}*/
 
-.error {
-    border: 2px solid red;
-}
+/*.error {*/
+/*    border: 2px solid red;*/
+/*}*/
 
-.errorMessage {
-    color: red;
-    font-weight: bold;
-}
+/*.errorMessage {*/
+/*    color: red;*/
+/*    font-weight: bold;*/
+/*}*/
 
-.buttonsFilter button {
-    margin: 5px;
-}
+/*.buttonsFilter button {*/
+/*    margin: 5px;*/
+/*}*/
 
-.activeButton {
+/*.activeButton {*/
 
-    background-color: lightgreen;
-}
-
-
-.tasks {
-    font-family: 'Neucha', cursive;
-    padding: 5px;
-    margin-right: 15px;
-
-}
+/*    background-color: lightgreen;*/
+/*}*/
 
 
-.removeTask {
-    border-radius: 20%;
-    margin-left: 5px;
-}
+/*.tasks {*/
+/*    font-family: 'Neucha', cursive;*/
+/*    padding: 5px;*/
+/*    margin-right: 15px;*/
 
-.removeTask:hover {
-    background-color: red;
+/*}*/
 
-}
+
+/*.removeTask {*/
+/*    border-radius: 20%;*/
+/*    margin-left: 5px;*/
+/*}*/
+
+/*.removeTask:hover {*/
+/*    background-color: red;*/
+
+/*}*/
 
 .isDone {
     opacity: 0.4;
 }
 
-.butRemTL {
-    margin: 10px;
-    border-radius: 20%;
-}
+/*.butRemTL {*/
+/*    margin: 10px;*/
+/*    border-radius: 20%;*/
+/*}*/
 
-.butRemTL:hover {
-    background-color: red;
-}
+/*.butRemTL:hover {*/
+/*    background-color: red;*/
+/*}*/
 
 .empty {
     font-family: 'Neucha', cursive;
@@ -85,14 +85,14 @@
     text-align: center;
 }
 
-.h2 {
-    font-family: 'Neucha', cursive;
-    color: green;
-    text-align: center;
-}
+/*.h2 {*/
+/*    font-family: 'Neucha', cursive;*/
+/*    color: green;*/
+/*    text-align: center;*/
+/*}*/
 
-.titleTasks {
-    font-family: 'Neucha', cursive;
-    font-size: 17px;
-    
-}
+/*.titleTasks {*/
+/*    font-family: 'Neucha', cursive;*/
+/*    font-size: 17px;*/
+
+/*}*/

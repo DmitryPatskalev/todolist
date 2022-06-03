@@ -1,6 +1,7 @@
 import React from "react";
 import {FilterTasksType} from "./Tasks";
 import css from './style.module.css'
+import {Button} from "@material-ui/core";
 
 
 type ButtonsFilterTasksType = {
@@ -20,15 +21,17 @@ export const ButtonsFilterTasks = (props: ButtonsFilterTasksType) => {
 			props.onChangeFilter(props.todoListID, 'Completed')
 	 }
 
-	 let activeAll = props.filter === 'All' ? css.activeButton : ''
-	 let activeActive = props.filter === 'Active' ? css.activeButton : ''
-	 let activeCompleted = props.filter === 'Completed' ? css.activeButton : ''
+	 // let activeAll = props.filter === 'All' ? 'contained' : 'text'
+	 // let activeActive = props.filter === 'Active' ? css.activeButton : ''
+	 // let activeCompleted = props.filter === 'Completed' ? css.activeButton : ''
 
 
 	 return <div className={css.buttonsFilter}>
-			<button onClick={showAll} className={activeAll}>All</button>
-			<button onClick={showActive} className={activeActive}>Active</button>
-			<button onClick={showCompleted} className={activeCompleted}>Completed</button>
+			<Button onClick={showAll} color={'primary'} variant={props.filter === 'All' ? 'contained' : 'text'}>All</Button>
+			<Button onClick={showActive} color={'secondary'}
+							variant={props.filter === 'Active' ? 'contained' : 'text'}>Active</Button>
+			<Button onClick={showCompleted} color={'default'}
+							variant={props.filter === 'Completed' ? 'contained' : 'text'}>Completed</Button>
 
 	 </div>
 }
