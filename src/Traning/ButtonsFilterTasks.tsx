@@ -28,9 +28,9 @@ export const ButtonsFilterTasks = (props: ButtonsFilterTasksType) => {
 
 	 return <div className={css.buttonsFilter}>
 			<Button onClick={showAll} color={'primary'} variant={props.filter === 'All' ? 'contained' : 'text'}>All</Button>
-			<Button onClick={showActive} color={'secondary'}
+			<Button onClick={showActive} color={'primary'}
 							variant={props.filter === 'Active' ? 'contained' : 'text'}>Active</Button>
-			<Button onClick={showCompleted} color={'default'}
+			<Button onClick={showCompleted} color={'primary'}
 							variant={props.filter === 'Completed' ? 'contained' : 'text'}>Completed</Button>
 
 	 </div>
