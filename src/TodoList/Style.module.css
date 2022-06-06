@@ -1,75 +1,73 @@
-.addTodoList {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 1400px;
-}
+/*.addTodoList {*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr;*/
+/*    width: 1400px;*/
+/*}*/
 
-.addTodoList div {
-    text-align: center;
-}
+/*.addTodoList div {*/
+/*    text-align: center;*/
+/*}*/
 
-.todoLists {
-    display: flex;
-}
+/*.todoLists {*/
+/*    display: flex;*/
+/*}*/
 
-.buttonRemove {
-    margin: 5px;
-    border-radius: 50%;
-}
+/*.buttonRemove {*/
+/*    margin: 5px;*/
+/*    border-radius: 50%;*/
+/*}*/
 
-.buttonRemove:hover {
-    background-color: red;
-}
+/*.buttonRemove:hover {*/
+/*    background-color: red;*/
+/*}*/
 
-.buttonsFilter button {
-    margin: 5px;
-}
+/*.buttonsFilter button {*/
+/*    margin: 5px;*/
+/*}*/
 
-.active {
-    background-color: lightgreen;
-}
+/*.active {*/
+/*    background-color: lightgreen;*/
+/*}*/
 
 .titleTasks {
     font-family: 'Neucha', cursive;
-    font-size: 17px;
 }
 
 .title {
     font-family: 'Neucha', cursive;
-    color: red;
     margin-left: 50px;
 }
 
-.addTask {
-    margin: 5px;
-    border-radius: 20%;
-}
+/*.addTask {*/
+/*    margin: 5px;*/
+/*    border-radius: 20%;*/
+/*}*/
 
-.addTask:hover {
-    background-color: lightgreen;
-}
+/*.addTask:hover {*/
+/*    background-color: lightgreen;*/
+/*}*/
 
-.error {
-    border: 2px solid red;
-}
+/*.error {*/
+/*    border: 2px solid red;*/
+/*}*/
 
-.errorMessage {
-    color: red;
-    font-weight: bold;
-}
+/*.errorMessage {*/
+/*    color: red;*/
+/*    font-weight: bold;*/
+/*}*/
 
 .isDone {
     opacity: 0.3;
 }
 
-.butRemTL {
-    margin: 10px;
-    border-radius: 20%;
-}
+/*.butRemTL {*/
+/*    margin: 10px;*/
+/*    border-radius: 20%;*/
+/*}*/
 
-.butRemTL:hover {
-    background-color: red;
-}
+/*.butRemTL:hover {*/
+/*    background-color: red;*/
+/*}*/
 
 .empty {
     font-family: 'Neucha', cursive;
@@ -77,17 +75,17 @@
     color: green;
 }
 
-.mainTitle {
-    font-family: 'Neucha', cursive;
-    font-size: 30px;
-    text-align: center;
-    color: green;
-}
+/*.mainTitle {*/
+/*    font-family: 'Neucha', cursive;*/
+/*    font-size: 30px;*/
+/*    text-align: center;*/
+/*    color: green;*/
+/*}*/
 
-.editInput {
-    width: 120px;
-    height: 20px;
-    border-radius: 10px;
-    text-align: center;
-}
+/*.editInput {*/
+/*    width: 120px;*/
+/*    height: 20px;*/
+/*    border-radius: 10px;*/
+/*    text-align: center;*/
+/*}*/
 

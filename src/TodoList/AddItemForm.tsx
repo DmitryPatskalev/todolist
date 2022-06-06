@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import css from './Style.module.css'
+import {IconButton, TextField} from "@material-ui/core";
+import {ControlPoint} from "@material-ui/icons";
 
 
 type AddTasksType = {
@@ -29,30 +30,24 @@ const AddItemForm = (props: AddTasksType) => {
 				 setNewTask('')
 			}
 	 }
-	 const styleInput = {
-			width: '150px',
-			height: '20px',
-			borderRadius: '10px',
-			paddingLeft: '10px',
 
-	 }
 
 	 return <div>
-			<input
-				style={styleInput}
-				className={error ? css.error : ''}
+			<TextField
+				variant={'outlined'}
+				label={'Type value'}
+				error={!!error}
+				helperText={error}
 				value={newTask}
 				onChange={onChangeHundler}
 				onKeyPress={onPressKeyHundler}
 			/>
-			<button
+			<IconButton
 				title='Add Task'
-				className={css.addTask}
 				onClick={onClickAddTask}
-			>+
-			</button>
-			<div className={error ? css.errorMessage : ''}>{error}</div>
-
+				color={'primary'}
+			><ControlPoint/>
+			</IconButton>
 	 </div>
 }
 export default AddItemForm
