@@ -30,8 +30,7 @@ const AddItemForm = (props: AddTasksType) => {
 				 setNewTask('')
 			}
 	 }
-
-
+	 
 	 return <div>
 			<TextField
 				variant={'outlined'}
