@@ -30,21 +30,16 @@ export const todoListReducer = (state: Array<TodoListsType>, action: ActionType)
 	 switch (action.type) {
 			case 'REMOVE_TODOLIST':
 				 return state.filter(tl => tl.id !== action.id)
+
 			case 'ADD_TODOLIST':
 				 return [...state, {id: v1(), title: action.title, filter: 'Completed'}]
-			case 'CHANGE_TODOLIST_TITLE':
-				 let todolist = state.find(tl => tl.id === action.id)
-				 if (todolist) {
-						todolist.title = action.title
-				 }
-				 return [...state]
-			case 'CHANGE_TODOLIST_FILTER':
-				 let todolistFilter = state.find(tl => tl.id === action.id)
-				 if (todolistFilter) {
-						todolistFilter.filter = action.filter
-				 }
-				 return [...state]
 
+			case 'CHANGE_TODOLIST_TITLE':
+				 return state.map(tl => tl.id === action.id ? {...tl, title: action.title} : tl)
+
+			case 'CHANGE_TODOLIST_FILTER':
+				 return state.map(tl => tl.id === action.id ? {...tl, filter: action.filter} : tl)
+			
 			default:
 				 throw new Error("I don't understand this type")
 	 }

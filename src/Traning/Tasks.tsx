@@ -116,7 +116,7 @@ const TodoListTraning = () => {
 			}
 	 }
 
-	 return <Grid className='App'>
+	 return <Grid className={css.App}>
 			<AppBar position={'static'}>
 				 <Toolbar>
 						<IconButton edge='start' color='inherit' aria-label='menu'>

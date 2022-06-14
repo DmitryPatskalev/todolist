@@ -45,7 +45,6 @@ test('correct todolist change its name', () => {
 
 	 let newTodolistTitle = 'New Todolist'
 
-
 	 const startState: Array<TodoListsType> = [
 			{id: todoListID1, title: 'What I Learn', filter: 'All'},
 			{id: todoListID2, title: 'What You Learn', filter: 'All'}
@@ -53,7 +52,6 @@ test('correct todolist change its name', () => {
 	 const endState = todoListTraningReducer(startState, ChangeTodoListAC(todoListID2, newTodolistTitle))
 	 expect(endState[0].title).toBe('What I Learn')
 	 expect(endState[1].title).toBe(newTodolistTitle)
-
 })
 
 test('correct filter of todolist should be changed', () => {
@@ -61,7 +59,6 @@ test('correct filter of todolist should be changed', () => {
 	 const todoListID2 = v1()
 
 	 let newFilter: FilterTasksType = 'Completed'
-
 
 	 const startState: Array<TodoListsType> = [
 			{id: todoListID1, title: 'What I Learn', filter: 'All'},
@@ -71,5 +68,4 @@ test('correct filter of todolist should be changed', () => {
 
 	 expect(endState[0].filter).toBe('All')
 	 expect(endState[1].filter).toBe(newFilter)
-
 })
