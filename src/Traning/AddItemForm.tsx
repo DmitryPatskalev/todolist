@@ -1,51 +1,45 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import {IconButton, TextField} from "@material-ui/core";
-import {ControlPoint} from "@material-ui/icons";
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
-
-type AddTasksPropsType = {
-	 addItem: (title: string) => void
+type AddItemFormType = {
+	 addTask: (title: string) => void
 }
 
-export const AddItemForm = (props: AddTasksPropsType) => {
+const AddItemForm = (props: AddItemFormType) => {
 	 const [newTask, setNewTask] = useState('')
 	 const [error, setError] = useState<string | null>(null)
 
-	 const onClickHundler = () => {
+	 const onClickButton = () => {
 			if (newTask.trim() !== '') {
-				 props.addItem(newTask.trim())
+				 props.addTask(newTask.trim())
 				 setNewTask('')
 			} else {
 				 setError('Input the data')
 			}
 	 }
-
 	 const onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
 			setError(null)
 			setNewTask(event.currentTarget.value)
 	 }
-
-	 const onKeyHundler = (event: KeyboardEvent<HTMLInputElement>) => {
+	 const onKeyPressHundler = (event: KeyboardEvent<HTMLInputElement>) => {
 			if (event.charCode === 13) {
-				 onClickHundler()
+				 onClickButton()
 			}
 	 }
 
-	 return <div>
-			<TextField
-				variant={'outlined'}
-				error={!!error}
-				helperText={error}
-				label={'Type value'}
-				value={newTask}
-				onChange={onChangeHundler}
-				onKeyPress={onKeyHundler}/>
-			<span>
-				 <IconButton
-					 onClick={onClickHundler}
-					 color={'primary'}
-				 ><ControlPoint/>
-				 </IconButton>
-			</span>
-	 </div>
-}
+
+	 return (
+		 <div>
+				<input
+					value={newTask}
+					onChange={onChangeHundler}
+					onKeyPress={onKeyPressHundler}
+				/>
+				<span>
+					 <button onClick={onClickButton}>+</button>
+				</span>
+				{error && <div>{error}</div>}
+		 </div>
+	 );
+};
+
+export default AddItemForm;
