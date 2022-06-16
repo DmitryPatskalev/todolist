@@ -55,13 +55,17 @@ const TodoListTraning = () => {
 			tasks[todoListID] = todoListObj.filter(elem => elem.id !== id)
 			setTasks({...tasks})
 	 }
+	 
+	 const removeTodolist = (todoListID: string) => {
+			let filterTodoList = todoLists.filter(elem => elem.id !== todoListID)
+			setTodoLists(filterTodoList)
+			delete tasks[todoListID]
+			setTasks({...tasks})
+	 }
+
 
 	 const onChangeFilter = (todoListID: string, title: FilterTasksType) => {
-			let todoListObj = todoLists.find(elem => elem.id === todoListID)
-			if (todoListObj) {
-				 todoListObj.filter = title
-			}
-			setTodoLists([...todoLists])
+			setTodoLists(todoLists.map(elem => elem.id === todoListID ? {...elem, filter: title} : elem))
 	 }
 
 	 const addTask = (todoListID: string, title: string) => {
@@ -75,20 +79,6 @@ const TodoListTraning = () => {
 			setTasks({...tasks})
 	 }
 
-	 const changeTaskStatus = (todoListID: string, taskID: string, isDone: boolean) => {
-			let todoListObj = tasks[todoListID]
-			let changeChecked = todoListObj.find(elem => elem.id === taskID)
-			if (changeChecked) {
-				 changeChecked.isDone = isDone
-				 setTasks({...tasks})
-			}
-	 }
-	 const removeTodolist = (todoListID: string) => {
-			let filterTodoList = todoLists.filter(elem => elem.id !== todoListID)
-			setTodoLists(filterTodoList)
-			delete tasks[todoListID]
-			setTasks({...tasks})
-	 }
 	 const addTodoList = (title: string) => {
 			let todoList: TodoListsType = {
 				 id: v1(),
@@ -100,6 +90,18 @@ const TodoListTraning = () => {
 				 ...tasks, [todoList.id]: []
 			})
 	 }
+
+
+	 const changeTaskStatus = (todoListID: string, taskID: string, isDone: boolean) => {
+			let todoListObj = tasks[todoListID]
+			let changeChecked = todoListObj.find(elem => elem.id === taskID)
+			if (changeChecked) {
+				 changeChecked.isDone = isDone
+				 setTasks({...tasks})
+			}
+	 }
+
+
 	 const changeTaskTitle = (todoListID: string, id: string, newTitle: string) => {
 			let todoListObj = tasks[todoListID]
 			let task = todoListObj.find(elem => elem.id === id)
