@@ -5,3 +5,7 @@
 .colorFilter {
     background-color: lightgreen;
 }
+
+.isDone {
+    opacity: 0.4;
+}

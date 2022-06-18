@@ -1,7 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
 type AddItemFormType = {
-	 addTask: (title: string) => void
+	 todoListID: string
+	 addTask: (todoListID: string, title: string) => void
 }
 
 const AddItemForm = (props: AddItemFormType) => {
@@ -10,7 +11,7 @@ const AddItemForm = (props: AddItemFormType) => {
 
 	 const onClickButton = () => {
 			if (newTask.trim() !== '') {
-				 props.addTask(newTask.trim())
+				 props.addTask(props.todoListID, newTask.trim())
 				 setNewTask('')
 			} else {
 				 setError('Input the data')
