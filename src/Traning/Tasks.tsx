@@ -11,7 +11,7 @@ export type TasksType = {
 }
 export type FilterTaskType = 'All' | 'Active' | 'Completed';
 
-type TodoListType = {
+export type TodoListType = {
 	 id: string
 	 title: string
 	 filter: FilterTaskType
@@ -92,6 +92,9 @@ const Tasks = () => {
 				 [todoListID]: task[todoListID].map(elem => elem.id === taskID ? {...elem, title: newTitle} : elem)
 			})
 	 }
+	 const changeTodoListTitle = (todoListID: string, newTitle: string) => {
+			setTodoLists(todoLists.map(elem => elem.id === todoListID ? {...elem, title: newTitle} : elem))
+	 }
 
 	 return (
 		 <div className={css.App}>
@@ -117,6 +120,7 @@ const Tasks = () => {
 						 changeTaskStatus={changeTaskStatus}
 						 removeTodoList={removeTodoList}
 						 changeTaskTitle={changeTaskTitle}
+						 changeTodoListTitle={changeTodoListTitle}
 					 />
 				}) : <span>Create New TodoList</span>}
 

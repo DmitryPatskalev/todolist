@@ -16,6 +16,7 @@ type TodoType = {
 	 changeTaskStatus: (todoListID: string, taskID: string, isDone: boolean) => void
 	 removeTodoList: (todoListID: string) => void
 	 changeTaskTitle: (todoListID: string, taskID: string, newTitle: string) => void
+	 changeTodoListTitle: (todoListID: string, newTitle: string) => void
 }
 
 const Todo = (props: TodoType) => {
@@ -43,10 +44,14 @@ const Todo = (props: TodoType) => {
 	 const addTask = (newTitle: string) => {
 			props.addTask(props.todoListID, newTitle)
 	 }
+
+	 const onChangeTodoListTitle = (newTitle: string) => {
+			props.changeTodoListTitle(props.todoListID, newTitle)
+	 }
 	 return (
 		 <div>
 				<h3>
-					 {props.title}
+					 <EditableSpan title={props.title} onChange={onChangeTodoListTitle}/>
 					 <span><button onClick={removeTodoList}>x</button></span>
 				</h3>
 
