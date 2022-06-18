@@ -44,9 +44,9 @@ const Tasks = () => {
 				 {id: v1(), title: 'Scala', isDone: true},
 			]
 	 })
-	 
-	 const removeTask = (id: string) => {
-			setTask(task.filter(elem => elem.id !== id))
+
+	 const removeTask = (todoListID: string, id: string) => {
+			setTask({...task, [todoListID]: task[todoListID].filter(elem => elem.id !== id)})
 	 }
 
 	 const onChangeFilter = (filter: FilterTaskType) => {
