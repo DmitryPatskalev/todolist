@@ -1,4 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
+import {TextField} from "@material-ui/core";
+
 
 type EditableSpan = {
 	 title: string
@@ -22,7 +24,7 @@ const EditableSpan = (props: EditableSpan) => {
 	 }
 
 	 return isEdit ?
-		 <input
+		 <TextField
 			 value={newTitle}
 			 onChange={onChangeTitleHundler}
 			 onBlur={activateViewMode}

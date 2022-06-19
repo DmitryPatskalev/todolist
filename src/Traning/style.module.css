@@ -1,12 +1,31 @@
-.App {
-    margin: 20px;
-    display: grid;
-}
-
-.colorFilter {
-    background-color: lightgreen;
-}
 
 .isDone {
-    opacity: 0.4;
+    opacity: 0.3;
+}
+
+.mainTitle {
+    font-family: 'Neucha', cursive;
+    padding: 10px;
+    font-weight: bold;
+    color: orange;
+}
+
+.emptyTitle {
+    font-family: 'Neucha', cursive;
+    color: green;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.title {
+    font-family: 'Neucha', cursive;
+    font-weight: bold;
+
+}
+
+.todoListTitle {
+    font-family: 'Neucha', cursive;
+    font-weight: bold;
+    color: blue;
+    text-align: center;
 }
