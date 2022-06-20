@@ -1,9 +1,9 @@
 import {v1} from "uuid";
 import {
-	 AddTodoListAC,
-	 ChangeTodoListAC,
-	 ChangeTodoListFilterAC,
-	 RemoveTodoListAC,
+	 addTodoListAC,
+	 changeTodoListAC,
+	 changeTodoListFilterAC,
+	 removeTodoListAC,
 	 todoListTraningReducer
 } from "./todoListTraning-reducer";
 import {FilterTaskType, TodoListType} from "../Tasks";
@@ -17,7 +17,7 @@ test('correct todolist should be removed', () => {
 			{id: todoListID1, title: 'What I Learn', filter: 'All'},
 			{id: todoListID2, title: 'What to Buy', filter: 'All'},
 	 ]
-	 const endState = todoListTraningReducer(startState, RemoveTodoListAC(todoListID1))
+	 const endState = todoListTraningReducer(startState, removeTodoListAC(todoListID1))
 
 	 expect(startState[0].id).toBe(todoListID1)
 	 expect(startState.length).toBe(2)
@@ -36,7 +36,7 @@ test('correct todolist should be added', () => {
 			{id: todoListID1, title: 'What I Learn', filter: 'All'},
 			{id: todoListID2, title: 'What to Buy', filter: 'All'},
 	 ]
-	 const endState = todoListTraningReducer(startState, AddTodoListAC(newTitle))
+	 const endState = todoListTraningReducer(startState, addTodoListAC(newTitle))
 
 	 expect(startState.length).toBe(2)
 	 expect(endState[2].title).toBe('New Todolist')
@@ -56,7 +56,9 @@ test('change todolist title', () => {
 			{id: todoListID1, title: 'What I Learn', filter: 'All'},
 			{id: todoListID2, title: 'What to Buy', filter: 'All'},
 	 ]
-	 const endState = todoListTraningReducer(startState, ChangeTodoListAC(todoListID1, newTitle))
+	 const action = changeTodoListAC(todoListID1, newTitle)
+
+	 const endState = todoListTraningReducer(startState, action)
 	 expect(startState[0].title).toBe('What I Learn')
 	 expect(endState[0].title).toBe('New Todolist')
 	 expect(endState[0].filter).toBe('All')
@@ -74,7 +76,10 @@ test('change todolist filter', () => {
 			{id: todoListID1, title: 'What I Learn', filter: 'All'},
 			{id: todoListID2, title: 'What to Buy', filter: 'All'},
 	 ]
-	 const endState = todoListTraningReducer(startState, ChangeTodoListFilterAC(todoListID2, newFilter))
+	 const action = changeTodoListFilterAC(todoListID2, newFilter)
+
+
+	 const endState = todoListTraningReducer(startState, action)
 
 	 expect(startState[0].filter).toBe('All')
 	 expect(endState[1].filter).toBe(newFilter)
