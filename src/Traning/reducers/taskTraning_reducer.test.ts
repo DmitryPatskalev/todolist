@@ -8,7 +8,6 @@ import {
 } from "./taskTraning-reducer";
 
 import {addTodoListAC, removeTodoListAC} from "./todoListTraning-reducer";
-import {tasksReducer} from "../../TodoList/test/task-reducer";
 
 test('correct task should be removed from correct array', () => {
 	 const startState: GeneralTodolist = {

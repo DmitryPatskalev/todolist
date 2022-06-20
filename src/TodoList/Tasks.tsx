@@ -49,9 +49,10 @@ const Tasks = () => {
 	 })
 
 	 const removeTask = (todoListId: string, id: string) => {
-			let todoListTasks = tasks[todoListId]
-			tasks[todoListId] = todoListTasks.filter(elem => elem.id !== id)
-			setTasks({...tasks})
+			setTasks({...tasks, [todoListId]: tasks[todoListId].filter(elem => elem.id !== id)})
+			// let todoListTasks = tasks[todoListId]
+			// tasks[todoListId] = todoListTasks.filter(elem => elem.id !== id)
+			// setTasks({...tasks})
 	 }
 
 	 const addTask = (todoListId: string, title: string) => {
@@ -60,33 +61,37 @@ const Tasks = () => {
 				 title,
 				 isDone: false
 			}
-			let todoListTasks = tasks[todoListId]
-			tasks[todoListId] = [newTasks, ...todoListTasks]
-			setTasks({...tasks})
+			setTasks({...tasks, [todoListId]: [newTasks, ...tasks[todoListId]]})
+			// let todoListTasks = tasks[todoListId]
+			// tasks[todoListId] = [newTasks, ...todoListTasks]
+			// setTasks({...tasks})
 	 }
 
 	 const changeFilter = (todoListId: string, value: FilterType) => {
-			// setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, filter: value} : tl))
-			let filterButton = todoLists.find(tl => tl.id === todoListId)
-			if (filterButton) {
-				 filterButton.filter = value
-				 setTodoLists([...todoLists])
-			}
+			setTodoLists(todoLists.map(elem => elem.id === todoListId ? {...elem, filter: value} : elem))
+			// let filterButton = todoLists.find(tl => tl.id === todoListId)
+			// if (filterButton) {
+			// 	 filterButton.filter = value
+			// 	 setTodoLists([...todoLists])
+			// }
 	 }
 
 	 const changeStatus = (todoListId: string, taskId: string, isDone: boolean) => {
-			// setTasks({...tasks, [todoListId]: tasks[todoListId].map(tl => tl.id === taskId ? {...tl, isDone} : tl)})
-			let todoListTasks = tasks[todoListId]
-			let changeChecked = todoListTasks.find(t => t.id === taskId)
-			if (changeChecked) {
-				 changeChecked.isDone = isDone
-			}
-			setTasks({...tasks})
+			setTasks({
+				 ...tasks,
+				 [todoListId]: tasks[todoListId].map(elem => elem.id === taskId ? {...elem, isDone} : elem)
+			})
+
+			// let todoListTasks = tasks[todoListId]
+			// let changeChecked = todoListTasks.find(t => t.id === taskId)
+			// if (changeChecked) {
+			// 	 changeChecked.isDone = isDone
+			// }
+			// setTasks({...tasks})
 	 }
 
 	 const removeTodolist = (todoListId: string) => {
-			let filterTodoList = todoLists.filter(tl => tl.id !== todoListId)
-			setTodoLists(filterTodoList)
+			setTodoLists(todoLists.filter(elem => elem.id !== todoListId))
 			delete tasks[todoListId]
 			setTasks({...tasks})
 	 }
@@ -104,19 +109,24 @@ const Tasks = () => {
 			})
 	 }
 	 const changeTaskTitle = (todoListId: string, id: string, newTitle: string) => {
-			let todoListTasks = tasks[todoListId]
-			let task = todoListTasks.find(elem => elem.id === id)
-			if (task) {
-				 task.title = newTitle
-				 setTasks({...tasks})
-			}
+			setTasks({
+				 ...tasks,
+				 [todoListId]: tasks[todoListId].map(elem => elem.id === id ? {...elem, title: newTitle} : elem)
+			})
+			// let todoListTasks = tasks[todoListId]
+			// let task = todoListTasks.find(elem => elem.id === id)
+			// if (task) {
+			// 	 task.title = newTitle
+			// 	 setTasks({...tasks})
+			// }
 	 }
 	 const changeTodoListTitle = (todoListId: string, newTitle: string) => {
-			let todoList = todoLists.find(elem => elem.id === todoListId)
-			if (todoList) {
-				 todoList.title = newTitle
-				 setTodoLists([...todoLists])
-			}
+			setTodoLists(todoLists.map(elem => elem.id === todoListId ? {...elem, title: newTitle} : elem))
+			// let todoList = todoLists.find(elem => elem.id === todoListId)
+			// if (todoList) {
+			// 	 todoList.title = newTitle
+			// 	 setTodoLists([...todoLists])
+			// }
 	 }
 
 	 return (
@@ -126,7 +136,7 @@ const Tasks = () => {
 							<IconButton edge='start' color='inherit' aria-label='menu'>
 								 <Menu/>
 								 <Typography variant='h6'>
-										News
+										TodoList
 								 </Typography>
 							</IconButton>
 					 </Toolbar>

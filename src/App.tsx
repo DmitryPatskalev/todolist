@@ -5,9 +5,9 @@ import TodoListTraning from "./Traning/Tasks";
 
 function App() {
 	 return <div>
-			{/*<Tasks/>*/}
+			<Tasks/>
 
-			<TodoListTraning/>
+			{/*<TodoListTraning/>*/}
 
 	 </div>
 
