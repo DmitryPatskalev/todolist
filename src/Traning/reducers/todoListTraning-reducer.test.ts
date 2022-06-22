@@ -6,7 +6,7 @@ import {
 	 removeTodoListAC,
 	 todoListTraningReducer
 } from "./todoListTraning-reducer";
-import {FilterTaskType, TodoListType} from "../Tasks";
+import {FilterTaskType, TodoListType} from "../TodoListTraning";
 
 test('correct todolist should be removed', () => {
 

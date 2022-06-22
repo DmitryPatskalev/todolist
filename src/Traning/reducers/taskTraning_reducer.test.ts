@@ -1,4 +1,4 @@
-import {GeneralTodolist} from "../Tasks";
+import {GeneralTodolist} from "../TodoListTraning";
 import {
 	 addTaskTraningAC,
 	 changeTaskStatusTraningAC,

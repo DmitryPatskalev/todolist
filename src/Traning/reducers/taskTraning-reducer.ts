@@ -1,29 +1,11 @@
-import {GeneralTodolist} from "../Tasks";
 import {v1} from "uuid";
 import {addTodoListActionType, removeTodoListActionType} from "./todoListTraning-reducer";
+import {GeneralTodolist} from "../TodoListTraning";
 
-export type RemoveTaskAT = {
-	 type: 'REMOVE-TASK'
-	 todoListID: string
-	 taskID: string
-}
-export type AddTaskAT = {
-	 type: 'ADD-TASK'
-	 todoListID: string
-	 title: string
-}
-export type ChangeTaskStatusAT = {
-	 type: 'CHANGE-TASK-STATUS'
-	 todoListID: string
-	 taskID: string
-	 isDone: boolean
-}
-export type ChangeTaskTitleAT = {
-	 type: 'CHANGE-TASK-TITLE'
-	 todoListID: string
-	 taskID: string
-	 title: string
-}
+export type RemoveTaskAT = ReturnType<typeof removeTaskTraningAC>
+export type AddTaskAT = ReturnType<typeof addTaskTraningAC>
+export type ChangeTaskStatusAT = ReturnType<typeof changeTaskStatusTraningAC>
+export type ChangeTaskTitleAT = ReturnType<typeof changeTaskTitleTraningAC>
 
 export type ActionTraningTask = RemoveTaskAT | AddTaskAT | ChangeTaskStatusAT | ChangeTaskTitleAT |
 	addTodoListActionType | removeTodoListActionType
@@ -57,15 +39,15 @@ export const taskTraningReducer = (state: GeneralTodolist, action: ActionTraning
 				 throw new Error('I do not understand this type')
 	 }
 }
-export const removeTaskTraningAC = (todoListID: string, taskID: string): RemoveTaskAT => {
-	 return {type: 'REMOVE-TASK', todoListID, taskID}
+export const removeTaskTraningAC = (todoListID: string, taskID: string) => {
+	 return {type: 'REMOVE-TASK', todoListID, taskID} as const
 }
-export const addTaskTraningAC = (todoListID: string, title: string): AddTaskAT => {
-	 return {type: 'ADD-TASK', todoListID, title}
+export const addTaskTraningAC = (todoListID: string, title: string) => {
+	 return {type: 'ADD-TASK', todoListID, title} as const
 }
-export const changeTaskStatusTraningAC = (todoListID: string, taskID: string, isDone: boolean): ChangeTaskStatusAT => {
-	 return {type: 'CHANGE-TASK-STATUS', todoListID, taskID, isDone}
+export const changeTaskStatusTraningAC = (todoListID: string, taskID: string, isDone: boolean) => {
+	 return {type: 'CHANGE-TASK-STATUS', todoListID, taskID, isDone} as const
 }
-export const changeTaskTitleTraningAC = (todoListID: string, taskID: string, title: string): ChangeTaskTitleAT => {
-	 return {type: 'CHANGE-TASK-TITLE', todoListID, taskID, title}
+export const changeTaskTitleTraningAC = (todoListID: string, taskID: string, title: string) => {
+	 return {type: 'CHANGE-TASK-TITLE', todoListID, taskID, title} as const
 }

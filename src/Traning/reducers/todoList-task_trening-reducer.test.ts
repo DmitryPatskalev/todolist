@@ -1,4 +1,4 @@
-import {GeneralTodolist, TodoListType} from "../Tasks";
+import {GeneralTodolist, TodoListType} from "../TodoListTraning";
 import {addTodoListAC, todoListTraningReducer} from "./todoListTraning-reducer";
 import {taskTraningReducer} from "./taskTraning-reducer";
 
@@ -16,5 +16,4 @@ test('id should be equal', () => {
 	 const idFromTodolist = endTodoListState[0].id
 	 expect(idFromTask).toBe(action.todoListID)
 	 expect(idFromTodolist).toBe(action.todoListID)
-
 })

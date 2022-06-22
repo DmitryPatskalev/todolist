@@ -23,7 +23,7 @@ export type GeneralTodolist = {
 	 [key: string]: Array<TasksType>
 }
 
-const Tasks = () => {
+const TodoListTraning = () => {
 	 const todoListID1 = v1()
 	 const todoListID2 = v1()
 
@@ -67,10 +67,9 @@ const Tasks = () => {
 				 title,
 				 isDone: false
 			}
-			let todoListObj = task[todoListID]
-			task[todoListID] = [newTask, ...todoListObj]
-			setTask({...task})
+			setTask({...task, [todoListID]: [newTask, ...task[todoListID]]})
 	 }
+	 
 	 const addTodoList = (title: string) => {
 			let newTodoList: TodoListType = {
 				 id: v1(),
@@ -150,4 +149,4 @@ const Tasks = () => {
 	 );
 };
 
-export default Tasks;
+export default TodoListTraning;

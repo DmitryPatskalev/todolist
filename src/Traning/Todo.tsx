@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {FilterTaskType, TasksType} from "./Tasks";
+import {FilterTaskType, TasksType} from "./TodoListTraning";
 import ButtonsFilterTasks from "./ButtonsFilterTasks";
 import AddItemForm from "./AddItemForm";
 import css from './style.module.css'
@@ -33,7 +33,7 @@ const Todo = (props: TodoType) => {
 
 			return <div key={key} className={elem.isDone ? css.isDone : ''}>
 				 <div className={css.title}>
-						<Checkbox onChange={changeChecked} checked={elem.isDone}/>
+						<Checkbox color='primary' onChange={changeChecked} checked={elem.isDone}/>
 						<EditableSpan title={elem.title} onChange={onChangeTaskTitle}/>
 						<span>
 							 <IconButton onClick={removeTask}><Delete/></IconButton>

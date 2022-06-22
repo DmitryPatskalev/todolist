@@ -1,5 +1,5 @@
 import React from 'react';
-import {FilterTaskType} from "./Tasks";
+import {FilterTaskType} from "./TodoListTraning";
 import {Button} from "@material-ui/core";
 
 type ButtonsFilterTasksType = {
