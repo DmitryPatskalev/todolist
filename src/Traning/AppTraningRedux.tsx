@@ -42,7 +42,6 @@ const AppTraningRedux = () => {
 	 const todoLists = useSelector<AppRootTraningState, Array<TodoListType>>(state => state.todoLists)
 	 const task = useSelector<AppRootTraningState, GeneralTodolist>(state => state.tasks)
 
-
 	 const removeTask = (todoListID: string, id: string) => {
 			dispatchTraning(removeTaskTraningAC(todoListID, id))
 	 }
@@ -50,7 +49,6 @@ const AppTraningRedux = () => {
 	 const removeTodoList = (todoListID: string) => {
 			const action = removeTodoListAC(todoListID)
 			dispatchTraning(action)
-
 	 }
 
 	 const onChangeFilter = (todoListID: string, filter: FilterTaskType) => {
@@ -89,7 +87,6 @@ const AppTraningRedux = () => {
 							</IconButton>
 					 </Toolbar>
 				</AppBar>
-
 				<Container fixed>
 					 <Grid container style={{padding: '10px'}}>
 							<h3 className={css.mainTitle}>Create TodoList</h3>

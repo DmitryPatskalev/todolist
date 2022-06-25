@@ -37,7 +37,6 @@ const initialState: Array<TodoListType> = [
 	 {id: todoListID2, title: 'What to Buy', filter: 'All'},
 ]
 
-
 export const todoListTraningReducer = (state: Array<TodoListType> = initialState, action: ActionType): Array<TodoListType> => {
 	 switch (action.type) {
 			case 'REMOVE_TODOLIST':
