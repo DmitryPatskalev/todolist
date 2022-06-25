@@ -1,6 +1,7 @@
 import {FilterTaskType, TodoListType} from "../TodoListTraning";
 import {v1} from "uuid";
 
+
 export type removeTodoListActionType = {
 	 type: 'REMOVE_TODOLIST'
 	 id: string
@@ -28,19 +29,27 @@ type ActionType =
 	changeTodoListActionType |
 	changeTodoListFilterActionType
 
+export const todoListID1 = v1()
+export const todoListID2 = v1()
 
-export const todoListTraningReducer = (state: Array<TodoListType>, action: ActionType): Array<TodoListType> => {
+const initialState: Array<TodoListType> = [
+	 {id: todoListID1, title: 'What I Learn', filter: 'All'},
+	 {id: todoListID2, title: 'What to Buy', filter: 'All'},
+]
+
+
+export const todoListTraningReducer = (state: Array<TodoListType> = initialState, action: ActionType): Array<TodoListType> => {
 	 switch (action.type) {
 			case 'REMOVE_TODOLIST':
 				 return state.filter(elem => elem.id !== action.id)
 			case 'ADD_TODOLIST':
-				 return [...state, {id: action.todoListID, title: action.title, filter: 'All'}]
+				 return [{id: action.todoListID, title: action.title, filter: 'All'}, ...state]
 			case 'CHANGE_TODOLIST_TITLE':
 				 return state.map(elem => elem.id === action.id ? {...elem, title: action.title} : elem)
 			case 'CHANGE_TODOLIST_FILTER':
 				 return state.map(elem => elem.id === action.id ? {...elem, filter: action.filter} : elem)
 			default:
-				 throw new Error("I don't understand this action type")
+				 return state
 	 }
 }
 

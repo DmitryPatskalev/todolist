@@ -1,14 +1,19 @@
 import React from 'react';
+import AppTraningRedux from "./Traning/AppTraningRedux";
+import {Provider} from "react-redux";
+import {store} from "./Traning/reducers/store";
 
 // import Tasks from "./TodoList/Tasks";
-import TodoListTraning from "./Traning/TodoListTraning";
 
 
 function App() {
 	 return <div>
 			{/*<Tasks/>*/}
 
-			<TodoListTraning/>
+
+			<Provider store={store}>
+				 <AppTraningRedux/>
+			</Provider>
 
 	 </div>
 

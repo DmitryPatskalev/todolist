@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {addTodoListActionType, removeTodoListActionType} from "./todoListTraning-reducer";
+import {addTodoListActionType, removeTodoListActionType, todoListID1, todoListID2} from "./todoListTraning-reducer";
 import {GeneralTodolist} from "../TodoListTraning";
 
 export type RemoveTaskAT = ReturnType<typeof removeTaskTraningAC>
@@ -10,12 +10,29 @@ export type ChangeTaskTitleAT = ReturnType<typeof changeTaskTitleTraningAC>
 export type ActionTraningTask = RemoveTaskAT | AddTaskAT | ChangeTaskStatusAT | ChangeTaskTitleAT |
 	addTodoListActionType | removeTodoListActionType
 
-export const taskTraningReducer = (state: GeneralTodolist, action: ActionTraningTask): GeneralTodolist => {
+
+const initialState: GeneralTodolist = {
+	 [todoListID1]: [
+			{id: v1(), title: 'React', isDone: true},
+			{id: v1(), title: 'JS', isDone: true},
+			{id: v1(), title: 'Type Script', isDone: false},
+			{id: v1(), title: 'HTML/CSS', isDone: true},
+			{id: v1(), title: 'Python', isDone: false},
+	 ],
+	 [todoListID2]: [
+			{id: v1(), title: 'Algoritms', isDone: true},
+			{id: v1(), title: 'JS Advance', isDone: true},
+			{id: v1(), title: 'Angular', isDone: false},
+			{id: v1(), title: 'Scala', isDone: true},
+	 ]
+}
+
+export const taskTraningReducer = (state: GeneralTodolist = initialState, action: ActionTraningTask): GeneralTodolist => {
 	 switch (action.type) {
 			case "REMOVE-TASK":
 				 return {...state, [action.todoListID]: state[action.todoListID].filter(t => t.id !== action.taskID)}
 			case "ADD-TASK":
-				 let newTask = {id: v1(), title: action.title, isDone: true}
+				 let newTask = {id: v1(), title: action.title, isDone: false}
 				 return {...state, [action.todoListID]: [newTask, ...state[action.todoListID]]}
 			case "CHANGE-TASK-STATUS":
 				 return {
@@ -36,7 +53,7 @@ export const taskTraningReducer = (state: GeneralTodolist, action: ActionTraning
 				 delete copyState[action.id]
 				 return copyState
 			default:
-				 throw new Error('I do not understand this type')
+				 return state
 	 }
 }
 export const removeTaskTraningAC = (todoListID: string, taskID: string) => {
