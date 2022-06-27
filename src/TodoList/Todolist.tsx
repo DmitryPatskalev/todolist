@@ -51,8 +51,7 @@ const Todolist = (props: TodolistPropsType) => {
 	 const onChangeTodoList = (newTitle: string) => {
 			props.changeTodoListTitle(props.todolistID, newTitle)
 	 }
-
-
+	 
 	 return (
 		 <div>
 				<h2 className={css.title}>

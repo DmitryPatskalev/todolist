@@ -1,13 +1,16 @@
 import React from 'react';
 import AppTraningRedux from "./Traning/AppTraningRedux";
 import {Provider} from "react-redux";
-import {store} from "./Traning/reducers/store";
-import AppWithReducer from "./TodoList/AppWithReducer";
+
+import {store} from "./TodoList/reducers/store";
+import AppWithRedux from "./TodoList/AppWithRedux";
 
 
 function App() {
 	 return <div>
-			<AppWithReducer/>
+			<Provider store={store}>
+				 <AppWithRedux/>
+			</Provider>
 
 
 			{/*<Provider store={store}>*/}

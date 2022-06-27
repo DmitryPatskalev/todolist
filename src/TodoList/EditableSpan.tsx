@@ -23,8 +23,7 @@ export const EditableSpan = (props: EditableSpanType) => {
 	 const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
 			setNewTitle(event.currentTarget.value)
 	 }
-
-
+	 
 	 return isEdit ?
 		 <TextField
 			 value={newTitle}
@@ -33,6 +32,4 @@ export const EditableSpan = (props: EditableSpanType) => {
 			 onBlur={activateViewMode}
 		 /> :
 		 <span onDoubleClick={activateIsEdit}>{props.title}</span>
-
-
 }
