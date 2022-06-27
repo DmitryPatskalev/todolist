@@ -47,8 +47,7 @@ const AppTraningRedux = () => {
 	 }
 
 	 const removeTodoList = (todoListID: string) => {
-			const action = removeTodoListAC(todoListID)
-			dispatchTraning(action)
+			dispatchTraning(removeTodoListAC(todoListID))
 	 }
 
 	 const onChangeFilter = (todoListID: string, filter: FilterTaskType) => {
@@ -60,8 +59,7 @@ const AppTraningRedux = () => {
 	 }
 
 	 const addTodoList = (title: string) => {
-			const action = addTodoListAC(title)
-			dispatchTraning(action)
+			dispatchTraning(addTodoListAC(title))
 	 }
 
 	 const changeTaskStatus = (todoListID: string, taskID: string, isDone: boolean) => {
