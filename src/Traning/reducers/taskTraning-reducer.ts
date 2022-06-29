@@ -1,6 +1,7 @@
 import {v1} from "uuid";
 import {addTodoListActionType, removeTodoListActionType, todoListID1, todoListID2} from "./todoListTraning-reducer";
-import {GeneralTodolist} from "../TodoListTraning";
+import {GeneralTodolist} from "../AppTraningRedux";
+
 
 export type RemoveTaskAT = ReturnType<typeof removeTaskTraningAC>
 export type AddTaskAT = ReturnType<typeof addTaskTraningAC>

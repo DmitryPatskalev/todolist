@@ -1,6 +1,6 @@
 import {FilterType} from "../Tasks";
 import {v1} from "uuid";
-import {TodoListsType} from "../AppWithReducer";
+import {TodoListsType} from "../AppWithRedux";
 
 
 export type RemoveTodoListActionType = {
@@ -64,9 +64,11 @@ export const removeTodolistAC = (todoListId: string): RemoveTodoListActionType =
 export const addTodolistAC = (title: string): AddTodoListActionType => {
 	 return {type: 'ADD_TODOLIST', title, todoListID: v1()}
 }
+
 export const changeTodolistAC = (id: string, title: string): ChangeTodoListActionType => {
 	 return {type: 'CHANGE_TODOLIST_TITLE', id: id, title: title}
 }
+
 export const changeTodoListFilterAC = (id: string, filter: FilterType): ChangeTodoListFilterActionType => {
 	 return {type: 'CHANGE_TODOLIST_FILTER', id: id, filter: filter}
 }

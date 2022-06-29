@@ -1,6 +1,6 @@
-import {GeneralTodolist, TodoListType} from "../TodoListTraning";
 import {addTodoListAC, todoListTraningReducer} from "./todoListTraning-reducer";
 import {taskTraningReducer} from "./taskTraning-reducer";
+import {GeneralTodolist, TodoListType} from "../AppTraningRedux";
 
 
 test('id should be equal', () => {

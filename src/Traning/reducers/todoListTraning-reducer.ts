@@ -1,6 +1,5 @@
-import {FilterTaskType, TodoListType} from "../TodoListTraning";
 import {v1} from "uuid";
-
+import {FilterTaskType, TodoListType} from "../AppTraningRedux";
 
 export type removeTodoListActionType = {
 	 type: 'REMOVE_TODOLIST'
@@ -59,9 +58,11 @@ export const removeTodoListAC = (todoListID: string): removeTodoListActionType =
 export const addTodoListAC = (title: string): addTodoListActionType => {
 	 return {type: 'ADD_TODOLIST', todoListID: v1(), title}
 }
+
 export const changeTodoListAC = (todoListID: string, title: string): changeTodoListActionType => {
 	 return {type: 'CHANGE_TODOLIST_TITLE', id: todoListID, title: title}
 }
+
 export const changeTodoListFilterAC = (todoListID: string, filter: FilterTaskType): changeTodoListFilterActionType => {
 	 return {type: 'CHANGE_TODOLIST_FILTER', id: todoListID, filter: filter}
 }

@@ -1,4 +1,3 @@
-import {GeneralTodolist} from "../TodoListTraning";
 import {
 	 addTaskTraningAC,
 	 changeTaskStatusTraningAC,
@@ -8,9 +7,12 @@ import {
 } from "./taskTraning-reducer";
 
 import {addTodoListAC, removeTodoListAC} from "./todoListTraning-reducer";
+import {GeneralTodolist} from "../AppTraningRedux";
 
-test('correct task should be removed from correct array', () => {
-	 const startState: GeneralTodolist = {
+let startState: GeneralTodolist
+
+beforeEach(() => {
+	 startState = {
 			'todoListId1': [
 				 {id: '1', title: 'HTML&CSS', isDone: true},
 				 {id: '2', title: 'JS/TS', isDone: true},
@@ -24,47 +26,27 @@ test('correct task should be removed from correct array', () => {
 				 {id: '3', title: 'JS Advance', isDone: false},
 			]
 	 }
+})
+
+test('correct task should be removed from correct array', () => {
+
 	 const action = removeTaskTraningAC('todoListId2', '2')
 	 const endState = taskTraningReducer(startState, action)
+
 	 expect(endState['todoListId2'].length).toBe(2)
 	 expect(endState['todoListId1'].length).toBe(5)
 })
 test('correct task should be added to correct array', () => {
-	 const startState: GeneralTodolist = {
-			'todoListId1': [
-				 {id: '1', title: 'HTML&CSS', isDone: true},
-				 {id: '2', title: 'JS/TS', isDone: true},
-				 {id: '3', title: 'React', isDone: false},
-				 {id: '4', title: 'C#/C++', isDone: false},
-				 {id: '5', title: 'Python', isDone: true},
-			],
-			'todoListId2': [
-				 {id: '1', title: 'React Book', isDone: true},
-				 {id: '2', title: 'Python Algoritms', isDone: true},
-				 {id: '3', title: 'JS Advance', isDone: false},
-			]
-	 }
+
 	 const action = addTaskTraningAC('todoListId2', 'Scala')
 	 const endState = taskTraningReducer(startState, action)
+
 	 expect(endState['todoListId2'].length).toBe(4)
 	 expect(endState['todoListId2'][0].title).toBe('Scala')
 })
 
 test('status of task should be changed', () => {
-	 const startState: GeneralTodolist = {
-			'todoListId1': [
-				 {id: '1', title: 'HTML&CSS', isDone: true},
-				 {id: '2', title: 'JS/TS', isDone: true},
-				 {id: '3', title: 'React', isDone: false},
-				 {id: '4', title: 'C#/C++', isDone: false},
-				 {id: '5', title: 'Python', isDone: true},
-			],
-			'todoListId2': [
-				 {id: '1', title: 'React Book', isDone: true},
-				 {id: '2', title: 'Python Algoritms', isDone: true},
-				 {id: '3', title: 'JS Advance', isDone: false},
-			]
-	 }
+
 	 const action = changeTaskStatusTraningAC('todoListId2', '2', false)
 	 const endState = taskTraningReducer(startState, action)
 
@@ -73,20 +55,7 @@ test('status of task should be changed', () => {
 })
 
 test('title of task should be changed', () => {
-	 const startState: GeneralTodolist = {
-			'todoListId1': [
-				 {id: '1', title: 'HTML&CSS', isDone: true},
-				 {id: '2', title: 'JS/TS', isDone: true},
-				 {id: '3', title: 'React', isDone: false},
-				 {id: '4', title: 'C#/C++', isDone: false},
-				 {id: '5', title: 'Python', isDone: true},
-			],
-			'todoListId2': [
-				 {id: '1', title: 'React Book', isDone: true},
-				 {id: '2', title: 'Python Algoritms', isDone: true},
-				 {id: '3', title: 'JS Advance', isDone: false},
-			]
-	 }
+
 	 const action = changeTaskTitleTraningAC('todoListId2', '2', 'C++/C#')
 	 const endState = taskTraningReducer(startState, action)
 
@@ -95,20 +64,7 @@ test('title of task should be changed', () => {
 })
 
 test('new array should be added when new todolist is added', () => {
-	 const startState: GeneralTodolist = {
-			'todoListId1': [
-				 {id: '1', title: 'HTML&CSS', isDone: true},
-				 {id: '2', title: 'JS/TS', isDone: true},
-				 {id: '3', title: 'React', isDone: false},
-				 {id: '4', title: 'C#/C++', isDone: false},
-				 {id: '5', title: 'Python', isDone: true},
-			],
-			'todoListId2': [
-				 {id: '1', title: 'React Book', isDone: true},
-				 {id: '2', title: 'Python Algoritms', isDone: true},
-				 {id: '3', title: 'JS Advance', isDone: false},
-			]
-	 }
+
 	 const action = addTodoListAC('no matter')
 	 const endState = taskTraningReducer(startState, action)
 
@@ -122,24 +78,11 @@ test('new array should be added when new todolist is added', () => {
 })
 
 test('property with todolist should be deleted', () => {
-	 const startState: GeneralTodolist = {
-			'todoListId1': [
-				 {id: '1', title: 'HTML&CSS', isDone: true},
-				 {id: '2', title: 'JS/TS', isDone: true},
-				 {id: '3', title: 'React', isDone: false},
-				 {id: '4', title: 'C#/C++', isDone: false},
-				 {id: '5', title: 'Python', isDone: true},
-			],
-			'todoListId2': [
-				 {id: '1', title: 'React Book', isDone: true},
-				 {id: '2', title: 'Python Algoritms', isDone: true},
-				 {id: '3', title: 'JS Advance', isDone: false},
-			]
-	 }
+
 	 const action = removeTodoListAC('todoListId2')
 	 const endState = taskTraningReducer(startState, action)
 	 const keys = Object.keys(endState)
+
 	 expect(keys.length).toBe(1)
 	 expect(endState['todoListId2']).toBeUndefined()
-
 })
