@@ -22,6 +22,7 @@ beforeEach(() => {
 })
 
 test('correct task should be removed from correct array', () => {
+
 	 const action = removeTasksAC('todoListId2', '2')
 	 const endState = tasksReducer(startState, action)
 
@@ -39,6 +40,7 @@ test('correct task should be added to correct array', () => {
 })
 
 test('status of task should be changed', () => {
+
 	 const action = changeTaskStatus('todoListId2', '2', false)
 	 const endState = tasksReducer(startState, action)
 
@@ -47,14 +49,17 @@ test('status of task should be changed', () => {
 })
 
 test('title of task should be changed', () => {
+
 	 const action = changeTaskTitleAC('todoListId2', '2', 'Angular')
 	 const endState = tasksReducer(startState, action)
 
 	 expect(endState['todoListId2'][1].title).toBe('Angular')
 	 expect(endState['todoListId2'][2].title).toBe('JS Advance')
+
 })
 
 test('new array should be added when new todolist is added', () => {
+
 	 const action = addTodolistAC('no matter')
 	 const endState = tasksReducer(startState, action)
 
@@ -63,16 +68,16 @@ test('new array should be added when new todolist is added', () => {
 	 if (!newKey) {
 			throw Error('new key should add')
 	 }
-
 	 expect(keys.length).toBe(3)
 	 expect(endState[newKey]).toStrictEqual([])
 })
 
 test('property with todolist should be deleted', () => {
+
 	 const action = removeTodolistAC('todoListId2')
 	 const endState = tasksReducer(startState, action)
 	 const keys = Object.keys(endState)
-
 	 expect(keys.length).toBe(1)
 	 expect(endState['todoListId2']).toBeUndefined()
+
 })

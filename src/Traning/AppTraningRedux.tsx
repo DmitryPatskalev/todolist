@@ -38,39 +38,39 @@ export type GeneralTodolist = {
 
 const AppTraningRedux = () => {
 
-	 const dispatchTraning = useDispatch()
+	 const dispatch = useDispatch()
 	 const todoLists = useSelector<AppRootTraningState, Array<TodoListType>>(state => state.todoLists)
 	 const task = useSelector<AppRootTraningState, GeneralTodolist>(state => state.tasks)
 
 	 const removeTask = (todoListID: string, id: string) => {
-			dispatchTraning(removeTaskTraningAC(todoListID, id))
+			dispatch(removeTaskTraningAC(todoListID, id))
 	 }
 
 	 const removeTodoList = (todoListID: string) => {
-			dispatchTraning(removeTodoListAC(todoListID))
+			dispatch(removeTodoListAC(todoListID))
 	 }
 
 	 const onChangeFilter = (todoListID: string, filter: FilterTaskType) => {
-			dispatchTraning(changeTodoListFilterAC(todoListID, filter))
+			dispatch(changeTodoListFilterAC(todoListID, filter))
 	 }
 
 	 const addTask = (todoListID: string, title: string) => {
-			dispatchTraning(addTaskTraningAC(todoListID, title))
+			dispatch(addTaskTraningAC(todoListID, title))
 	 }
 
 	 const addTodoList = (title: string) => {
-			dispatchTraning(addTodoListAC(title))
+			dispatch(addTodoListAC(title))
 	 }
 
 	 const changeTaskStatus = (todoListID: string, taskID: string, isDone: boolean) => {
-			dispatchTraning(changeTaskStatusTraningAC(todoListID, taskID, isDone))
+			dispatch(changeTaskStatusTraningAC(todoListID, taskID, isDone))
 	 }
 
 	 const changeTaskTitle = (todoListID: string, taskID: string, newTitle: string) => {
-			dispatchTraning(changeTaskTitleTraningAC(todoListID, taskID, newTitle))
+			dispatch(changeTaskTitleTraningAC(todoListID, taskID, newTitle))
 	 }
 	 const changeTodoListTitle = (todoListID: string, newTitle: string) => {
-			dispatchTraning(changeTodoListAC(todoListID, newTitle))
+			dispatch(changeTodoListAC(todoListID, newTitle))
 	 }
 
 	 return (

@@ -56,8 +56,6 @@ const Todo = (props: TodoType) => {
 					 <EditableSpan title={props.title} onChange={onChangeTodoListTitle}/>
 					 <IconButton onClick={removeTodoList}><Delete/></IconButton>
 				</h3>
-
-
 				<AddItemForm addTask={addTask}/>
 				{tasksList}
 				<ButtonsFilterTasks onChangeFilter={props.onChangeFilter} filter={props.filter} todoListID={props.todoListID}/>
