@@ -29,6 +29,7 @@ beforeEach(() => {
 })
 
 test('correct task should be removed from correct array', () => {
+
 	 const action = removeTaskTraningAC('todoListId2', '2')
 	 const endState = taskTraningReducer(startState, action)
 
@@ -36,6 +37,7 @@ test('correct task should be removed from correct array', () => {
 	 expect(endState['todoListId1'].length).toBe(5)
 })
 test('correct task should be added to correct array', () => {
+
 	 const action = addTaskTraningAC('todoListId2', 'Scala')
 	 const endState = taskTraningReducer(startState, action)
 
@@ -44,6 +46,7 @@ test('correct task should be added to correct array', () => {
 })
 
 test('status of task should be changed', () => {
+
 	 const action = changeTaskStatusTraningAC('todoListId2', '2', false)
 	 const endState = taskTraningReducer(startState, action)
 
@@ -52,6 +55,7 @@ test('status of task should be changed', () => {
 })
 
 test('title of task should be changed', () => {
+
 	 const action = changeTaskTitleTraningAC('todoListId2', '2', 'C++/C#')
 	 const endState = taskTraningReducer(startState, action)
 
@@ -60,6 +64,7 @@ test('title of task should be changed', () => {
 })
 
 test('new array should be added when new todolist is added', () => {
+
 	 const action = addTodoListAC('no matter')
 	 const endState = taskTraningReducer(startState, action)
 
@@ -73,6 +78,7 @@ test('new array should be added when new todolist is added', () => {
 })
 
 test('property with todolist should be deleted', () => {
+
 	 const action = removeTodoListAC('todoListId2')
 	 const endState = taskTraningReducer(startState, action)
 	 const keys = Object.keys(endState)

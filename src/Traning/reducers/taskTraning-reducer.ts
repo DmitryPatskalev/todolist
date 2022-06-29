@@ -2,6 +2,7 @@ import {v1} from "uuid";
 import {addTodoListActionType, removeTodoListActionType, todoListID1, todoListID2} from "./todoListTraning-reducer";
 import {GeneralTodolist} from "../AppTraningRedux";
 
+
 export type RemoveTaskAT = ReturnType<typeof removeTaskTraningAC>
 export type AddTaskAT = ReturnType<typeof addTaskTraningAC>
 export type ChangeTaskStatusAT = ReturnType<typeof changeTaskStatusTraningAC>
@@ -9,6 +10,7 @@ export type ChangeTaskTitleAT = ReturnType<typeof changeTaskTitleTraningAC>
 
 export type ActionTraningTask = RemoveTaskAT | AddTaskAT | ChangeTaskStatusAT | ChangeTaskTitleAT |
 	addTodoListActionType | removeTodoListActionType
+
 
 const initialState: GeneralTodolist = {
 	 [todoListID1]: [
