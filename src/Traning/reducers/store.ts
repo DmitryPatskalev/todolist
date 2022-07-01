@@ -9,5 +9,5 @@ const rootReducer = combineReducers({
 
 export type AppRootTraningState = ReturnType<typeof rootReducer>
 
-export const store = createStore(rootReducer)
+export const storeTraning = createStore(rootReducer)
 
