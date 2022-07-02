@@ -22,6 +22,7 @@ type TodoType = {
 }
 
 const Todo = (props: TodoType) => {
+	 console.log('TodoList is called')
 	 const tasksList = props.task.map((elem, key) => {
 			const removeTask = () => props.removeTask(props.todoListID, elem.id)
 			const changeChecked = (event: ChangeEvent<HTMLInputElement>) => {

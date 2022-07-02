@@ -37,7 +37,7 @@ export type GeneralTodolist = {
 }
 
 const AppTraningRedux = () => {
-
+	 console.log('App is called')
 	 const dispatchTraning = useDispatch()
 	 const todoLists = useSelector<AppRootTraningState, Array<TodoListType>>(state => state.todoLists)
 	 const task = useSelector<AppRootTraningState, GeneralTodolist>(state => state.tasks)

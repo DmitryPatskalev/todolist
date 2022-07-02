@@ -8,6 +8,7 @@ type AddItemFormType = {
 }
 
 const AddItemForm = (props: AddItemFormType) => {
+	 console.log('AddItemForm is called')
 	 const [newTask, setNewTask] = useState('')
 	 const [error, setError] = useState<string | null>(null)
 
