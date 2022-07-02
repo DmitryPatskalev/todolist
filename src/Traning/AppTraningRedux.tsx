@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import Todo from "./Todo";
 import AddItemForm from "./AddItemForm";
 import {AppBar, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
@@ -38,40 +38,40 @@ export type GeneralTodolist = {
 
 const AppTraningRedux = () => {
 	 console.log('App is called')
-	 const dispatchTraning = useDispatch()
+	 const dispatch = useDispatch()
 	 const todoLists = useSelector<AppRootTraningState, Array<TodoListType>>(state => state.todoLists)
 	 const task = useSelector<AppRootTraningState, GeneralTodolist>(state => state.tasks)
 
-	 const removeTask = (todoListID: string, id: string) => {
-			dispatchTraning(removeTaskTraningAC(todoListID, id))
-	 }
+	 const removeTask = useCallback((todoListID: string, id: string) => {
+			dispatch(removeTaskTraningAC(todoListID, id))
+	 }, [dispatch])
 
-	 const removeTodoList = (todoListID: string) => {
-			dispatchTraning(removeTodoListAC(todoListID))
-	 }
+	 const removeTodoList = useCallback((todoListID: string) => {
+			dispatch(removeTodoListAC(todoListID))
+	 }, [dispatch])
 
-	 const onChangeFilter = (todoListID: string, filter: FilterTaskType) => {
-			dispatchTraning(changeTodoListFilterAC(todoListID, filter))
-	 }
+	 const onChangeFilter = useCallback((todoListID: string, filter: FilterTaskType) => {
+			dispatch(changeTodoListFilterAC(todoListID, filter))
+	 }, [dispatch])
 
-	 const addTask = (todoListID: string, title: string) => {
-			dispatchTraning(addTaskTraningAC(todoListID, title))
-	 }
+	 const addTask = useCallback((todoListID: string, title: string) => {
+			dispatch(addTaskTraningAC(todoListID, title))
+	 }, [dispatch])
 
-	 const addTodoList = (title: string) => {
-			dispatchTraning(addTodoListAC(title))
-	 }
+	 const addTodoList = useCallback((title: string) => {
+			dispatch(addTodoListAC(title))
+	 }, [])
 
-	 const changeTaskStatus = (todoListID: string, taskID: string, isDone: boolean) => {
-			dispatchTraning(changeTaskStatusTraningAC(todoListID, taskID, isDone))
-	 }
+	 const changeTaskStatus = useCallback((todoListID: string, taskID: string, isDone: boolean) => {
+			dispatch(changeTaskStatusTraningAC(todoListID, taskID, isDone))
+	 }, [dispatch])
 
-	 const changeTaskTitle = (todoListID: string, taskID: string, newTitle: string) => {
-			dispatchTraning(changeTaskTitleTraningAC(todoListID, taskID, newTitle))
-	 }
-	 const changeTodoListTitle = (todoListID: string, newTitle: string) => {
-			dispatchTraning(changeTodoListAC(todoListID, newTitle))
-	 }
+	 const changeTaskTitle = useCallback((todoListID: string, taskID: string, newTitle: string) => {
+			dispatch(changeTaskTitleTraningAC(todoListID, taskID, newTitle))
+	 }, [dispatch])
+	 const changeTodoListTitle = useCallback((todoListID: string, newTitle: string) => {
+			dispatch(changeTodoListAC(todoListID, newTitle))
+	 }, [dispatch])
 
 	 return (
 		 <Grid>
@@ -93,12 +93,12 @@ const AppTraningRedux = () => {
 					 <Grid container spacing={3}>
 							{todoLists.length ? todoLists.map(tl => {
 								 let filterTask = task[tl.id]
-								 if (tl.filter === 'Active') {
-										filterTask = filterTask.filter(elem => !elem.isDone)
-								 }
-								 if (tl.filter === 'Completed') {
-										filterTask = filterTask.filter(elem => elem.isDone)
-								 }
+								 // if (tl.filter === 'Active') {
+								 // 	filterTask = filterTask.filter(elem => !elem.isDone)
+								 // }
+								 // if (tl.filter === 'Completed') {
+								 // 	filterTask = filterTask.filter(elem => elem.isDone)
+								 // }
 								 return <Grid item>
 										<Paper key={tl.id} elevation={3} style={{padding: '10px'}}>
 											 <Todo

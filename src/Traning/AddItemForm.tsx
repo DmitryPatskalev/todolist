@@ -7,7 +7,7 @@ type AddItemFormType = {
 	 addTask: (newTitle: string) => void
 }
 
-const AddItemForm = (props: AddItemFormType) => {
+const AddItemForm = React.memo((props: AddItemFormType) => {
 	 console.log('AddItemForm is called')
 	 const [newTask, setNewTask] = useState('')
 	 const [error, setError] = useState<string | null>(null)
@@ -51,6 +51,6 @@ const AddItemForm = (props: AddItemFormType) => {
 				</span>
 		 </div>
 	 );
-};
+});
 
 export default AddItemForm;

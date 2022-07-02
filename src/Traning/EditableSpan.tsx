@@ -1,13 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
 import {TextField} from "@material-ui/core";
 
-
 type EditableSpan = {
 	 title: string
 	 onChange: (newValue: string) => void
 }
 
-const EditableSpan = (props: EditableSpan) => {
+const EditableSpanTrain = React.memo((props: EditableSpan) => {
+	 console.log('EditableSpan')
 	 const [isEdit, setIsEdit] = useState(false)
 	 const [newTitle, setNewTitle] = useState('')
 
@@ -32,6 +32,6 @@ const EditableSpan = (props: EditableSpan) => {
 		 /> :
 		 <span onDoubleClick={activateIsEdit}>{props.title}</span>
 
-};
+});
 
-export default EditableSpan;
+export default EditableSpanTrain;
