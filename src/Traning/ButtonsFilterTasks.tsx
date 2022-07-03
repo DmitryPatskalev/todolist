@@ -9,7 +9,7 @@ type ButtonsFilterTasksType = {
 }
 
 const ButtonsFilterTasks = React.memo((props: ButtonsFilterTasksType) => {
-
+	 
 	 const filterAll = useCallback(() => {
 			props.onChangeFilter(props.todoListID, 'All')
 	 }, [props.onChangeFilter, props.todoListID])
@@ -22,7 +22,7 @@ const ButtonsFilterTasks = React.memo((props: ButtonsFilterTasksType) => {
 			props.onChangeFilter(props.todoListID, 'Completed')
 	 }, [props.onChangeFilter, props.todoListID])
 
-	 
+
 	 return (
 		 <div>
 				<Button variant={props.filter === 'All' ? 'contained' : 'text'}
