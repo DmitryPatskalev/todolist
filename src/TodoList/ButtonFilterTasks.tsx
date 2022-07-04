@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useCallback} from "react";
 import css from "./Style.module.css";
-import {FilterType} from "./Tasks";
+import {} from "./Tasks";
 import {Button} from "@material-ui/core";
+import {FilterType} from "./AppWithRedux";
 
 type ButtonFilterTasksType = {
 	 changeFilter: (todoListId: string, value: FilterType) => void
@@ -9,17 +10,19 @@ type ButtonFilterTasksType = {
 	 todolistID: string
 
 }
-const ButtonFilterTasks = (props: ButtonFilterTasksType) => {
-
-	 let showAll = () => {
+const ButtonFilterTasks = React.memo((props: ButtonFilterTasksType) => {
+	 console.log('ButtonFilterTasks is called')
+	 let showAll = useCallback(() => {
 			props.changeFilter(props.todolistID, 'All')
-	 }
-	 let showActive = () => {
+	 }, [props.changeFilter, props.todolistID])
+
+	 let showActive = useCallback(() => {
 			props.changeFilter(props.todolistID, 'Active')
-	 }
-	 let showCompleted = () => {
+	 }, [props.changeFilter, props.todolistID])
+
+	 let showCompleted = useCallback(() => {
 			props.changeFilter(props.todolistID, 'Completed')
-	 }
+	 }, [props.changeFilter, props.todolistID])
 	 // let activeAll = props.filter === 'All' ? css.active : ''
 	 // let activeActive = props.filter === 'Active' ? css.active : ''
 	 // let activeCompleted = props.filter === 'Completed' ? css.active : ''
@@ -36,5 +39,5 @@ const ButtonFilterTasks = (props: ButtonFilterTasksType) => {
 							onClick={showCompleted} color={'primary'} title='Show Completed Tasks'>Completed
 			</Button>
 	 </div>
-}
+})
 export default ButtonFilterTasks

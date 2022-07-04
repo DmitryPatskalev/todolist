@@ -7,11 +7,13 @@ type AddTasksType = {
 	 addItem: (title: string) => void
 }
 
-const AddItemForm = (props: AddTasksType) => {
+const AddItemForm = React.memo((props: AddTasksType) => {
+	 console.log('AddItemForm is called')
 	 const [newTask, setNewTask] = useState('')
 	 const [error, setError] = useState<string | null>(null)
 
 	 let onChangeHundler = (event: ChangeEvent<HTMLInputElement>) => {
+			setError(null)
 			setNewTask(event.currentTarget.value)
 	 }
 	 let onClickAddTask = () => {
@@ -24,13 +26,12 @@ const AddItemForm = (props: AddTasksType) => {
 	 }
 
 	 let onPressKeyHundler = (event: KeyboardEvent<HTMLInputElement>) => {
-			setError(null)
 			if (event.charCode === 13) {
 				 onClickAddTask()
 				 setNewTask('')
 			}
 	 }
-	 
+
 	 return <div>
 			<TextField
 				variant={'outlined'}
@@ -48,5 +49,5 @@ const AddItemForm = (props: AddTasksType) => {
 			><ControlPoint/>
 			</IconButton>
 	 </div>
-}
+})
 export default AddItemForm

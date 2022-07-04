@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
-import {FilterTaskType} from "./TodoListTraning";
 import {Button} from "@material-ui/core";
+import {FilterTaskType} from "./AppTraningRedux";
 
 type ButtonsFilterTasksType = {
 	 todoListID: string
@@ -9,7 +9,7 @@ type ButtonsFilterTasksType = {
 }
 
 const ButtonsFilterTasks = React.memo((props: ButtonsFilterTasksType) => {
-	 
+
 	 const filterAll = useCallback(() => {
 			props.onChangeFilter(props.todoListID, 'All')
 	 }, [props.onChangeFilter, props.todoListID])
