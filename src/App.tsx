@@ -12,13 +12,13 @@ import {storeTraning} from "./Traning/reducers/store";
 function App() {
 	 return <div>
 
-			<Provider store={store}>
-				 <AppWithRedux/>
-			</Provider>
-
-			{/*<Provider store={storeTraning}>*/}
-			{/*	 <AppTraningRedux/>*/}
+			{/*<Provider store={store}>*/}
+			{/*	 <AppWithRedux/>*/}
 			{/*</Provider>*/}
+
+			<Provider store={storeTraning}>
+				 <AppTraningRedux/>
+			</Provider>
 
 	 </div>
 

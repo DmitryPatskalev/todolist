@@ -9,7 +9,7 @@ type ButtonsFilterTasksType = {
 }
 
 const ButtonsFilterTasks = React.memo((props: ButtonsFilterTasksType) => {
-
+	 console.log('ButtonsFilterTasks is called')
 	 const filterAll = useCallback(() => {
 			props.onChangeFilter(props.todoListID, 'All')
 	 }, [props.onChangeFilter, props.todoListID])

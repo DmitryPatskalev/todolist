@@ -20,11 +20,12 @@ export const Task = React.memo((props: TaskPropsType) => {
 			props.changeStatus(props.todoListID, props.elem.id, event.currentTarget.checked)
 	 }, [props.changeStatus, props.todoListID, props.elem.id])
 
+	 const onChangeTitleHundler = useCallback((newTitle: string) => {
+			props.changeTaskTitle(props.todoListID, props.elem.id, newTitle)
+	 }, [props.changeTaskTitle, props.todoListID, props.elem.id])
+
 	 const isDoneOpacity = props.elem.isDone ? css.isDone : '';
 
-	 const onChangeTitleHundler = (newTitle: string) => {
-			props.changeTaskTitle(props.todoListID, props.elem.id, newTitle)
-	 }
 
 	 return <div key={props.elem.id} className={isDoneOpacity}>
 			<Checkbox onChange={onChangeStatusTask}

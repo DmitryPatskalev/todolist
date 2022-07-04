@@ -13,6 +13,7 @@ type TaskPropsType = {
 	 todoListID: string
 }
 export const Task = React.memo((props: TaskPropsType) => {
+	 console.log('Task is called')
 	 const removeTask = () => props.removeTask(props.todoListID, props.elem.id)
 
 	 const changeChecked = useCallback((event: ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +26,7 @@ export const Task = React.memo((props: TaskPropsType) => {
 
 	 return <div key={props.elem.id} className={props.elem.isDone ? css.isDone : ''}>
 			<div className={css.title}>
-				 
+
 				 <Checkbox color='primary' onChange={changeChecked} checked={props.elem.isDone}/>
 
 				 <EditableSpanTrain title={props.elem.title} onChange={onChangeTaskTitle}/>
