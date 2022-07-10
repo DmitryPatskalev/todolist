@@ -10,7 +10,6 @@ const removeTaskCallback = action('Task removed')
 const changeTaskStatusCallback = action('Status changed')
 const changeTaskTitleCallback = action('Title changed')
 
-
 export const TaskBaseExample = (props: any) => {
 	 return <>
 			<Task
