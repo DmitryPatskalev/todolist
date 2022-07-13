@@ -13,7 +13,6 @@ type TaskPropsType = {
 	 todoListID: string
 }
 export const Task = React.memo((props: TaskPropsType) => {
-	 console.log('Task is called')
 	 const buttonRemoveTask = () => props.removeTask(props.todoListID, props.elem.id)
 
 	 const onChangeStatusTask = useCallback((event: ChangeEvent<HTMLInputElement>) => {

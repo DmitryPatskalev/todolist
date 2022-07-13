@@ -8,7 +8,6 @@ type AddTasksType = {
 }
 
 const AddItemForm = React.memo((props: AddTasksType) => {
-	 console.log('AddItemForm is called')
 	 const [newTask, setNewTask] = useState('')
 	 const [error, setError] = useState<string | null>(null)
 

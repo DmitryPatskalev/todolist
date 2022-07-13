@@ -23,7 +23,6 @@ type TodolistPropsType = {
 }
 
 const Todolist = React.memo((props: TodolistPropsType) => {
-	 console.log('Todolist is called')
 	 let filterTask = props.tasks
 	 if (props.filter === 'Completed') {
 			filterTask = props.tasks.filter(elem => elem.isDone)
