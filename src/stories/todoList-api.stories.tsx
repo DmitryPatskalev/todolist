@@ -1,16 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import axios from "axios";
-import {todolistAPI} from "./TodolistsAPI";
+import {todolistAPI} from "./api/TodolistsAPI";
+
 
 export default {
 	 title: 'TodoList/API'
 }
-const settings = {
-	 withCredentials: true,
-	 headers: {
-			'API-KEY': '4d3cbccb-1ffc-4b1e-9cfc-122f4f11e46d'
-	 }
-}
+
 
 export const GetTodoLists = () => {
 	 const [state, setState] = useState<any>(null)
@@ -28,7 +23,7 @@ export const GetTodoLists = () => {
 export const CreateTodoList = () => {
 	 const [state, setState] = useState<any>(null)
 	 useEffect(() => {
-			axios.post('https://social-network.samuraijs.com/api/1.1/todo-lists', {title: 'Dima TodoList'}, settings)
+			todolistAPI.createTodolistAPI('New TodoList')
 				.then((res) => {
 					 setState(res.data)
 				})
@@ -39,7 +34,8 @@ export const CreateTodoList = () => {
 export const DeleteTodoList = () => {
 	 const [state, setState] = useState<any>(null)
 	 useEffect(() => {
-			axios.delete('https://social-network.samuraijs.com/api/1.1/todo-lists/0eeaa233-d9cf-4729-8a61-58287eb42950', settings)
+			const todoListID = '4a6ec5fc-47b8-4920-84d4-d60b4bb28dd0'
+			todolistAPI.deleteTodolistAPI(todoListID)
 				.then((res) => {
 					 setState(res.data)
 				})
@@ -50,11 +46,27 @@ export const DeleteTodoList = () => {
 export const UpdateTodoListTitle = () => {
 	 const [state, setState] = useState<any>(null)
 	 useEffect(() => {
-			axios.put('https://social-network.samuraijs.com/api/1.1/todo-lists/4e8c6825-ad32-438e-af8c-9a6b57e620f7', {title: 'Dima TodoList'}, settings)
+			const todoListID = '5c6eb658-c70e-473e-86f9-b3feea0ea4ef'
+			todolistAPI.updateTodolistAPI(todoListID, 'Todolist')
 				.then((res) => {
 					 setState(res.data)
 				})
 	 }, [])
 
+	 return <div>{JSON.stringify(state)}</div>
+}
+
+export const GetTask = () => {
+	 const [state, setState] = useState<any>(null)
+	 useEffect(() => {
+			const todoListID = '44d2eca8-aa6a-4516-9c07-f1510e680e64'
+			todolistAPI.getTask(todoListID)
+				.then((res) => {
+					 setState(res.data)
+				})
+			// здесь мы будем делать запрос и ответ закидывать в стейт.
+			// который в виде строки будем отображать в div-ке
+
+	 }, [])
 	 return <div>{JSON.stringify(state)}</div>
 }
