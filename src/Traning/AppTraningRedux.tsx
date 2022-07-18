@@ -93,12 +93,6 @@ const AppTraningRedux = () => {
 					 <Grid container spacing={3}>
 							{todoLists.length ? todoLists.map(tl => {
 								 let filterTask = task[tl.id]
-								 // if (tl.filter === 'Active') {
-								 // 	filterTask = filterTask.filter(elem => !elem.isDone)
-								 // }
-								 // if (tl.filter === 'Completed') {
-								 // 	filterTask = filterTask.filter(elem => elem.isDone)
-								 // }
 								 return <Grid item>
 										<Paper key={tl.id} elevation={3} style={{padding: '10px'}}>
 											 <Todo
