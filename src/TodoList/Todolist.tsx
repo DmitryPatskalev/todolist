@@ -5,13 +5,13 @@ import ButtonFilterTasks from "./ButtonFilterTasks";
 import {EditableSpan} from "./EditableSpan";
 import {IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
-import {FilterType, Tasktype} from "./AppWithRedux";
+import {FilterType, TaskType} from "./AppWithRedux";
 import {Task} from "./Task";
 
 type TodolistPropsType = {
 	 todolistID: string
 	 title: string
-	 tasks: Tasktype[]
+	 tasks: TaskType[]
 	 removeTask: (todoListId: string, id: string) => void
 	 changeFilter: (todoListId: string, value: FilterType) => void
 	 addTask: (todoListId: string, title: string,) => void
