@@ -3,13 +3,13 @@ import css from "./Style.module.css";
 import {Checkbox, IconButton} from "@material-ui/core";
 import {EditableSpan} from "./EditableSpan";
 import {Delete} from "@material-ui/icons";
-import {Tasktype} from "./AppWithRedux";
+import {TaskType} from "./AppWithRedux";
 
 type TaskPropsType = {
 	 removeTask: (todoListId: string, id: string) => void
 	 changeStatus: (todoListId: string, taskId: string, isDone: boolean) => void
 	 changeTaskTitle: (todoListId: string, id: string, newTitle: string) => void
-	 elem: Tasktype
+	 elem: TaskType
 	 todoListID: string
 }
 export const Task = React.memo((props: TaskPropsType) => {
