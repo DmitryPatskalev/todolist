@@ -1,4 +1,4 @@
-import React, {useReducer, useState} from "react";
+import React, {useReducer} from "react";
 import Todolist from "./Todolist";
 import {v1} from "uuid";
 import css from './Style.module.css'
@@ -8,27 +8,16 @@ import {Menu} from "@material-ui/icons";
 import {
 	 addTodolistAC,
 	 changeTodolistAC,
-	 changeTodoListFilterAC,
+	 changeTodoListFilterAC, FilterType,
 	 removeTodolistAC,
 	 todoListReducer
 } from "./reducers/todoList-reducer";
 import {addTasksAC, changeTaskStatus, changeTaskTitleAC, removeTasksAC, tasksReducer} from "./reducers/task-reducer";
+import {TaskPriorities, TaskStatuses, TaskType} from "../stories/api/TodolistsAPI";
 
-export type FilterType = 'All' | 'Active' | 'Completed'
-
-export type Tasktype = {
-	 id: string
-	 title: string
-	 isDone: boolean
-}
-export type TodoListsType = {
-	 id: string
-	 title: string
-	 filter: FilterType
-}
 
 export type TaskStateType = {
-	 [key: string]: Array<Tasktype>
+	 [key: string]: Array<TaskType>
 }
 
 const AppWithReducer = () => {
@@ -37,22 +26,95 @@ const AppWithReducer = () => {
 	 const todoListId2 = v1()
 
 	 const [todoLists, dispatchTodoListReducer] = useReducer(todoListReducer, [
-			{id: todoListId1, title: 'What I learn', filter: 'All'},
-			{id: todoListId2, title: 'What to buy', filter: 'All'},
+			{id: todoListId1, title: 'What I learn', filter: 'All', addedData: '', order: 0},
+			{id: todoListId2, title: 'What to buy', filter: 'All', addedData: '', order: 0},
 	 ])
 
 	 const [tasks, dispatchTaskReducer] = useReducer(tasksReducer, {
 			[todoListId1]: [
-				 {id: v1(), title: 'HTML&CSS', isDone: true},
-				 {id: v1(), title: 'JS/TS', isDone: true},
-				 {id: v1(), title: 'React', isDone: false},
-				 {id: v1(), title: 'C#/C++', isDone: false},
-				 {id: v1(), title: 'Python', isDone: true},
+				 {
+						id: v1(), title: 'HTML&CSS', status: TaskStatuses.Completed,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'JS/TS',
+						status: TaskStatuses.Completed,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'React', status: TaskStatuses.New,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'C#/C++', status: TaskStatuses.New,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'Python', status: TaskStatuses.Completed,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
 			],
 			[todoListId2]: [
-				 {id: v1(), title: 'React Book', isDone: true},
-				 {id: v1(), title: 'Python Algoritms', isDone: true},
-				 {id: v1(), title: 'JS Advance', isDone: false},
+				 {
+						id: v1(), title: 'React Book', status: TaskStatuses.Completed,
+						todoListId: todoListId2,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'Python Algoritms', status: TaskStatuses.Completed,
+						todoListId: todoListId2,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'JS Advance', status: TaskStatuses.New,
+						todoListId: todoListId2,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
 			]
 	 })
 
@@ -68,8 +130,8 @@ const AppWithReducer = () => {
 			dispatchTodoListReducer(changeTodoListFilterAC(todoListId, value))
 	 }
 
-	 const changeStatus = (todoListId: string, taskId: string, isDone: boolean) => {
-			dispatchTaskReducer(changeTaskStatus(todoListId, taskId, isDone))
+	 const changeStatus = (todoListId: string, taskId: string, status: TaskStatuses) => {
+			dispatchTaskReducer(changeTaskStatus(todoListId, taskId, status))
 	 }
 
 	 const removeTodolist = (todoListId: string) => {
@@ -112,10 +174,10 @@ const AppWithReducer = () => {
 							{todoLists.length ? todoLists.map(tl => {
 								 let filterTask = tasks[tl.id]
 								 if (tl.filter === 'Completed') {
-										filterTask = filterTask.filter(elem => elem.isDone)
+										filterTask = filterTask.filter(elem => elem.status === TaskStatuses.Completed)
 								 }
 								 if (tl.filter === 'Active') {
-										filterTask = filterTask.filter(elem => !elem.isDone)
+										filterTask = filterTask.filter(elem => elem.status === TaskStatuses.New)
 								 }
 								 return <Grid item>
 										<Paper key={tl.id} elevation={3} style={{padding: '10px'}}>

@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import {Task} from "../TodoList/Task";
 import {action} from "@storybook/addon-actions";
-import {ComponentMeta, ComponentStory} from "@storybook/react";
+import {ComponentMeta} from "@storybook/react";
+import {TaskPriorities, TaskStatuses} from "./api/TodolistsAPI";
+import {todoListId1} from "../TodoList/reducers/todoList-reducer";
 
 export default {
 	 title: 'TodoList/TaskFormComponent',
@@ -9,27 +11,38 @@ export default {
 	 args: {}
 } as ComponentMeta<typeof Task>
 
-const Template: ComponentStory<typeof Task> = (args) => {
-	 const [task, setTask] = useState({id: '1', title: 'JS', isDone: true})
+// const Template: ComponentStory<typeof Task> = (args) => {
 
-	 const changeStatus = () => {
-			setTask({id: '1', title: 'JS', isDone: !task.isDone})
-	 }
-	 
-	 const changeTaskTitle = (todoListID: string, title: string) => {
-			setTask({id: todoListID, title: title, isDone: task.isDone})
-	 }
 
-	 return <Task {...args}
-								changeStatus={changeStatus}
-								changeTaskTitle={changeTaskTitle}
-								elem={task}
-								todoListID={'todoListID1'}/>
+const changeStatus = action('ChangeTask')
+const changeTaskTitle = action('task changed')
+const removeTask = action('task removed')
+
+export const TaskBaseExample = (props: any) => {
+	 return <div>
+			<Task
+				elem={{
+					 id: '1', title: 'JS', status: TaskStatuses.New, todoListId: todoListId1,
+					 startDate: '',
+					 deadline: '',
+					 addedDate: '',
+					 order: 0,
+					 priority: TaskPriorities.Low,
+					 description: ''
+				}}
+				changeStatus={changeStatus}
+				changeTaskTitle={changeTaskTitle}
+				todoListID={'todoListID1'}
+				removeTask={removeTask}/>
+	 </div>
 }
-export const TaskStory = Template.bind({})
-TaskStory.args = {
-	 removeTask: action('remove Task')
-}
+
+
+//
+// export const TaskStory = Template.bind({})
+// TaskStory.args = {
+// 	 removeTask: action('remove Task')
+// }
 
 //
 // const baseArgs = {

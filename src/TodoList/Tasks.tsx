@@ -5,19 +5,9 @@ import css from './Style.module.css'
 import AddItemForm from "./AddItemForm";
 import {AppBar, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
+import {TaskPriorities, TaskStatuses, TaskType} from "../stories/api/TodolistsAPI";
+import {FilterType, TodolistDomainType} from "./reducers/todoList-reducer";
 
-export type FilterType = 'All' | 'Active' | 'Completed'
-
-export type TaskType = {
-	 id: string
-	 title: string
-	 isDone: boolean
-}
-export type TodoListsType = {
-	 id: string
-	 title: string
-	 filter: FilterType
-}
 
 export type TaskStateType = {
 	 [key: string]: Array<TaskType>
@@ -28,23 +18,96 @@ const Tasks = () => {
 	 const todoListId1 = v1()
 	 const todoListId2 = v1()
 
-	 const [todoLists, setTodoLists] = useState<Array<TodoListsType>>([
-			{id: todoListId1, title: 'What I learn', filter: 'All'},
-			{id: todoListId2, title: 'What to buy', filter: 'All'},
+	 const [todoLists, setTodoLists] = useState<Array<TodolistDomainType>>([
+			{id: todoListId1, title: 'What I learn', filter: 'All', addedData: '', order: 0},
+			{id: todoListId2, title: 'What to buy', filter: 'All', addedData: '', order: 1},
 	 ])
 
 	 const [tasks, setTasks] = useState<TaskStateType>({
 			[todoListId1]: [
-				 {id: v1(), title: 'HTML&CSS', isDone: true},
-				 {id: v1(), title: 'JS/TS', isDone: true},
-				 {id: v1(), title: 'React', isDone: false},
-				 {id: v1(), title: 'C#/C++', isDone: false},
-				 {id: v1(), title: 'Python', isDone: true},
+				 {
+						id: v1(), title: 'HTML&CSS', status: TaskStatuses.Completed,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'JS/TS',
+						status: TaskStatuses.Completed,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'React', status: TaskStatuses.New,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'C#/C++', status: TaskStatuses.New,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'Python', status: TaskStatuses.Completed,
+						todoListId: todoListId1,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
 			],
 			[todoListId2]: [
-				 {id: v1(), title: 'React Book', isDone: true},
-				 {id: v1(), title: 'Python Algoritms', isDone: true},
-				 {id: v1(), title: 'JS Advance', isDone: false},
+				 {
+						id: v1(), title: 'React Book', status: TaskStatuses.Completed,
+						todoListId: todoListId2,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'Python Algoritms', status: TaskStatuses.Completed,
+						todoListId: todoListId2,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: v1(), title: 'JS Advance', status: TaskStatuses.New,
+						todoListId: todoListId2,
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
 			]
 	 })
 
@@ -59,7 +122,14 @@ const Tasks = () => {
 			let newTasks = {
 				 id: v1(),
 				 title,
-				 isDone: false
+				 status: TaskStatuses.New,
+				 todoListId: todoListId,
+				 startDate: '',
+				 deadline: '',
+				 addedDate: '',
+				 order: 0,
+				 priority: TaskPriorities.Low,
+				 description: ''
 			}
 			setTasks({...tasks, [todoListId]: [newTasks, ...tasks[todoListId]]})
 			// let todoListTasks = tasks[todoListId]
@@ -76,10 +146,10 @@ const Tasks = () => {
 			// }
 	 }
 
-	 const changeStatus = (todoListId: string, taskId: string, isDone: boolean) => {
+	 const changeStatus = (todoListId: string, taskId: string, status: TaskStatuses) => {
 			setTasks({
 				 ...tasks,
-				 [todoListId]: tasks[todoListId].map(elem => elem.id === taskId ? {...elem, isDone} : elem)
+				 [todoListId]: tasks[todoListId].map(elem => elem.id === taskId ? {...elem, status} : elem)
 			})
 
 			// let todoListTasks = tasks[todoListId]
@@ -97,10 +167,11 @@ const Tasks = () => {
 	 }
 
 	 const addTodolist = (title: string) => {
-			let todoList: TodoListsType = {
+			let todoList: TodolistDomainType = {
 				 id: v1(),
 				 title,
-				 filter: 'All'
+				 filter: 'All',
+				 addedData: '', order: 0
 			}
 			setTodoLists([todoList, ...todoLists])
 			setTasks({
@@ -149,10 +220,10 @@ const Tasks = () => {
 							{todoLists.length ? todoLists.map(tl => {
 								 let filterTask = tasks[tl.id]
 								 if (tl.filter === 'Completed') {
-										filterTask = filterTask.filter(elem => elem.isDone)
+										filterTask = filterTask.filter(elem => elem.status === TaskStatuses.Completed)
 								 }
 								 if (tl.filter === 'Active') {
-										filterTask = filterTask.filter(elem => !elem.isDone)
+										filterTask = filterTask.filter(elem => elem.status === TaskStatuses.New)
 								 }
 								 return <Grid item>
 										<Paper key={tl.id} elevation={3} style={{padding: '10px'}}>

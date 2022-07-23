@@ -2,7 +2,8 @@ import React, {useCallback} from "react";
 import css from "./Style.module.css";
 import {} from "./Tasks";
 import {Button} from "@material-ui/core";
-import {FilterType} from "./AppWithRedux";
+import {FilterType} from "./reducers/todoList-reducer";
+
 
 type ButtonFilterTasksType = {
 	 changeFilter: (todoListId: string, value: FilterType) => void

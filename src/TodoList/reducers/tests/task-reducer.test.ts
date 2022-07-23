@@ -1,22 +1,95 @@
 import {addTasksAC, changeTaskStatus, changeTaskTitleAC, removeTasksAC, tasksReducer} from "../task-reducer";
 import {addTodolistAC, removeTodolistAC} from "../todoList-reducer";
+import {TaskPriorities, TaskStatuses} from "../../../stories/api/TodolistsAPI";
 import {TaskStateType} from "../../AppWithRedux";
 
-let startState: TaskStateType
+let startState: TaskStateType = {}
 
 beforeEach(() => {
 	 startState = {
 			'todoListId1': [
-				 {id: '1', title: 'HTML&CSS', isDone: true},
-				 {id: '2', title: 'JS/TS', isDone: true},
-				 {id: '3', title: 'React', isDone: false},
-				 {id: '4', title: 'C#/C++', isDone: false},
-				 {id: '5', title: 'Python', isDone: true},
+				 {
+						id: '1', title: 'HTML&CSS', status: TaskStatuses.New,
+						todoListId: 'todoListId1',
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: '2', title: 'JS/TS', status: TaskStatuses.New,
+						todoListId: 'todoListId1',
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: '3', title: 'React', status: TaskStatuses.Completed,
+						todoListId: 'todoListId1',
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: '4', title: 'C#/C++', status: TaskStatuses.Completed,
+						todoListId: 'todoListId1',
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: '5', title: 'Python', status: TaskStatuses.New,
+						todoListId: 'todoListId1',
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
 			],
 			'todoListId2': [
-				 {id: '1', title: 'React Book', isDone: true},
-				 {id: '2', title: 'Python Algoritms', isDone: true},
-				 {id: '3', title: 'JS Advance', isDone: false},
+				 {
+						id: '1', title: 'React Book', status: TaskStatuses.New,
+						todoListId: 'todoListId2',
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: '2', title: 'Python Algoritms', status: TaskStatuses.New,
+						todoListId: 'todoListId2',
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
+				 {
+						id: '3', title: 'JS Advance', status: TaskStatuses.Completed,
+						todoListId: 'todoListId2',
+						startDate: '',
+						deadline: '',
+						addedDate: '',
+						order: 0,
+						priority: TaskPriorities.Low,
+						description: ''
+				 },
 			]
 	 }
 })
@@ -39,11 +112,11 @@ test('correct task should be added to correct array', () => {
 })
 
 test('status of task should be changed', () => {
-	 const action = changeTaskStatus('todoListId2', '2', false)
+	 const action = changeTaskStatus('todoListId2', '2', TaskStatuses.New)
 	 const endState = tasksReducer(startState, action)
 
-	 expect(endState['todoListId1'][1].isDone).toBeTruthy()
-	 expect(endState['todoListId2'][1].isDone).toBeFalsy()
+	 expect(endState['todoListId1'][1].status).toBeFalsy()
+	 expect(endState['todoListId2'][1].status).toBeFalsy()
 })
 
 test('title of task should be changed', () => {
