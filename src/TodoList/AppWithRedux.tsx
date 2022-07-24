@@ -29,6 +29,7 @@ const AppWithRedux = () => {
 	 const tasks = useSelector<AppRootState, TaskStateType>(state => state.tasks)
 
 	 useEffect(() => {
+
 			// @ts-ignore
 			dispatch(fetchTodoListTC())
 	 }, [])

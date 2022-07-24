@@ -29,6 +29,7 @@ const Todolist = React.memo((props: TodolistPropsType) => {
 	 const dispatch = useDispatch()
 
 	 useEffect(() => {
+		
 			// @ts-ignore
 			dispatch(fetchTaskTC(props.todolistID))
 	 }, [])
