@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import css from './Style.module.css'
 import AddItemForm from "./AddItemForm";
 import ButtonFilterTasks from "./ButtonFilterTasks";
@@ -8,6 +8,8 @@ import {Delete} from "@material-ui/icons";
 import {Task} from "./Task";
 import {TaskStatuses, TaskType} from "../stories/api/TodolistsAPI";
 import {FilterType} from "./reducers/todoList-reducer";
+import {useDispatch} from "react-redux";
+import {fetchTaskTC} from "./reducers/task-reducer";
 
 type TodolistPropsType = {
 	 todolistID: string
@@ -24,6 +26,14 @@ type TodolistPropsType = {
 }
 
 const Todolist = React.memo((props: TodolistPropsType) => {
+	 const dispatch = useDispatch()
+
+	 useEffect(() => {
+			// @ts-ignore
+			dispatch(fetchTaskTC(props.todolistID))
+	 }, [])
+
+
 	 let filterTask = props.tasks
 	 if (props.filter === 'Completed') {
 			filterTask = props.tasks.filter(elem => elem.status === TaskStatuses.Completed)
