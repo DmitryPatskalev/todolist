@@ -36,16 +36,16 @@ export const CreateTodoList = () => {
 
 export const DeleteTodoList = () => {
 	 const [state, setState] = useState<any>(null)
-	 const [todoListID, setTodoListID] = useState<string>('')
+	 const [todoListId, setTodoListID] = useState<string>('')
 
 	 const deleteTodoList = () => {
-			todolistAPI.deleteTodolist(todoListID)
+			todolistAPI.removeTodolist(todoListId)
 				.then((res) => {
 					 setState(res.data)
 				})
 	 }
 	 return <div>{JSON.stringify(state)}
-			<input placeholder={'todoListID'} value={todoListID}
+			<input placeholder={'todoListId'} value={todoListId}
 						 onChange={(e) => setTodoListID(e.currentTarget.value)}/>
 			<button onClick={deleteTodoList}>delete todolist</button>
 	 </div>
@@ -54,17 +54,17 @@ export const DeleteTodoList = () => {
 
 export const UpdateTodoListTitle = () => {
 	 const [state, setState] = useState<any>(null)
-	 const [todoListID, setTodoListID] = useState<string>('')
+	 const [todoListId, setTodoListID] = useState<string>('')
 	 const [newTitle, setNewTitle] = useState<string>('')
 
 	 const updateTodolist = () => {
-			todolistAPI.updateTodolist(todoListID, newTitle)
+			todolistAPI.updateTodolist(todoListId, newTitle)
 				.then((res) => {
 					 setState(res.data)
 				})
 	 }
 	 return <div>{JSON.stringify(state)}
-			<input placeholder={'todoListID'} value={todoListID}
+			<input placeholder={'todoListId'} value={todoListId}
 						 onChange={(e) => setTodoListID(e.currentTarget.value)}/>
 			<input placeholder={'new title todolist'} value={newTitle}
 						 onChange={(e) => setNewTitle(e.currentTarget.value)}/>
@@ -75,16 +75,16 @@ export const UpdateTodoListTitle = () => {
 
 export const GetTask = () => {
 	 const [state, setState] = useState<any>(null)
-	 const [todoListID, setTodoListID] = useState<string>('')
+	 const [todoListId, setTodoListID] = useState<string>('')
 
 	 const getTask = () => {
-			todolistAPI.getTask(todoListID)
+			todolistAPI.getTask(todoListId)
 				.then((res) => {
 					 setState(res.data)
 				})
 	 }
 	 return <div>{JSON.stringify(state)}
-			<input placeholder={'todoListID'} value={todoListID}
+			<input placeholder={'todoListId'} value={todoListId}
 						 onChange={(e) => setTodoListID(e.currentTarget.value)}/>
 			<button onClick={getTask}>get tasks</button>
 	 </div>
@@ -94,16 +94,16 @@ export const GetTask = () => {
 export const CreateTask = () => {
 	 const [state, setState] = useState<any>(null)
 	 const [taskTitle, setTaskTitle] = useState<string>('')
-	 const [todoListID, setTodoListID] = useState<string>('')
+	 const [todoListId, setTodoListID] = useState<string>('')
 
 	 const createTask = () => {
-			todolistAPI.createTask(todoListID, taskTitle)
+			todolistAPI.createTask(todoListId, taskTitle)
 				.then((res) => {
 					 setState(res.data)
 				})
 	 }
 	 return <div>{JSON.stringify(state)}
-			<input placeholder={'todoListID'} value={todoListID}
+			<input placeholder={'todoListId'} value={todoListId}
 						 onChange={(e) => setTodoListID(e.currentTarget.value)}/>
 			<input placeholder={'task Title'} value={taskTitle}
 						 onChange={(e) => setTaskTitle(e.currentTarget.value)}/>
@@ -115,15 +115,15 @@ export const CreateTask = () => {
 export const DeleteTask = () => {
 	 const [state, setState] = useState<any>(null)
 	 const [taskID, setTaskID] = useState<string>('')
-	 const [todoListID, setTodoListID] = useState<string>('')
+	 const [todoListId, setTodoListID] = useState<string>('')
 	 const deleteTask = () => {
-			todolistAPI.deleteTask(todoListID, taskID)
+			todolistAPI.removeTask(todoListId, taskID)
 				.then((res) => {
 					 setState(res.data)
 				})
 	 }
 	 return <div>{JSON.stringify(state)}
-			<input placeholder={'todoListID'} value={todoListID}
+			<input placeholder={'todoListId'} value={todoListId}
 						 onChange={(e) => setTodoListID(e.currentTarget.value)}/>
 			<input placeholder={'taskID'} value={taskID}
 						 onChange={(e) => setTaskID(e.currentTarget.value)}/>
@@ -135,7 +135,7 @@ export const DeleteTask = () => {
 export const UpdateTask = () => {
 	 const [state, setState] = useState<any>(null)
 	 const [title, setTitle] = useState<string>('title1')
-	 const [todoListID, setTodoListID] = useState<string>('')
+	 const [todoListId, setTodoListID] = useState<string>('')
 	 const [taskID, setTaskID] = useState<string>('')
 	 const [description, setDescription] = useState<string>('description 1')
 	 const [status, setStatus] = useState<number>(0)
@@ -144,7 +144,7 @@ export const UpdateTask = () => {
 	 const [deadline, setDeadline] = useState<string>('')
 
 	 const createTask = () => {
-			todolistAPI.updateTask(todoListID, taskID, {
+			todolistAPI.updateTask(todoListId, taskID, {
 				 title: title,
 				 description: description,
 				 priority: priority,
@@ -161,7 +161,7 @@ export const UpdateTask = () => {
 			<input placeholder={'taskID'} value={taskID}
 						 onChange={(e) => setTaskID(e.currentTarget.value)}/>
 
-			<input placeholder={'todoListID'} value={todoListID}
+			<input placeholder={'todoListId'} value={todoListId}
 						 onChange={(e) => setTodoListID(e.currentTarget.value)}/>
 
 			<input placeholder={'task Title'} value={title}

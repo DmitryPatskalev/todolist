@@ -5,15 +5,15 @@ import AddItemForm from "./AddItemForm";
 import {AppBar, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 import {
-	 addTodolistAC,
-	 changeTodolistAC,
+	 addTodoListTC,
 	 changeTodoListFilterAC,
+	 changeTodoListTitleTC,
 	 fetchTodoListTC,
 	 FilterType,
-	 removeTodolistAC,
+	 removeTodoListTC,
 	 TodolistDomainType
 } from "./reducers/todoList-reducer";
-import {addTasksAC, changeTaskStatus, changeTaskTitleAC, removeTasksAC} from "./reducers/task-reducer";
+import {addTaskTC, removeTaskTC, updateTaskTC} from "./reducers/task-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./reducers/store";
 import {TaskStatuses, TaskType} from "../stories/api/TodolistsAPI";
@@ -35,12 +35,14 @@ const AppWithRedux = () => {
 	 }, [])
 
 
-	 const removeTask = useCallback((todoListId: string, id: string) => {
-			dispatch(removeTasksAC(todoListId, id))
+	 const removeTask = useCallback((todoListId: string, taskID: string) => {
+			// @ts-ignore
+			dispatch(removeTaskTC(todoListId, taskID));
 	 }, [dispatch])
 
 	 const addTask = useCallback((todoListId: string, title: string) => {
-			dispatch(addTasksAC(todoListId, title))
+			// @ts-ignore
+			dispatch(addTaskTC(todoListId, title));
 	 }, [dispatch])
 
 	 const changeFilter = useCallback((todoListId: string, value: FilterType) => {
@@ -48,23 +50,28 @@ const AppWithRedux = () => {
 	 }, [dispatch])
 
 	 const changeStatus = useCallback((todoListId: string, taskId: string, status: TaskStatuses) => {
-			dispatch(changeTaskStatus(todoListId, taskId, status))
+			// @ts-ignore
+			dispatch(updateTaskTC(todoListId, taskId, {status}))
 	 }, [dispatch])
 
 	 const removeTodolist = useCallback((todoListId: string) => {
-			dispatch(removeTodolistAC(todoListId))
+			// @ts-ignore
+			dispatch(removeTodoListTC(todoListId))
 	 }, [dispatch])
 
 	 const addTodolist = useCallback((title: string) => {
-			dispatch(addTodolistAC(title))
+			// @ts-ignore
+			dispatch(addTodoListTC(title))
 	 }, [dispatch])
 
 	 const changeTaskTitle = useCallback((todoListId: string, id: string, newTitle: string) => {
-			dispatch(changeTaskTitleAC(todoListId, id, newTitle))
+			// @ts-ignore
+			dispatch(updateTaskTC(todoListId, id, {title: newTitle}))
 	 }, [dispatch])
 
 	 const changeTodoListTitle = useCallback((todoListId: string, newTitle: string) => {
-			dispatch(changeTodolistAC(todoListId, newTitle))
+			// @ts-ignore
+			dispatch(changeTodoListTitleTC(todoListId, newTitle))
 	 }, [dispatch])
 
 	 return (
