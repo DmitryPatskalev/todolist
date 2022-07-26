@@ -1,15 +1,15 @@
 import React, {useCallback, useEffect} from 'react';
-import css from './Style.module.css'
-import AddItemForm from "./AddItemForm";
-import ButtonFilterTasks from "./ButtonFilterTasks";
-import {EditableSpan} from "./EditableSpan";
+import css from '../../../components/Style.module.css'
+import AddItemForm from "../../../components/AddItemForm";
+import ButtonFilterTasks from "../../../components/ButtonFilterTasks";
+import {EditableSpan} from "../../../components/EditableSpan";
 import {IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
-import {Task} from "./Task";
-import {TaskStatuses, TaskType} from "../stories/api/TodolistsAPI";
-import {FilterType} from "./reducers/todoList-reducer";
+import {Task} from "./Task/Task";
+import {TaskStatuses, TaskType} from "../../../api/TodolistsAPI";
+import {FilterType} from "../../../reducers/todoList-reducer";
 import {useDispatch} from "react-redux";
-import {fetchTaskTC} from "./reducers/task-reducer";
+import {fetchTaskTC} from "../../../reducers/task-reducer";
 
 type TodolistPropsType = {
 	 todolistID: string
@@ -29,7 +29,7 @@ const Todolist = React.memo((props: TodolistPropsType) => {
 	 const dispatch = useDispatch()
 
 	 useEffect(() => {
-		
+
 			// @ts-ignore
 			dispatch(fetchTaskTC(props.todolistID))
 	 }, [])

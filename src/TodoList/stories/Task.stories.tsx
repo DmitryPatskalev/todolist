@@ -1,9 +1,9 @@
 import React from "react";
-import {Task} from "../TodoList/Task";
+import {Task} from "../features/TodoListsList/TodoList/Task/Task";
 import {action} from "@storybook/addon-actions";
 import {ComponentMeta} from "@storybook/react";
-import {TaskPriorities, TaskStatuses} from "./api/TodolistsAPI";
-import {todoListId1} from "../TodoList/reducers/todoList-reducer";
+import {TaskPriorities, TaskStatuses} from "../api/TodolistsAPI";
+import {todoListId1} from "../reducers/todoList-reducer";
 
 export default {
 	 title: 'TodoList/TaskFormComponent',
