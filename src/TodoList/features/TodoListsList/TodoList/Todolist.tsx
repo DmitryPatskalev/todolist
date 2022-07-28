@@ -26,15 +26,7 @@ type TodolistPropsType = {
 }
 
 const Todolist = React.memo((props: TodolistPropsType) => {
-	 const dispatch = useDispatch()
-
-	 useEffect(() => {
-
-			// @ts-ignore
-			dispatch(fetchTaskTC(props.todolistID))
-	 }, [])
-
-
+	 
 	 let filterTask = props.tasks
 	 if (props.filter === 'Completed') {
 			filterTask = props.tasks.filter(elem => elem.status === TaskStatuses.Completed)
@@ -42,6 +34,14 @@ const Todolist = React.memo((props: TodolistPropsType) => {
 	 if (props.filter === 'Active') {
 			filterTask = props.tasks.filter(elem => elem.status === TaskStatuses.New)
 	 }
+
+	 const dispatch = useDispatch<any>()
+
+	 useEffect(() => {
+			dispatch(fetchTaskTC(props.todolistID))
+	 }, [])
+
+
 	 let listOfTasks = filterTask.map((elem, index) => <Task
 			 removeTask={props.removeTask}
 			 changeStatus={props.changeStatus}

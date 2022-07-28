@@ -19,24 +19,20 @@ import css from "../../components/Style.module.css";
 import {TaskStateType} from "../../components/AppTodoList";
 
 export const TodoListsList: React.FC = (props) => {
-	 const dispatch = useDispatch()
+	 const dispatch = useDispatch<any>()
 	 const todoLists = useSelector<AppRootState, Array<TodolistDomainType>>(state => state.todoLists)
 	 const tasks = useSelector<AppRootState, TaskStateType>(state => state.tasks)
 
 	 useEffect(() => {
-
-			// @ts-ignore
 			dispatch(fetchTodoListTC())
 	 }, [])
 
 
 	 const removeTask = useCallback((todoListId: string, taskID: string) => {
-			// @ts-ignore
 			dispatch(removeTaskTC(todoListId, taskID));
 	 }, [dispatch])
 
 	 const addTask = useCallback((todoListId: string, title: string) => {
-			// @ts-ignore
 			dispatch(addTaskTC(todoListId, title));
 	 }, [dispatch])
 
@@ -45,27 +41,22 @@ export const TodoListsList: React.FC = (props) => {
 	 }, [dispatch])
 
 	 const changeStatus = useCallback((todoListId: string, taskId: string, status: TaskStatuses) => {
-			// @ts-ignore
 			dispatch(updateTaskTC(todoListId, taskId, {status}))
 	 }, [dispatch])
 
 	 const removeTodolist = useCallback((todoListId: string) => {
-			// @ts-ignore
 			dispatch(removeTodoListTC(todoListId))
 	 }, [dispatch])
 
 	 const addTodolist = useCallback((title: string) => {
-			// @ts-ignore
 			dispatch(addTodoListTC(title))
 	 }, [dispatch])
 
 	 const changeTaskTitle = useCallback((todoListId: string, id: string, newTitle: string) => {
-			// @ts-ignore
 			dispatch(updateTaskTC(todoListId, id, {title: newTitle}))
 	 }, [dispatch])
 
 	 const changeTodoListTitle = useCallback((todoListId: string, newTitle: string) => {
-			// @ts-ignore
 			dispatch(changeTodoListTitleTC(todoListId, newTitle))
 	 }, [dispatch])
 	 return <>
